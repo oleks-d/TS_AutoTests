@@ -1,0 +1,8 @@
+<suite name="Suite" parallel="methods" thread-count="2">
+    <test name="Test">
+        <classes>
+            <class name="smoke.AddMattressToCart_GeneralValidationTest"/>
+            <class name="smoke.AddMonitorToCart_GeneralValidationTest"/>
+        </classes>
+    </test> <!-- test -->
+</suite> <!-- suite -->

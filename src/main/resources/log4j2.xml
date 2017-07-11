@@ -1,0 +1,22 @@
+<Configuration status="error" name="herolds">
+    <Properties>
+        <Property name="filename">target/test.log</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %p %C{1.} [%t] %m%n"/>
+        </Console>
+        <File name="File" fileName="${filename}">
+            <PatternLayout pattern="%d %p %C{1.} [%t] %m%n" />
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="File"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+      <!--  <logger level="info" name ="HowToKillDragon_HorsesGeroldsWeapon" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger> -->
+    </Loggers>
+</Configuration>
