@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import utils.FileIO;
 
 /**
  * Created by odiachuk on 07.07.17.
@@ -19,22 +18,22 @@ public class LoginPage extends BasePage {
 
     /** UI Mappings */
 
-    By usernameLocator = By.id("username");
-    By passwordLocator = By.id("password");
-    By loginButtonLocator = By.id("");
+    By usernameLocator = By.id("email");
+    By passwordLocator = By.id("pass");
+    By loginButtonLocator = By.id("send2");
     By loginErrorLocator = By.id("");
 
 
     /** Page Methods */
 
-    public HomePage doLogin(String password)
-    {
-        reporter.info("Logging in using the pass: " + password);
-
-        this.open();
-        this.enterPassword(password);
-        return this.submitForm();
-    }
+//    public HomePage doLogin(String password)
+//    {
+//        reporter.info("Logging in using the pass: " + password);
+//
+//        this.open();
+//        this.enterPassword(password);
+//        return this.submitForm();
+//    }
 
     public void enterUsername(String username)
     {
@@ -52,7 +51,7 @@ public class LoginPage extends BasePage {
         findElement(passwordLocator).sendKeys(password);
     }
 
-    public HomePage submitForm()
+    public MyAccount submitForm()
     {
         reporter.info("Submitting Login form");
 
@@ -70,7 +69,7 @@ public class LoginPage extends BasePage {
             reporter.fail(e.getMessage(), e);
         }
 
-        return HomePage.Instance;
+        return MyAccount.Instance;
     }
 
 
