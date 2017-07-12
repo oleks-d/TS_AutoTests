@@ -16,7 +16,7 @@ import java.util.logging.Level;
 public class DriverProvider {
 
     static String FIREFOX_PATH = "drivers/geckodriver";
-    static String CHROME_PATH = "drivers/chromedriver_";
+    static String CHROME_PATH = "drivers/chromedriver";
 
     //private static WebDriver instance;
     public static ThreadLocal<WebDriver> instance = new ThreadLocal<WebDriver>();
