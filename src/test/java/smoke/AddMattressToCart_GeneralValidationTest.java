@@ -1,5 +1,6 @@
 package smoke;
 
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -23,8 +24,8 @@ public class AddMattressToCart_GeneralValidationTest extends BaseTest {
         .clickAddToCart();
 
 
-        Assert.assertTrue( home.header.validateMattressInCart(mattressSize, mattressFeel) , "Expected Mattress was not found in Cart");
-
+        //Assert.assertTrue( home.header.validateMattressInCart(mattressSize, mattressFeel) , "Expected Mattress was not found in Cart");
+        Assert.assertTrue( home.header.validateItemContentByTitle(ProductTypes.MATTRESS.toString(), mattressSize, mattressFeel), "Expected Mattress was not found in Cart");
 
     }
 

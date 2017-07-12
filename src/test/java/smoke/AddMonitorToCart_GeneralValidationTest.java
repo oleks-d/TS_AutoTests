@@ -1,5 +1,6 @@
 package smoke;
 
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -15,14 +16,15 @@ public class AddMonitorToCart_GeneralValidationTest extends BaseTest {
     @Test
     public void addMonitorToCart_GeneralValidationTest(){
 
-        HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
+        HomePage home = HomePage.Instance;
 
         home.open();
         home.clickOnShopOurMonitorButton()
             .selectMonitorType(monitorType)
             .clickAddToCart();
 
-        Assert.assertTrue( home.header.validateMonitorInCart(monitorType) , "Expected Monitor was not found in Cart");
+        //Assert.assertTrue( home.header.validateMonitorInCart(monitorType) , "Expected Monitor was not found in Cart");
+        Assert.assertTrue( home.header.validateItemContentByTitle(ProductTypes.MONITOR.toString(), monitorType), "Expected Monitor was not found in Cart");
 
 
     }

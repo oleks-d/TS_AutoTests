@@ -46,7 +46,6 @@ public class DriverProvider {
         logPrefs.enable(LogType.BROWSER, Level.OFF);
         caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 
-
         return new ChromeDriver(caps);
 
     }
