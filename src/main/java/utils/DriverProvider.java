@@ -15,8 +15,9 @@ import java.util.logging.Level;
  */
 public class DriverProvider {
 
-    static String FIREFOX_PATH = "drivers/geckodriver";
-    static String CHROME_PATH = "drivers/chromedriver";
+    static String OS_EXTENTION = (System.getProperty("os.name").toLowerCase().contains("win")) ? ".exe" : "_mac";
+    static String FIREFOX_PATH = "drivers/geckodriver" + OS_EXTENTION;
+    static String CHROME_PATH = "drivers/chromedriver" + OS_EXTENTION;
 
     //private static WebDriver instance;
     public static ThreadLocal<WebDriver> instance = new ThreadLocal<WebDriver>();
