@@ -23,7 +23,7 @@ public class AddMattressToCart_GeneralValidationTest extends BaseTest {
         .clickAddToCart();
 
 
-        Assert.assertTrue( home.validateMattressInCart(mattressSize, mattressFeel) , "Expected Mattress was not found in Cart");
+        Assert.assertTrue( home.header.validateMattressInCart(mattressSize, mattressFeel) , "Expected Mattress was not found in Cart");
 
 
     }

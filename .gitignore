@@ -1,4 +1,5 @@
-.html
-.iml
-.png
+*.html
+*.iml
+*.png
+.idea
 target

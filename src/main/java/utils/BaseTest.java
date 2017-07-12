@@ -23,10 +23,11 @@ public class BaseTest{
 
         //init threadlocal driver
         try {
+            reporter.info("Driver creation");
             BasePage.driver.set(DriverProvider.getDriver());
-            //BasePage.driver = DriverProvider.getDriver();
+            //reporter.info("Driver created " + BasePage.driver.get().hashCode());
         }catch (Exception e){
-            reporter.fail("Before test failure", e);
+            reporter.fail("Before test failure during Driver creation", e);
             reporter.stopReporting();
             reporter.closeReporter();
         }
@@ -40,6 +41,7 @@ public class BaseTest{
 
         reporter.stopReporting(testResult);
 
+        //close driver
         BasePage.driver().quit();
         DriverProvider.closeDriver();
     }

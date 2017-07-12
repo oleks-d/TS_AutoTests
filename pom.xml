@@ -8,6 +8,10 @@
     <artifactId>tomorrowsleep</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <tests>testng.xml</tests>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -28,7 +32,7 @@
                 <configuration>
                     <suiteXmlFiles>
                         <!-- TestNG suite XML files -->
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>${tests}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

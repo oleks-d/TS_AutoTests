@@ -9,16 +9,17 @@ import utils.FileIO;
 public class LoginPage extends BasePage {
 
     private final static String pageTitle = " ";
+    private static LoginPage instance;
+    public static LoginPage Instance = (instance != null) ? instance : new LoginPage();
 
-    public LoginPage()
-    {
-        reporter.info("Login");
-        URL = FileIO.getConfigProperty("Environment");
-        reporter.info("Login to URL: " + URL);
+    LoginPage(){
+        instance = Instance;
+        waitForPageToLoad();
     }
 
     /** UI Mappings */
 
+    By usernameLocator = By.id("username");
     By passwordLocator = By.id("password");
     By loginButtonLocator = By.id("");
     By loginErrorLocator = By.id("");
@@ -33,6 +34,14 @@ public class LoginPage extends BasePage {
         this.open();
         this.enterPassword(password);
         return this.submitForm();
+    }
+
+    public void enterUsername(String username)
+    {
+        reporter.info("Entering username: " + username);
+
+        findElement(usernameLocator).clear();
+        findElement(usernameLocator).sendKeys(username);
     }
 
     public void enterPassword(String password)

@@ -12,6 +12,10 @@ public class MonitorPage extends BasePage{
         private static MonitorPage instance;
         public static MonitorPage Instance = (instance != null) ? instance : new MonitorPage();
 
+    /** Common elements **/
+
+    public PageHeader header = PageHeader.Instance;
+
         MonitorPage(){
             instance = Instance;
             waitForPageToLoad();

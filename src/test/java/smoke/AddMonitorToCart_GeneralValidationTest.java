@@ -22,7 +22,7 @@ public class AddMonitorToCart_GeneralValidationTest extends BaseTest {
             .selectMonitorType(monitorType)
             .clickAddToCart();
 
-        Assert.assertTrue( home.validateMonitorInCart(monitorType) , "Expected Monitor was not found in Cart");
+        Assert.assertTrue( home.header.validateMonitorInCart(monitorType) , "Expected Monitor was not found in Cart");
 
 
     }

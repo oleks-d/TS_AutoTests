@@ -12,6 +12,10 @@ public class ComforterPage extends BasePage{
         private static ComforterPage instance;
         public static ComforterPage Instance = (instance != null) ? instance : new ComforterPage();
 
+        /** Common elements **/
+
+        public PageHeader header = PageHeader.Instance;
+
         ComforterPage(){
             instance = Instance;
             waitForPageToLoad();
@@ -24,17 +28,17 @@ public class ComforterPage extends BasePage{
 
         /** Page Methods */
 
-    public ComforterPage selectMonitorType(String monitorType) {
-        reporter.info("Select monitor type: " + monitorType);
-        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
-        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
-            reporter.fail("Item was not selected: " + monitorType);
-        return this;
-    }
-
-    public ComforterPage clickAddToCart() {
-        reporter.info("Click Add to cart button");
-        clickOnElement(addToCartButton);
-        return this;
-    }
+//    public ComforterPage selectComforterType(String monitorType) {
+//        reporter.info("Select comforter type: " + monitorType);
+//        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
+//        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
+//            reporter.fail("Item was not selected: " + monitorType);
+//        return this;
+//    }
+//
+//    public ComforterPage clickAddToCart() {
+//        reporter.info("Click Add to cart button");
+//        clickOnElement(addToCartButton);
+//        return this;
+//    }
 }

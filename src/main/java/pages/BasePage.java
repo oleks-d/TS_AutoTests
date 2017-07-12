@@ -27,12 +27,10 @@ public class BasePage {
 
     }
 
-    //static Logger logger =  ReporterManager.logger;
     static ReporterManager reporter = ReporterManager.Instance;
 
     public static WebDriver driver(){
         return driver.get();
-        //return driver;
     }
 
 
@@ -51,10 +49,10 @@ public class BasePage {
     }
 
     public void open() {
-        if ( URL == "")
+        //if ( URL == "")
             URL = FileIO.getConfigProperty("Environment");
-        else
-            URL =  FileIO.getConfigProperty("Environment") + URL ;
+        //else
+        //    URL =  FileIO.getConfigProperty("Environment") + URL ;
 
         reporter.info("Opening the page: " + "\"" + URL + "\"");
         driver().get(URL);

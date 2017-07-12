@@ -12,6 +12,10 @@ public class PlushPillowPage extends BasePage{
         private static PlushPillowPage instance;
         public static PlushPillowPage Instance = (instance != null) ? instance : new PlushPillowPage();
 
+    /** Common elements **/
+
+    public PageHeader header = PageHeader.Instance;
+
         PlushPillowPage(){
             instance = Instance;
             waitForPageToLoad();
@@ -23,18 +27,18 @@ public class PlushPillowPage extends BasePage{
 
 
         /** Page Methods */
-
-    public PlushPillowPage selectMonitorType(String monitorType) {
-        reporter.info("Select monitor type: " + monitorType);
-        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
-        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
-            reporter.fail("Item was not selected: " + monitorType);
-        return this;
-    }
-
-    public PlushPillowPage clickAddToCart() {
-        reporter.info("Click Add to cart button");
-        clickOnElement(addToCartButton);
-        return this;
-    }
+//
+//    public PlushPillowPage selectMonitorType(String monitorType) {
+//        reporter.info("Select monitor type: " + monitorType);
+//        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
+//        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
+//            reporter.fail("Item was not selected: " + monitorType);
+//        return this;
+//    }
+//
+//    public PlushPillowPage clickAddToCart() {
+//        reporter.info("Click Add to cart button");
+//        clickOnElement(addToCartButton);
+//        return this;
+//    }
 }

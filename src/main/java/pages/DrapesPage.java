@@ -12,6 +12,10 @@ public class DrapesPage extends BasePage{
         private static DrapesPage instance;
         public static DrapesPage Instance = (instance != null) ? instance : new DrapesPage();
 
+    /** Common elements **/
+
+    public PageHeader header = PageHeader.Instance;
+
         DrapesPage(){
             instance = Instance;
             waitForPageToLoad();
@@ -25,17 +29,17 @@ public class DrapesPage extends BasePage{
 
         /** Page Methods */
 
-    public DrapesPage selectMonitorType(String monitorType) {
-        reporter.info("Select monitor type: " + monitorType);
-        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
-        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
-            reporter.fail("Item was not selected: " + monitorType);
-        return this;
-    }
-
-    public DrapesPage clickAddToCart() {
-        reporter.info("Click Add to cart button");
-        clickOnElement(addToCartButton);
-        return this;
-    }
+//    public DrapesPage selectMonitorType(String monitorType) {
+//        reporter.info("Select monitor type: " + monitorType);
+//        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
+//        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
+//            reporter.fail("Item was not selected: " + monitorType);
+//        return this;
+//    }
+//
+//    public DrapesPage clickAddToCart() {
+//        reporter.info("Click Add to cart button");
+//        clickOnElement(addToCartButton);
+//        return this;
+//    }
 }
