@@ -14,6 +14,7 @@ import java.util.logging.Level;
  * Created by odiachuk on 13.12.16.
  */
 public class DriverProvider {
+
     static String OS_EXTENTION = (System.getProperty("os.name").toLowerCase().contains("win")) ? ".exe" : "_mac";
     static String FIREFOX_PATH = "drivers/geckodriver" + OS_EXTENTION;
     static String CHROME_PATH = "drivers/chromedriver" + OS_EXTENTION;
@@ -44,7 +45,6 @@ public class DriverProvider {
         LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.OFF);
         caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
-
 
         return new ChromeDriver(caps);
 

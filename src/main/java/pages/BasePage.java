@@ -243,7 +243,6 @@ public class BasePage {
                     .until(ExpectedConditions.visibilityOfElementLocated(element));
             return driver().findElement(element);
         } catch (Exception e) {
-            //FileIO.takeScreenshot( driver(), String.valueOf(System.currentTimeMillis()) );
             throw new RuntimeException("Failure finding element");
         }
     }
@@ -299,8 +298,6 @@ public class BasePage {
     public static void waitForPageToLoad(){
 
         //reporter.info("Waiting for page to load");
-
-        //sleep(2000);  // todo
 
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 

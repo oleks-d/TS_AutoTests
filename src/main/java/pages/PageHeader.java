@@ -5,6 +5,9 @@ import org.apache.commons.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by odiachuk on 12.07.17.
  */
@@ -86,22 +89,53 @@ public class PageHeader extends BasePage {
     public boolean validateMattressInCart(String mattressSize, String mattressFeel) {
         String itemName = ProductTypes.MATTRESS.toString();
         openCart();
-        for (WebElement cartItem : findElements (cartItems)){
+        for (WebElement cartItem : findElements(cartItems)) {
             if (cartItem.findElement(cartItemName).getText().contains(itemName)) {
                 String currentContent = cartItem.findElement(cartItemContent).getText();
                 if (currentContent.contains(mattressSize)
                         && currentContent.contains(mattressFeel)) {
-                    reporter.pass("Current Item content: " + currentContent+ " .Expected content: " + mattressSize + " " + mattressFeel);
+                    reporter.pass("Current Item content: " + currentContent + " .Expected content: " + mattressSize + " " + mattressFeel);
                     return true;
-                }
-                else {
+                } else {
                     reporter.fail("Current Item content: " + currentContent + " .Expected content: " + mattressSize + " " + mattressFeel);
                     return false;
                 }
             }
         }
-
         reporter.fail("No Cart items were found");
         return false;
     }
+
+    public boolean validateItemContentByTitle( String title, String... expectedContent) {
+        boolean result = true;
+        List<WebElement> currentCartItems = new ArrayList<WebElement>();
+        String itemName = title;
+
+        openCart();
+        for (String expectedField : expectedContent){
+            currentCartItems = findElements(cartItems);
+            for (WebElement cartItem : currentCartItems ) {
+                if (cartItem.findElement(cartItemName).getText().contains(itemName)) {
+                    String currentContent = cartItem.findElement(cartItemContent).getText();
+                    if (currentContent.contains(expectedField)) {
+                        reporter.pass("Current Item content: " + currentContent + ". Expected content: " + expectedField);
+                        result = result && true;
+                    } else {
+                        reporter.fail("Current Item content: " + currentContent + ". Expected content: " + expectedField);
+                        result =  result && false;
+                    }
+                }
+            }
+        }
+        if (currentCartItems.size() == 0) {
+            reporter.fail("No Cart items were found");
+            return false;
+        }
+
+        return result;
+    }
+
+
+
+
 }
