@@ -16,11 +16,6 @@ public class FoamPillowPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        FoamPillowPage(){
-            instance = Instance;
-            waitForPageToLoad();
-        }
-
         /** UI Mappings */
 
         By addToCartButton = By.id("product-addtocart-button");

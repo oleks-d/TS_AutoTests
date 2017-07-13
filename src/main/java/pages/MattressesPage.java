@@ -8,8 +8,6 @@ import org.openqa.selenium.support.ui.Select;
  */
 public class MattressesPage extends BasePage{
 
-
-        private final static String pageTitle = "";
         private static MattressesPage instance;
         public static MattressesPage Instance = (instance != null) ? instance : new MattressesPage();
 
@@ -18,8 +16,7 @@ public class MattressesPage extends BasePage{
     public PageHeader header = PageHeader.Instance;
 
         MattressesPage(){
-            instance = Instance;
-            waitForPageToLoad();
+            URL.set("/mattresses");
         }
 
         /** UI Mappings */
@@ -38,7 +35,7 @@ public class MattressesPage extends BasePage{
 //        }
 
     public MattressesPage selectMattressSize(String value){
-        reporter.info("Select matress size: " + value);
+        reporter.info("Select mattress size: " + value);
         findElement(selectMattressSize).click();
         findElement(By.xpath("//div[@class='option' and contains(text(),'" + value + "')]")).click();
         if (!findElement(selectMattressSize).getText().contains(value)){
@@ -48,7 +45,7 @@ public class MattressesPage extends BasePage{
     }
 
     public MattressesPage selectMattressFeel(String mattressFeel) {
-        reporter.info("Select mattress size: " + mattressFeel);
+        reporter.info("Select mattress feel: " + mattressFeel);
         findElement(By.xpath("//div[@option-label='" + mattressFeel + "']")).click();
         if (!findElement(By.xpath("//div[@option-label='" + mattressFeel + "']")).getAttribute("class").contains("selected"))
             reporter.fail("Item was not selected: " + mattressFeel);

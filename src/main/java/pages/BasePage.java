@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 import utils.FileIO;
 import utils.ReporterManager;
 
@@ -16,15 +13,14 @@ import utils.ReporterManager;
  */
 public class BasePage {
 
-    protected String URL = "";
+    public ThreadLocal<String> URL = new ThreadLocal<String>();
     protected String pageTitle;
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
-
-    protected static final int DEFAULT_TIMEOUT = Integer.parseInt(FileIO.getConfigProperty("DefaultTimeoutInSeconds"));
+    static final int DEFAULT_TIMEOUT = Integer.parseInt(FileIO.getConfigProperty("DefaultTimeoutInSeconds"));
 
     public BasePage() {
-
+       // waitForPageToLoad();
     }
 
     static ReporterManager reporter = ReporterManager.Instance;
@@ -49,13 +45,13 @@ public class BasePage {
     }
 
     public void open() {
-        //if ( URL == "")
-            URL = FileIO.getConfigProperty("Environment");
-        //else
-        //    URL =  FileIO.getConfigProperty("Environment") + URL ;
+        if ( URL.get() == null)
+            URL.set(FileIO.getConfigProperty("Environment"));
+        else
+            URL.set(FileIO.getConfigProperty("Environment") + URL.get() );
 
-        reporter.info("Opening the page: " + "\"" + URL + "\"");
-        driver().get(URL);
+        reporter.info("Opening the page: " + "\"" + URL.get() + "\"");
+        driver().get(URL.get());
         driver().manage().window().maximize();
     }
 
@@ -70,8 +66,8 @@ public class BasePage {
     }
 
     public String getURL() {
-        reporter.info("The requested URL is: " + URL);
-        return URL;
+        reporter.info("The requested URL is: " + URL.get());
+        return URL.get();
     }
 
     protected void sendText(String cssSelector, String text) {
@@ -187,6 +183,11 @@ public class BasePage {
 //            return result;
 //
 //        }
+
+    public static void selectFromDropdown(By element, String value){
+        Select dropdown = new Select(findElement(element));
+        dropdown.selectByVisibleText(value);
+    }
 
 
     public static void clickOnElementIgnoreException(By element, int... timeout) {

@@ -13,11 +13,6 @@ public class ShopPage extends BasePage{
     private static ShopPage instance;
     public static ShopPage Instance = (instance != null) ? instance : new ShopPage();
 
-    ShopPage(){
-            instance = Instance;
-            waitForPageToLoad();
-        }
-
     /** UI Mappings */
 
     By shopOurMattressButton = By.xpath("(//a[text()='Shop Our Mattress'])[1]");

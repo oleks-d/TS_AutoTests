@@ -17,9 +17,7 @@ public class DrapesPage extends BasePage{
     public PageHeader header = PageHeader.Instance;
 
         DrapesPage(){
-            instance = Instance;
-            waitForPageToLoad();
-            URL = "/drapes";
+            URL.set("/drapes");
         }
 
         /** UI Mappings */

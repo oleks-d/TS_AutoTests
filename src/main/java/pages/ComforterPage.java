@@ -16,11 +16,6 @@ public class ComforterPage extends BasePage{
 
         public PageHeader header = PageHeader.Instance;
 
-        ComforterPage(){
-            instance = Instance;
-            waitForPageToLoad();
-        }
-
         /** UI Mappings */
 
         By addToCartButton = By.id("product-addtocart-button");

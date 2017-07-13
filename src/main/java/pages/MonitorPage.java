@@ -16,10 +16,6 @@ public class MonitorPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        MonitorPage(){
-            instance = Instance;
-            waitForPageToLoad();
-        }
 
         /** UI Mappings */
 

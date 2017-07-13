@@ -16,11 +16,6 @@ public class SheetsetPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        SheetsetPage(){
-            instance = Instance;
-            waitForPageToLoad();
-        }
-
         /** UI Mappings */
 
         By addToCartButton = By.id("product-addtocart-button");

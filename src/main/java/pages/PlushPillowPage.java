@@ -16,11 +16,6 @@ public class PlushPillowPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        PlushPillowPage(){
-            instance = Instance;
-            waitForPageToLoad();
-        }
-
         /** UI Mappings */
 
         By addToCartButton = By.id("product-addtocart-button");

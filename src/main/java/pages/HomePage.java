@@ -17,11 +17,6 @@ public class HomePage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-    HomePage(){
-            instance = Instance;
-            waitForPageToLoad();
-        }
-
     /** UI Mappings */
 
     By shopOurMattressButton = By.xpath("(//a[text()='Shop Our Mattress'])[1]");
@@ -29,7 +24,7 @@ public class HomePage extends BasePage{
 
 
 
-
+    /** Page Methods */
 
     public MattressesPage clickOnShopOurMattressButton() {
         reporter.info("Click on Shop Our Mattress");
@@ -46,10 +41,4 @@ public class HomePage extends BasePage{
         return MonitorPage.Instance;
     }
 
-
-
-    public CheckoutPage clickOnCheckoutButton(){
-
-        return CheckoutPage.Instance;
-    }
 }

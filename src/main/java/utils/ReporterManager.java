@@ -8,6 +8,7 @@ import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.Test;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -70,6 +71,7 @@ import com.relevantcodes.extentreports.NetworkMode;
         public String getTestName(Method m) {
             String testName = null;
             String address = null;
+
             String[] testGroups = m.getAnnotation(Test.class).groups();
             for (int i = 0; i < testGroups.length; i++) {
                 if (testGroups[i].startsWith("http")) {
@@ -165,4 +167,8 @@ import com.relevantcodes.extentreports.NetworkMode;
             fail(details + "\n\n" + exceptionString);
         }
 
+        public void fatalFail(String message) {
+            logger.error(message);
+            report().log(LogStatus.FAIL,  message);
+        }
     }

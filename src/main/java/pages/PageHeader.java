@@ -1,11 +1,15 @@
 package pages;
 
+import entities.CartItemEntity;
 import enums.ProductTypes;
+import junit.framework.Assert;
+import org.apache.commons.lang3.text.translate.EntityArrays;
 import org.apache.commons.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,8 +39,15 @@ public class PageHeader extends BasePage {
     By cartItems = By.cssSelector("div.product-item-details");
     By cartItemName = By.cssSelector("strong.product-item-name");
     By cartItemContent = By.cssSelector("div.content");
+    By cartItemQty  = By.xpath("//label[text()='Qty']/../input");
+    By cartItemPrice  = By.cssSelector("span.minicart-price span.price");
     By cartBox = By.xpath("//div[@data-role='dropdownDialog']");
     By cartCheckoutButton = By.cssSelector("button#top-cart-btn-checkout");
+
+    By cartItemDetails = By.cssSelector("dl.product.options.list span");
+
+    // loader
+   // img alt="Loading..."
 
     /** Menu Methods */
 
@@ -56,7 +67,7 @@ public class PageHeader extends BasePage {
     /** Cart Methods */
 
     public PageHeader openCart(){
-        reporter.info("Click on Show cart buttton");
+        reporter.info("Open Cart (Click on Show cart buttton)");
         if (isElementPresent(cartBox)){
             findElement(showCartButton).click();
         };
@@ -65,46 +76,6 @@ public class PageHeader extends BasePage {
         return this;
     }
 
-
-    public boolean validateMonitorInCart(String monitorType) {
-        String itemName = ProductTypes.MONITOR.toString();
-        openCart();
-        for (WebElement cartItem : findElements (cartItems)){
-            if (cartItem.findElement(cartItemName).getText().contains(itemName));
-            String currentContent = cartItem.findElement(cartItemContent).getText();
-            if (currentContent.contains(monitorType)) {
-                reporter.pass("Current Item content: " + currentContent+ " .Expected content: " + monitorType);
-                return true;
-            } else {
-                reporter.fail("Current Item content: " + currentContent+ " .Expected content: " + monitorType);
-                return false;
-            }
-        }
-
-        reporter.fail("No Cart items were found");
-        return false;
-    }
-
-
-    public boolean validateMattressInCart(String mattressSize, String mattressFeel) {
-        String itemName = ProductTypes.MATTRESS.toString();
-        openCart();
-        for (WebElement cartItem : findElements(cartItems)) {
-            if (cartItem.findElement(cartItemName).getText().contains(itemName)) {
-                String currentContent = cartItem.findElement(cartItemContent).getText();
-                if (currentContent.contains(mattressSize)
-                        && currentContent.contains(mattressFeel)) {
-                    reporter.pass("Current Item content: " + currentContent + " .Expected content: " + mattressSize + " " + mattressFeel);
-                    return true;
-                } else {
-                    reporter.fail("Current Item content: " + currentContent + " .Expected content: " + mattressSize + " " + mattressFeel);
-                    return false;
-                }
-            }
-        }
-        reporter.fail("No Cart items were found");
-        return false;
-    }
 
     public boolean validateItemContentByTitle( String title, String... expectedContent) {
         boolean result = true;
@@ -136,6 +107,58 @@ public class PageHeader extends BasePage {
     }
 
 
+    public ArrayList<CartItemEntity>  getAllCartItems(){
+        ArrayList<CartItemEntity> result = new ArrayList<>();
 
+        openCart();
+
+        List<WebElement> cartItemsList = findElements(cartItems);
+        for (WebElement cartItem : cartItemsList ) {
+            CartItemEntity currentItem = new CartItemEntity();
+
+            currentItem.setTitle(cartItem.findElement(cartItemName).getText());
+            currentItem.setQty(Integer.valueOf(cartItem.findElement(cartItemQty).getAttribute("data-item-qty")));
+            currentItem.setPrice(Float.valueOf(cartItem.findElement(cartItemPrice).getText().replace("$","")));
+            currentItem.setSize("");
+            currentItem.setType("");
+
+            List<WebElement> details = cartItem.findElements(cartItemDetails);
+
+            for(WebElement elem : details){
+                String value = elem.getText();
+                if (value.contains("(") && value.contains(")"))
+                    currentItem.setSize(value);
+                else
+                    currentItem.setType(value);
+            }
+
+            result.add(currentItem);
+
+        }
+        if (cartItemsList.size() == 0) {
+            reporter.fail("No Cart items were found");
+            Assert.fail("No Cart items were found");
+        }
+
+        return result;
+    }
+
+    public boolean itemWasFoundInCart(CartItemEntity item) {
+        ArrayList<CartItemEntity> items = getAllCartItems();
+         return items.stream()
+                .filter(cur -> item.getTitle().equals(cur.getTitle()))
+                .filter(cur -> item.getQty() == cur.getQty())
+                .filter(cur -> item.getPrice() == cur.getPrice())
+                 .filter(cur -> cur.getType().contains(item.getType()))
+                 .filter(cur -> cur.getSize().contains(item.getSize())).count() > 0;
+
+    }
+
+    public CheckoutPage clickOnCheckoutButton(){
+        reporter.info("Click on Checkout button");
+        openCart();
+        clickOnElement(cartCheckoutButton);
+        return CheckoutPage.Instance;
+    }
 
 }

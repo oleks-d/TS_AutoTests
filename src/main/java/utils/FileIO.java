@@ -5,6 +5,7 @@ import java.io.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
+import junit.framework.Assert;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -26,14 +27,12 @@ import javax.xml.xpath.XPathFactory;
 public class FileIO {
 
     static String TARGET_FOLDER = "target";
-    static String propertiesFile = "src/main/resources/" + System.getProperty("config") + ".properties";
+    static String DATA_RESOURCES = "src/main/resources/data/";
+    static String PROPERTIES = "src/main/resources/" + System.getProperty("config") + ".properties";
 
-
-
-    public static String getConfigProperty(String fieldName) {
-        String fileLocation = propertiesFile;
+    public static String getConfigProperty(String fieldName){
+        String fileLocation = PROPERTIES;
         String result   = null;
-        ReporterManager report = ReporterManager.Instance;
 
         try {
             //open file
@@ -50,13 +49,12 @@ public class FileIO {
             result = properties.getProperty(fieldName);
 
         } catch (FileNotFoundException e) {
-            report.fail("Config failed", e);
             e.printStackTrace();
+            ReporterManager.Instance.fatalFail("Config was not found");
         } catch (IOException e) {
-            report.fail("Config failed", e);
             e.printStackTrace();
+            ReporterManager.Instance.fatalFail("Config was not opened");
         }
-
         return result;
     }
 
@@ -220,15 +218,20 @@ public class FileIO {
 */
 
     public static String takeScreenshot(WebDriver driver){
-        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String filename =  System.currentTimeMillis() + "screen.png";
-        try {
-            FileUtils.copyFile(file, new File (TARGET_FOLDER + File.separator + filename));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return filename;
+            File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            String filename = System.currentTimeMillis() + "screen.png";
+            try {
+                FileUtils.copyFile(file, new File(TARGET_FOLDER + File.separator + filename));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return filename;
     }
 
+    public static String getDataFile(String defaultUser){
+        if(defaultUser == null)
+            ReporterManager.Instance.fatalFail("Data file location is blank");
+        return DATA_RESOURCES + defaultUser;
+    }
 }
 

@@ -16,11 +16,6 @@ public class MattressProtectorPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        MattressProtectorPage(){
-            instance = Instance;
-            waitForPageToLoad();
-        }
-
         /** UI Mappings */
 
         By addToCartButton = By.id("product-addtocart-button");
