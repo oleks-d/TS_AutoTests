@@ -34,8 +34,9 @@ public class KosSmoke_GeneralValidationTest extends BaseTest {
         login.submitForm();
 
         AccountPage account = AccountPage.Instance;
-        account.getWebElement(By.xpath("//span[text()='Contact Information']/../..//div/p"));
 
+
+        Assert.assertTrue(account.getUserNameText().contains(username), "Login failed a bit :(" );
 
 
 //        home.clickOnShopOurMattressButton()

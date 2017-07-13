@@ -1,9 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.apache.commons.lang3.ObjectUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 /**
  * Created by Kos on 7/12/17.
@@ -28,6 +25,9 @@ public class AccountPage extends LoginPage {
 
     By userLocator = By.xpath("//span[text()='Contact Information']/../..//div/p");
 
-
+    public String getUserNameText() {
+        String userNameText = findElement(userLocator).getText();
+        return  userNameText;
+    }
 
 }
