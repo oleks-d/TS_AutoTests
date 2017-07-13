@@ -8,12 +8,12 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by Kos on 7/12/17.
  */
-public class MyAccount extends LoginPage {
+public class AccountPage extends LoginPage {
 
 
     private final static String pageTitle = "";
-    private static MyAccount instance;
-    public static MyAccount Instance = (instance != null) ? instance : new MyAccount();
+    private static AccountPage instance;
+    public static AccountPage Instance = (instance != null) ? instance : new AccountPage();
 
     /**
      * Common elements
@@ -21,10 +21,13 @@ public class MyAccount extends LoginPage {
 
     public PageHeader header = PageHeader.Instance;
 
-    MyAccount() {
+    AccountPage() {
         instance = Instance;
         waitForPageToLoad();
     }
 
-    By user = By.xpath("//span[text()='Contact Information']/../..//div/p").getText();
+    By userLocator = By.xpath("//span[text()='Contact Information']/../..//div/p");
+
+
+
 }
