@@ -5,10 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.MyAccount;
 import utils.BaseTest;
+import pages.PageHeader;
 
 import static pages.BasePage.driver;
 
@@ -32,8 +33,11 @@ public class KosSmoke_GeneralValidationTest extends BaseTest {
         login.enterPassword(password);
         login.submitForm();
 
+        AccountPage account = AccountPage.Instance;
+        account.getWebElement(By.xpath("//span[text()='Contact Information']/../..//div/p"));
 
-        Assert.assertTrue();
+
+
 //        home.clickOnShopOurMattressButton()
 //        .selectMattressSize(mattressSize)
 //        .selectMattressFeel(mattressFeel)

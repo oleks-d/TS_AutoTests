@@ -51,7 +51,7 @@ public class LoginPage extends BasePage {
         findElement(passwordLocator).sendKeys(password);
     }
 
-    public MyAccount submitForm()
+    public AccountPage submitForm()
     {
         reporter.info("Submitting Login form");
 
@@ -69,7 +69,7 @@ public class LoginPage extends BasePage {
             reporter.fail(e.getMessage(), e);
         }
 
-        return MyAccount.Instance;
+        return AccountPage.Instance;
     }
 
 
