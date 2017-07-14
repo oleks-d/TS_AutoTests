@@ -1,11 +1,10 @@
 package smoke;
 
-import entities.CartItemEntity;
+import entities.ItemEntity;
 import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import pages.LoginPage;
 import pages.MattressesPage;
 import utils.BaseTest;
 
@@ -21,17 +20,14 @@ public class AddMattressToCart_GeneralValidationTest extends BaseTest {
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 
-       // home.open();
-       // home.clickOnShopOurMattressButton()
-
-        MattressesPage mp = MattressesPage.Instance;
-        mp.open();
-        mp.selectMattressSize(mattressSize)
-        .selectMattressFeel(mattressFeel)
-        .clickAddToCart();
+       home.open();
+       home.clickOnShopOurMattressButton()
+            .selectMattressSize(mattressSize)
+            .selectMattressFeel(mattressFeel)
+            .clickAddToCart();
 
         //validation new way
-        CartItemEntity item = new CartItemEntity(ProductTypes.MATTRESS.getValue(), price, qty, mattressSize, mattressFeel);
+        ItemEntity item = new ItemEntity(ProductTypes.MATTRESS.getValue(), price, qty, mattressSize, mattressFeel);
         Assert.assertTrue(home.header.itemWasFoundInCart(item));
 
         //validation old way

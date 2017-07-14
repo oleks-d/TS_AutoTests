@@ -1,7 +1,12 @@
 package pages;
 
+import entities.ItemEntity;
 import entities.UserEntity;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by odiachuk on 07.07.17.
@@ -35,16 +40,13 @@ public class CheckoutPage extends BasePage {
     By phoneField = By.name("telephone");
     By continueButton = By.cssSelector("button.action.continue.primary");
 
-    //cart list
+    //order list
 
-    By productItems = By.cssSelector("div.block.items-in-cart ol.minicart-items li.product-item");
-
-    // strong class="product-item-name" - product name
-
-    //("div.product.options div.content") - content
-    //        ("span.cart-price") - price
-    //       ("div.details-qty span.value") - qty
-
+    By orderItems = By.cssSelector("div.block.items-in-cart ol.minicart-items li.product-item");
+    By orderItemName = By.cssSelector("strong.product-item-name");
+    By orderItemQty = By.cssSelector("div.details-qty span.value");
+    By orderItemPrice = By.cssSelector("span.cart-price");
+    By orderItemDetails= By.cssSelector("dl.item-options span");
 
     /** Page Methods */
 
@@ -128,5 +130,54 @@ public class CheckoutPage extends BasePage {
                 .setStreet(user.getAddress().getStreet())
                 .selectRegion(user.getAddress().getRegion());
         return this;
+    }
+
+    public boolean itemDisplayedOnCheckoutPage(ItemEntity item) {
+        ArrayList<ItemEntity> items = getAllCheckoutPageItems();
+        return items.stream()
+                .filter(cur -> item.getTitle().equals(cur.getTitle()))
+                .filter(cur -> item.getQty() == cur.getQty())
+                .filter(cur -> item.getPrice() == cur.getPrice())
+                .filter(cur -> cur.getType().contains(item.getType()))
+                .filter(cur -> cur.getSize().contains(item.getSize())).count() > 0;
+    }
+
+    private ArrayList<ItemEntity> getAllCheckoutPageItems() {
+        ArrayList<ItemEntity> result = new ArrayList<>();
+        reporter.info("Getting order items");
+        findElement(orderItems); // wait for order
+        List<WebElement> itemsList = findElements(orderItems);
+        for (WebElement orderItem : itemsList ) {
+            ItemEntity currentItem = new ItemEntity();
+
+            currentItem.setTitle(orderItem.findElement(orderItemName).getText());
+
+            currentItem.setQty(Integer.valueOf(orderItem.findElement(orderItemQty).getText()));
+
+            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","")));
+            currentItem.setSize("");
+            currentItem.setType("");
+
+            List<WebElement> details = orderItem.findElements(orderItemDetails);
+
+            for(WebElement elem : details){
+                String value = elem.getText();
+                if (value.contains("(") && value.contains(")"))
+                    currentItem.setSize(value);
+                else
+                    currentItem.setType(value);
+            }
+
+            reporter.info("Order item: " + currentItem.toString());
+            result.add(currentItem);
+
+        }
+
+        if (itemsList.size() == 0) {
+            reporter.info("No items were found on Checkout page");
+            //Assert.fail("No items were found on Checkout page");
+        }
+
+        return result;
     }
 }

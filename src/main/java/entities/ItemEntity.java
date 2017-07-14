@@ -7,11 +7,22 @@ package entities;
  *
  */
 
-public class CartItemEntity extends BaseEntity{
+public class ItemEntity extends BaseEntity{
     String title;
     float price;
     String size;
     String type;
+
+    @Override
+    public String toString() {
+        return "ItemEntity{" +
+                "title='" + title + '\'' +
+                ", price=" + price +
+                ", size='" + size + '\'' +
+                ", type='" + type + '\'' +
+                ", qty=" + qty +
+                '}';
+    }
 
     public String getSize() {
         return size;
@@ -31,7 +42,7 @@ public class CartItemEntity extends BaseEntity{
 
     int qty;
 
-    public CartItemEntity(String title, float price, int qty,  String size, String type) {
+    public ItemEntity(String title, float price, int qty, String size, String type) {
         this.title = title;
         this.price = price;
         this.qty = qty;
@@ -40,7 +51,7 @@ public class CartItemEntity extends BaseEntity{
 
     }
 
-    public CartItemEntity(){};
+    public ItemEntity(){};
 
     public String getTitle() {
         return title;

@@ -1,15 +1,10 @@
 package pages;
 
-import entities.CartItemEntity;
-import enums.ProductTypes;
-import junit.framework.Assert;
-import org.apache.commons.lang3.text.translate.EntityArrays;
-import org.apache.commons.logging.Log;
+import entities.ItemEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -107,14 +102,14 @@ public class PageHeader extends BasePage {
     }
 
 
-    public ArrayList<CartItemEntity>  getAllCartItems(){
-        ArrayList<CartItemEntity> result = new ArrayList<>();
+    public ArrayList<ItemEntity>  getAllCartItems(){
+        ArrayList<ItemEntity> result = new ArrayList<>();
 
         openCart();
 
         List<WebElement> cartItemsList = findElements(cartItems);
         for (WebElement cartItem : cartItemsList ) {
-            CartItemEntity currentItem = new CartItemEntity();
+            ItemEntity currentItem = new ItemEntity();
 
             currentItem.setTitle(cartItem.findElement(cartItemName).getText());
             currentItem.setQty(Integer.valueOf(cartItem.findElement(cartItemQty).getAttribute("data-item-qty")));
@@ -136,15 +131,15 @@ public class PageHeader extends BasePage {
 
         }
         if (cartItemsList.size() == 0) {
-            reporter.fail("No Cart items were found");
-            Assert.fail("No Cart items were found");
+            reporter.info("No Cart items were found");
+            //Assert.fail("No Cart items were found");
         }
 
         return result;
     }
 
-    public boolean itemWasFoundInCart(CartItemEntity item) {
-        ArrayList<CartItemEntity> items = getAllCartItems();
+    public boolean itemWasFoundInCart(ItemEntity item) {
+        ArrayList<ItemEntity> items = getAllCartItems();
          return items.stream()
                 .filter(cur -> item.getTitle().equals(cur.getTitle()))
                 .filter(cur -> item.getQty() == cur.getQty())

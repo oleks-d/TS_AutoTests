@@ -12,7 +12,7 @@ public class HomePage extends BasePage{
     private final static String pageTitle = "";
     private static HomePage instance;
     public static HomePage Instance = (instance != null) ? instance : new HomePage();
-
+    
     /** Common elements **/
 
     public PageHeader header = PageHeader.Instance;

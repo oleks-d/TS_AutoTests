@@ -28,7 +28,8 @@ public class FileIO {
 
     static String TARGET_FOLDER = "target";
     static String DATA_RESOURCES = "src/main/resources/data/";
-    static String PROPERTIES = "src/main/resources/" + System.getProperty("config") + ".properties";
+    static String CONFIG_FILE = System.getProperty("config");
+    static String PROPERTIES = "src/main/resources/" + (( CONFIG_FILE == null ) ? "default" : CONFIG_FILE) + ".properties";
 
     public static String getConfigProperty(String fieldName){
         String fileLocation = PROPERTIES;
@@ -54,6 +55,9 @@ public class FileIO {
         } catch (IOException e) {
             e.printStackTrace();
             ReporterManager.Instance.fatalFail("Config was not opened");
+        } catch (Exception e){
+            e.printStackTrace();
+            ReporterManager.Instance.fatalFail("Field was not found: " + fieldName);
         }
         return result;
     }

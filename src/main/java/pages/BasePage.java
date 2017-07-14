@@ -13,17 +13,29 @@ import utils.ReporterManager;
  */
 public class BasePage {
 
+
+    static ReporterManager reporter = ReporterManager.Instance;
+
     public ThreadLocal<String> URL = new ThreadLocal<String>();
     protected String pageTitle;
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
-    static final int DEFAULT_TIMEOUT = Integer.parseInt(FileIO.getConfigProperty("DefaultTimeoutInSeconds"));
+    static final int DEFAULT_TIMEOUT = getTimeout();
+
+    private static int getTimeout() {
+        String timeout = FileIO.getConfigProperty("DefaultTimeoutInSeconds");
+        if (timeout == null ) {
+            reporter.fatalFail("DefaultTimeoutInSeconds parameter was not found");
+            timeout = "15";
+        };
+
+        return Integer.parseInt(timeout);
+    }
 
     public BasePage() {
        // waitForPageToLoad();
     }
 
-    static ReporterManager reporter = ReporterManager.Instance;
 
     public static WebDriver driver(){
         return driver.get();
@@ -45,11 +57,13 @@ public class BasePage {
     }
 
     public void open() {
-        if ( URL.get() == null)
+        //TODO add multiple URLs support
+        /*if ( URL.get() == null)
             URL.set(FileIO.getConfigProperty("Environment"));
         else
             URL.set(FileIO.getConfigProperty("Environment") + URL.get() );
-
+            */
+        URL.set(FileIO.getConfigProperty("Environment"));
         reporter.info("Opening the page: " + "\"" + URL.get() + "\"");
         driver().get(URL.get());
         driver().manage().window().maximize();

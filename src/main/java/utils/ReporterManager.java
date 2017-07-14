@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import annotations.TestName;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -42,7 +43,7 @@ import com.relevantcodes.extentreports.NetworkMode;
             Long threadID = Thread.currentThread().getId();
 
             ExtentTest test = getInstance().startTest(testName, testDescription);
-            test.assignCategory(DriverProvider.getCurrentBrowserName());
+            //test.assignCategory(DriverProvider.getCurrentBrowserName());
             for (String gr : getTestGroups(m)) {
                 test.assignCategory(gr);
             }
@@ -83,11 +84,15 @@ import com.relevantcodes.extentreports.NetworkMode;
                         + "target=_blank alt=This test is linked to test case. Click to open it>"
                         + m.getAnnotation(Test.class).testName() + "</a>";
             } else {
-                testName = m.getAnnotation(Test.class).testName();
+                try{
+                    testName = m.getAnnotation(TestName.class).name();}
+                catch(Exception e){
+                    //no TestName specified
+                }
             }
 
             if (testName == null || testName.equals("")) {
-                testName = m.getName() + " " + Tools.getCurDateTime();
+                testName = m.getName();
             }
             return testName;
         }
@@ -119,8 +124,7 @@ import com.relevantcodes.extentreports.NetworkMode;
             }
             logger.info(
                     "--------------------------------------------------------------------------------------------------------");
-            logger.info("Started test '" + getTestName(m) + "' Current browser '"
-                    + DriverProvider.getCurrentBrowserName() + "' Groups: '" + testGroups.trim() + "'");
+            logger.info("Started test '" + getTestName(m) + "' Groups: '" + testGroups.trim() + "'");
         }
 
         public void stopReporting(){

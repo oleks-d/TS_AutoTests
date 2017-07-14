@@ -15,10 +15,6 @@ public class MattressesPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        MattressesPage(){
-            URL.set("/mattresses");
-        }
-
         /** UI Mappings */
 
         By selectMattressSize = By.cssSelector("div.bed-size-select");

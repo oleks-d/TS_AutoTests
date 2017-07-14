@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;  //імпортуємо необ
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -22,7 +23,7 @@ public class DriverProvider {
     //private static WebDriver instance;
     public static ThreadLocal<WebDriver> instance = new ThreadLocal<WebDriver>();
 
-    static String BROWSER_NAME = "unknown";
+    static String BROWSER_TYPE;
 
     static public FirefoxDriver getFirefox() {
 
@@ -53,13 +54,11 @@ public class DriverProvider {
     public static WebDriver getDriver() {
         //if (instance == null)
         if (instance.get() == null)
-            if (FileIO.getConfigProperty("Driver").equals("ff")) {
-                BROWSER_NAME = "Firefox";
+            if (getCurrentBrowserName().equals(BrowserType.FIREFOX)) {
                 //instance = getFirefox();
                 instance.set(getFirefox());
             }
             else{
-                BROWSER_NAME = "Chrome";
                 //instance = getChrome();
                 instance.set(getChrome());
             }
@@ -76,6 +75,11 @@ public class DriverProvider {
     }
 
     public static String getCurrentBrowserName() {
-        return BROWSER_NAME;
+        if (BROWSER_TYPE == null)
+            if (FileIO.getConfigProperty("Driver").equals("ff"))
+                BROWSER_TYPE = BrowserType.FIREFOX;
+            else
+                BROWSER_TYPE = BrowserType.CHROME;
+        return BROWSER_TYPE;
     }
 }

@@ -3,6 +3,8 @@
         <classes>
             <class name="smoke.AddMattressToCart_GeneralValidationTest"/>
             <class name="smoke.AddMonitorToCart_GeneralValidationTest"/>
+            <class name="smoke.AddMattressToCart_FullTest"/>
+            <class name="smoke.KosSmoke_GeneralValidationTest"/>
         </classes>
     </test> <!-- test -->
 </suite> <!-- suite -->
