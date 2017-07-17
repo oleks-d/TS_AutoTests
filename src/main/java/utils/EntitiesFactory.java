@@ -1,5 +1,6 @@
 package utils;
 
+import entities.ItemEntity;
 import entities.UserEntity;
 
 import java.io.File;
@@ -9,10 +10,13 @@ import java.io.File;
  */
 public class EntitiesFactory {
 
-    public static UserEntity getUser(String userFile) throws Exception {
+    public static UserEntity getUser(String dataFile) throws Exception {
         UserEntity user = new UserEntity();
-        user = JSONReader.toObjectFromFile(UserEntity.class, userFile);
+        user = JSONReader.toObjectFromFile(UserEntity.class, dataFile);
         return user;
     }
 
+    public static ItemEntity getItem(String dataFile) throws Exception {
+        return JSONReader.toObjectFromFile(ItemEntity.class, dataFile);
+    }
 }

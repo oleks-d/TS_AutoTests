@@ -16,24 +16,25 @@ public class SheetsetPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        /** UI Mappings */
+    /** UI Mappings */
+    By addToCartButton = By.id("product-addtocart-button");
+    By selectSheetsetSize = By.cssSelector("div.bed-size-select");
 
-        By addToCartButton = By.id("product-addtocart-button");
+    /** Page Methods */
 
+    public SheetsetPage selectSheetsetSize(String size) {
+        reporter.info("Select Sheetset size: " + size);
+        findElement(selectSheetsetSize).click();
+        findElement(By.xpath("//div[@class='option' and contains(text(),'" + size + "')]")).click();
+        if (!findElement(selectSheetsetSize).getText().contains(size)){
+            reporter.fail("Item was not changed to: " + size);
+        }
+        return this;
+    }
 
-        /** Page Methods */
-
-//    public SheetsetPage selectMonitorType(String monitorType) {
-//        reporter.info("Select monitor type: " + monitorType);
-//        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
-//        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
-//            reporter.fail("Item was not selected: " + monitorType);
-//        return this;
-//    }
-//
-//    public SheetsetPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public SheetsetPage clickAddToCart() {
+        reporter.info("Click Add to cart button");
+        clickOnElement(addToCartButton);
+        return this;
+    }
 }

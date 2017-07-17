@@ -8,7 +8,7 @@ public enum ProductTypes {
     MATTRESS("Our Mattress"),
     MONITOR("Tomorrow Sleeptracker® Monitor"),
     DRAPES("Tomorrow Drapes"),
-    FOAM_PILLOW("Tomorrow Foam Pillow"),
+    FOAM_PILLOW("Tomorrow Memory Foam Pillow"),
     PLUSH_PILLOW("Tomorrow Plush Pillow"),
     COMFORTER("Tomorrow Comforter"),
     MATTRESS_PROTECTOR("Tomorrow Mattress Protector"),

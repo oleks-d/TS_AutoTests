@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
  */
 public class ComforterPage extends BasePage{
 
-
         private final static String pageTitle = "";
         private static ComforterPage instance;
         public static ComforterPage Instance = (instance != null) ? instance : new ComforterPage();
@@ -19,21 +18,23 @@ public class ComforterPage extends BasePage{
         /** UI Mappings */
 
         By addToCartButton = By.id("product-addtocart-button");
-
+        By selectComforterSize = By.cssSelector("div.bed-size-select");
 
         /** Page Methods */
 
-//    public ComforterPage selectComforterType(String monitorType) {
-//        reporter.info("Select comforter type: " + monitorType);
-//        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
-//        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
-//            reporter.fail("Item was not selected: " + monitorType);
-//        return this;
-//    }
-//
-//    public ComforterPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+        public ComforterPage selectComforterSize(String size) {
+                reporter.info("Select Comforter size: " + size);
+                findElement(selectComforterSize).click();
+                findElement(By.xpath("//div[@class='option' and contains(text(),'" + size + "')]")).click();
+                if (!findElement(selectComforterSize).getText().contains(size)){
+                        reporter.fail("Item was not changed to: " + size);
+                }
+                return this;
+        }
+
+    public ComforterPage clickAddToCart() {
+        reporter.info("Click Add to cart button");
+        clickOnElement(addToCartButton);
+        return this;
+    }
 }

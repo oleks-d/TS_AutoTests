@@ -1,4 +1,4 @@
-<suite name="Suite" parallel="methods" thread-count="2">
+<suite name="Suite" parallel="none" thread-count="2">
     <test name="Test">
         <classes>
             <class name="smoke.AddMattressToCart_GeneralValidationTest"/>
