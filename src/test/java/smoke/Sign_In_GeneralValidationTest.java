@@ -1,19 +1,13 @@
 package smoke;
 
-import org.apache.commons.lang3.ObjectUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.BaseTest;
-import pages.PageHeader;
 
-import static pages.BasePage.driver;
-
-public class KosSmoke_GeneralValidationTest extends BaseTest {
+public class Sign_In_GeneralValidationTest extends BaseTest {
 
     String username = "qazxsw@mailinator.com";
     String password = "!@qwASzx";
@@ -34,20 +28,7 @@ public class KosSmoke_GeneralValidationTest extends BaseTest {
         login.submitForm();
 
         AccountPage account = AccountPage.Instance;
-
-
-        Assert.assertTrue(account.getUserNameText().contains(username), "Login failed a bit :(" );
-
-
-//        home.clickOnShopOurMattressButton()
-//        .selectMattressSize(mattressSize)
-//        .selectMattressFeel(mattressFeel)
-//        .clickAddToCart();
-
-
-
-       // Assert.assertTrue( home.header.validateMattressInCart(mattressSize, mattressFeel) , "Expected Mattress was not found in Cart");
-
+        Assert.assertTrue(account.getUserNameText().contains(username), "Failed to login" );
 
     }
 
