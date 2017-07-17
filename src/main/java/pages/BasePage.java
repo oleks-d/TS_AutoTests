@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import utils.FileIO;
 import utils.ReporterManager;
@@ -69,7 +70,7 @@ public class BasePage {
 
     public void open() {
 
-        reporter.info("Opening the page: " + "\"" + pageURL + "\"");
+        reporter.info("Opening the page: " + "\"" + BASE_URL + pageURL + "\"");
         driver().get(BASE_URL + pageURL);
         driver().manage().window().maximize();
     }
@@ -285,7 +286,7 @@ sleepFor(1000); // todo fixme
             try {
                 Alert alert = driver.switchTo().alert();
                 break;
-            } catch (NoAlertPresentException e)  // чекаємо секунду
+            } catch (NoAlertPresentException e)  // wait for second
             {
                 sleepFor(1);
                 continue;
@@ -298,4 +299,9 @@ sleepFor(1000); // todo fixme
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     } */
+
+    public void hoverItem(By element){
+        Actions action = new Actions(driver());
+        action.moveToElement(findElement(element)).build().perform();
+    }
 }

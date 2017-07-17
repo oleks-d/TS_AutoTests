@@ -7,10 +7,12 @@ import org.openqa.selenium.By;
  */
 public class FoamPillowPage extends BasePage{
 
-
-        private final static String pageTitle = "";
         private static FoamPillowPage instance;
         public static FoamPillowPage Instance = (instance != null) ? instance : new FoamPillowPage();
+
+    public FoamPillowPage(){
+        pageURL = "/memory-foam-pillow";
+    }
 
     /** Common elements **/
 

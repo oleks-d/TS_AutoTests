@@ -7,9 +7,12 @@ import org.openqa.selenium.By;
  */
 public class AccountPage extends LoginPage {
 
-
     private static AccountPage instance;
     public static AccountPage Instance = (instance != null) ? instance : new AccountPage();
+
+    public AccountPage(){
+        pageURL = "/account";
+    } //todo: check url
 
     /**
      * Common elements

@@ -11,9 +11,8 @@ public class LoginPage extends BasePage {
     private static LoginPage instance;
     public static LoginPage Instance = (instance != null) ? instance : new LoginPage();
 
-    LoginPage(){
-        instance = Instance;
-        waitForPageToLoad();
+    public LoginPage(){
+        pageURL = "/customer/account/login/";
     }
 
     /** UI Mappings */

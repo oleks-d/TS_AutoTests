@@ -1,5 +1,6 @@
 package smoke;
 
+import annotations.TestName;
 import entities.ItemEntity;
 import entities.UserEntity;
 import enums.ProductTypes;
@@ -16,29 +17,30 @@ public class NavigationTest_withDataprovider extends BaseTest {
     @DataProvider(name = "provider")
     public Object[][] provider (){
         return new Object[][]{
-                {ProductTypes.MONITOR, MonitorPage.class},
-                {ProductTypes.MATTRESS, MattressesPage.class},
-                {ProductTypes.MATTRESS_PROTECTOR, MattressProtectorPage.class},
-                {ProductTypes.COMFORTER, ComforterPage.class},
-                {ProductTypes.PLUSH_PILLOW, PlushPillowPage.class},
-                {ProductTypes.FOAM_PILLOW, FoamPillowPage.class},
-                {ProductTypes.DRAPES, DrapesPage.class},
-                {ProductTypes.SHEETSET, SheetsetPage.class},
+                {ProductTypes.MONITOR, MonitorPage.class, "Monitor"},
+                {ProductTypes.MATTRESS, MattressesPage.class, "Mattress" },
+                {ProductTypes.MATTRESS_PROTECTOR, MattressProtectorPage.class, "Protector" },
+                {ProductTypes.COMFORTER, ComforterPage.class, "Comforter"},
+                {ProductTypes.PLUSH_PILLOW, PlushPillowPage.class, "Plush Pillow"},
+                {ProductTypes.FOAM_PILLOW, FoamPillowPage.class, "Foam Pillow"},
+                {ProductTypes.DRAPES, DrapesPage.class, "Drapes"},
+                {ProductTypes.SHEETSET, SheetsetPage.class, "Sheets"},
         };
     }
 
 
     @Test (dataProvider = "provider")
-    public void addMattressToCart_GeneralValidationTest(ProductTypes type, Class page) throws Exception {
+    public void topMenuValidation(ProductTypes type, Class page, String itemName) throws Exception {
 
         HomePage home = HomePage.Instance;
         CheckoutPage checkout = CheckoutPage.Instance;
         CheckoutReviewPage review = CheckoutReviewPage.Instance;
         BasePage bp = (BasePage) page.getConstructor().newInstance();
 
-
         home.open();
+        home.header.openMenuByItemName(itemName);
 
+        Assert.assertTrue(bp.isPageLoaded(), "Page was not opened: " + bp.getURL());
 
     }
 }

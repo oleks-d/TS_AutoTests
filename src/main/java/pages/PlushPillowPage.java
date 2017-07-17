@@ -7,10 +7,12 @@ import org.openqa.selenium.By;
  */
 public class PlushPillowPage extends BasePage{
 
-
-        private final static String pageTitle = "";
         private static PlushPillowPage instance;
         public static PlushPillowPage Instance = (instance != null) ? instance : new PlushPillowPage();
+
+    public PlushPillowPage(){
+        pageURL = "/hypoallergenic-pillow";
+    }
 
     /** Common elements **/
 

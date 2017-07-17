@@ -11,7 +11,7 @@ public class MonitorPage extends BasePage{
         public static MonitorPage Instance = (instance != null) ? instance : new MonitorPage();
 
     public MonitorPage(){
-        pageURL = "/monitor";
+        pageURL = "/tomorrow-sleeptrackerr-monitor";
     }
 
     /** Common elements **/

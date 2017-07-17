@@ -10,9 +10,12 @@ import org.openqa.selenium.WebElement;
  */
 public class ShopPage extends BasePage{
 
-    private final static String pageTitle = "";
     private static ShopPage instance;
     public static ShopPage Instance = (instance != null) ? instance : new ShopPage();
+
+    public ShopPage(){
+        pageURL = "/shop";
+    }
 
     /** UI Mappings */
 

@@ -7,9 +7,12 @@ import org.openqa.selenium.By;
  */
 public class ComforterPage extends BasePage{
 
-        private final static String pageTitle = "";
         private static ComforterPage instance;
         public static ComforterPage Instance = (instance != null) ? instance : new ComforterPage();
+
+    public ComforterPage(){
+        pageURL = "/comforter";
+    }
 
         /** Common elements **/
 
