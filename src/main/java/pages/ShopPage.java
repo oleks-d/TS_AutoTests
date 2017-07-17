@@ -35,42 +35,49 @@ public class ShopPage extends BasePage{
 
     public FoamPillowPage clickOnShopOurFoamPillowButton() {
         reporter.info("Click on Shop Our Pillow (Foam)");
+        scrollToElement(driver().findElement(shopOurFoamPillowButton));
         findElement(shopOurFoamPillowButton).click();
         return FoamPillowPage.Instance;
     }
 
     public PlushPillowPage clickOnShopOurPlushPillowButton() {
         reporter.info("Click on Shop Our Pillow (Plush)");
+        scrollToElement(driver().findElement(shopOurPlushPillowButton));
         findElement(shopOurPlushPillowButton).click();
         return PlushPillowPage.Instance;
     }
 
     public MonitorPage clickOnShopOurMonitorButton() {
         reporter.info("Click on Shop Our Monitor");
+        scrollToElement(driver().findElement(shopOurTrackerButton));
         findElement(shopOurTrackerButton).click();
         return MonitorPage.Instance;
     }
 
     public SheetsetPage clickOnShopOurSheetsButton() {
         reporter.info("Click on Shop Our Sheets");
+        scrollToElement(driver().findElement(shopOurSheetsButton));
         findElement(shopOurSheetsButton).click();
         return SheetsetPage.Instance;
     }
 
     public ComforterPage clickOnShopOurComforterButton() {
         reporter.info("Click on Shop Our Comforter");
+        scrollToElement(driver().findElement(shopOurComforterButton));
         findElement(shopOurComforterButton).click();
         return ComforterPage.Instance;
     }
 
     public MattressProtectorPage clickOnShopOurCoverButton() {
         reporter.info("Click on Shop Our Cover");
+        scrollToElement(driver().findElement(shopOurCoverButton));
         findElement(shopOurCoverButton).click();
         return MattressProtectorPage.Instance;
     }
 
     public DrapesPage clickOnShopOurDrapesButton() {
-        reporter.info("Click on Shop Our Mattress");
+        reporter.info("Click on Shop Our Drapes");
+        scrollToElement(driver().findElement(shopOurDrapesButton));
         findElement(shopOurDrapesButton).click();
         return DrapesPage.Instance;
     }

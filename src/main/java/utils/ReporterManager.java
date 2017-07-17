@@ -23,7 +23,7 @@ import com.relevantcodes.extentreports.NetworkMode;
         public static ReporterManager Instance = (instance != null) ? instance : new ReporterManager();
 
         ReporterManager(){
-            instance = Instance;
+
         }
 
         private static Map<Long, ExtentTest> testThread = new HashMap<Long, ExtentTest>();

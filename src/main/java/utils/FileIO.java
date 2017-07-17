@@ -27,8 +27,8 @@ import javax.xml.xpath.XPathFactory;
 public class FileIO {
 
     static String TARGET_FOLDER = "target";
-    static String DATA_RESOURCES = "src/main/resources/data/staging";
-    static String PROD_DATA_RESOURCES = "src/main/resources/data/production";
+    static String DATA_RESOURCES = "src/main/resources/data/staging/";
+    static String PROD_DATA_RESOURCES = "src/main/resources/data/production/";
     static String CONFIG_FILE = System.getProperty("config");
     static String PROPERTIES = "src/main/resources/" + (( CONFIG_FILE == null ) ? "default" : CONFIG_FILE) + ".properties";
 

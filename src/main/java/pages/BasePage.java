@@ -16,8 +16,9 @@ public class BasePage {
 
     static ReporterManager reporter = ReporterManager.Instance;
 
-    public ThreadLocal<String> URL = new ThreadLocal<String>();
-    protected String pageTitle;
+    public  static String BASE_URL = (FileIO.getConfigProperty("Environment"));
+    public  String pageURL = "";
+    public  String pageTitle = "";
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
     static final int DEFAULT_TIMEOUT = getTimeout();
@@ -41,14 +42,25 @@ public class BasePage {
     }
 
 
-    public BasePage(String pageTitle) {
-        //this();
-        this.pageTitle = pageTitle;
-    }
-
     public boolean isPageLoaded() {
+        boolean result = false;
         reporter.info("Page title is: " + driver().getTitle());
-        return (driver().getTitle().contains(pageTitle));
+        reporter.info("Page URL is: " + driver().getCurrentUrl());
+        if (driver().getTitle().contains(pageTitle))
+            result = true;
+        else {
+            reporter.info("Expected title: " + pageTitle);
+            result = false;
+        }
+
+        if (driver().getCurrentUrl().contains(pageURL))
+            result = true;
+        else {
+            reporter.info("Expected URL: " + pageURL);
+            result = false;
+        }
+
+        return result;
     }
 
     public void reloadPage() {
@@ -56,15 +68,9 @@ public class BasePage {
     }
 
     public void open() {
-        //TODO add multiple URLs support
-        /*if ( URL.get() == null)
-            URL.set(FileIO.getConfigProperty("Environment"));
-        else
-            URL.set(FileIO.getConfigProperty("Environment") + URL.get() );
-            */
-        URL.set(FileIO.getConfigProperty("Environment"));
-        reporter.info("Opening the page: " + "\"" + URL.get() + "\"");
-        driver().get(URL.get());
+
+        reporter.info("Opening the page: " + "\"" + pageURL + "\"");
+        driver().get(BASE_URL + pageURL);
         driver().manage().window().maximize();
     }
 
@@ -79,8 +85,8 @@ public class BasePage {
     }
 
     public String getURL() {
-        reporter.info("The requested URL is: " + URL.get());
-        return URL.get();
+        reporter.info("The requested URL is: " + BASE_URL + pageURL);
+        return BASE_URL + pageURL;
     }
 
     protected void sendText(String cssSelector, String text) {
@@ -244,7 +250,7 @@ public class BasePage {
     }
 
     public static void waitForPageToLoad(){
-
+sleepFor(1000); // todo fixme
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 
             public Boolean apply(WebDriver driver)

@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 public class AccountPage extends LoginPage {
 
 
-    private final static String pageTitle = "";
     private static AccountPage instance;
     public static AccountPage Instance = (instance != null) ? instance : new AccountPage();
 
