@@ -21,6 +21,7 @@ public class LoginPage extends BasePage {
     By passwordLocator = By.id("pass");
     By loginButtonLocator = By.id("send2");
     By loginErrorLocator = By.id("");
+    By createAccountLinkLocator = By.xpath("//SPAN[text()='CREATE AN ACCOUNT']");
 
 
     /** Page Methods */
@@ -69,6 +70,12 @@ public class LoginPage extends BasePage {
         }
 
         return AccountPage.Instance;
+    }
+
+    public clickCreateAnAccount(){
+        reporter.info("Click on Create Account button");
+        findElement(createAccountLinkLocator).click();
+        return
     }
 
 

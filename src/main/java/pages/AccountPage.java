@@ -101,6 +101,7 @@ public class AccountPage extends LoginPage {
     //My Dashboard Methods
     public String getDashboardAccount(){
         String getDashboardAccount = findElement(accountInformationTitle).getText();
+        reporter.info("Account information Title is "+ accountInformationTitle);
         return getDashboardAccount;
     }
 
