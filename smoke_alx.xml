@@ -1,0 +1,7 @@
+<suite name="Suite" parallel="none" thread-count="2">
+    <test name="Test">
+        <classes>
+            <class name="smoke.KosSmoke_GeneralValidationTest"/>
+        </classes>
+    </test> <!-- test -->
+</suite> <!-- suite -->
