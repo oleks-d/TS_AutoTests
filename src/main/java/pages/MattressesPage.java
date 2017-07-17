@@ -11,6 +11,10 @@ public class MattressesPage extends BasePage{
         private static MattressesPage instance;
         public static MattressesPage Instance = (instance != null) ? instance : new MattressesPage();
 
+    public MattressesPage(){
+        pageURL = "/mattresses";
+    }
+
     /** Common elements **/
 
     public PageHeader header = PageHeader.Instance;

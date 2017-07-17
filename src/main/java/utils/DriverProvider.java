@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;  //імпортуємо необхідні бібліотеки
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
@@ -46,6 +47,12 @@ public class DriverProvider {
         LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.OFF);
         caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        //chromeOptions.addArguments("--kiosk");
+        //chromeOptions.addArguments("--start-maximized");
+
+        caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
         return new ChromeDriver(caps);
 

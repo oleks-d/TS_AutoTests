@@ -13,10 +13,12 @@ import java.util.List;
  */
 public class CheckoutPage extends BasePage {
 
-
-    private final static String pageTitle = "";
     private static CheckoutPage instance;
     public static CheckoutPage Instance = (instance != null) ? instance : new CheckoutPage();
+
+    public CheckoutPage(){
+        pageURL = "/checkout/";
+    }
 
     /** Common elements **/
 

@@ -69,8 +69,10 @@ public class PageHeader extends BasePage {
 
     public PageHeader openCart(){
         reporter.info("Open Cart (Click on Show cart buttton)");
+        sleepFor(2000); //todo fixme!!
         if (isElementPresent(cartBox)){
             findElement(showCartButton).click();
+            sleepFor(1000);
         };
         findElement(showCartButton).click();
         findElement (cartItems);
@@ -162,4 +164,8 @@ public class PageHeader extends BasePage {
         return CheckoutPage.Instance;
     }
 
+    public void openMenuByItemName(String itemName) {
+        hoverItem(topMenuItem_Shop);
+        clickOnElement(By.xpath("//a[@role='menuitem']/span[text()='" + itemName + "']"));
+    }
 }

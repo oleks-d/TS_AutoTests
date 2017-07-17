@@ -7,10 +7,12 @@ import org.openqa.selenium.By;
  */
 public class MonitorPage extends BasePage{
 
-
-        private final static String pageTitle = "";
         private static MonitorPage instance;
         public static MonitorPage Instance = (instance != null) ? instance : new MonitorPage();
+
+    public MonitorPage(){
+        pageURL = "/tomorrow-sleeptrackerr-monitor";
+    }
 
     /** Common elements **/
 

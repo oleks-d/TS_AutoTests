@@ -7,9 +7,12 @@ import org.openqa.selenium.By;
  */
 public class DrapesPage extends BasePage{
 
-        private final static String pageTitle = "";
         private static DrapesPage instance;
         public static DrapesPage Instance = (instance != null) ? instance : new DrapesPage();
+
+    public DrapesPage(){
+        pageURL = "/drapes";
+    }
 
     /** Common elements **/
 

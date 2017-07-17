@@ -1,0 +1,17 @@
+{
+  "lastname" : "Autouserlast",
+  "firstname" : "Automuserfirst",
+  "password" : null,
+  "contacts" : {
+    "email" : "some@domain.xxx",
+    "phone" : "773-495-8072",
+    "company" : "Automation"
+  },
+  "address" : {
+    "street" : "5320 N Sheridan",
+    "city" : "Chicago",
+    "region" : "Illinois",
+    "country" : "United States",
+    "zip" : "60640"
+  }
+}

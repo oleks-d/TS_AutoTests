@@ -7,10 +7,12 @@ import org.openqa.selenium.By;
  */
 public class SheetsetPage extends BasePage{
 
-
-        private final static String pageTitle = "";
         private static SheetsetPage instance;
         public static SheetsetPage Instance = (instance != null) ? instance : new SheetsetPage();
+
+    public SheetsetPage(){
+        pageURL = "/sheets";
+    }
 
     /** Common elements **/
 

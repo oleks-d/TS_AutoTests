@@ -1,8 +1,5 @@
 package listeners;
 
-/**
- * Created by odiachuk on 11.07.17.
- */
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;

@@ -13,10 +13,12 @@ import java.util.List;
  */
 public class ViewCartPage extends BasePage {
 
-
-    private final static String pageTitle = "";
     private static ViewCartPage instance;
     public static ViewCartPage Instance = (instance != null) ? instance : new ViewCartPage();
+
+    public ViewCartPage(){
+        pageURL = "/checkout/cart/";
+    }
 
     /** Common elements **/
 

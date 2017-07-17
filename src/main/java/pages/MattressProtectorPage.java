@@ -12,6 +12,10 @@ public class MattressProtectorPage extends BasePage{
         private static MattressProtectorPage instance;
         public static MattressProtectorPage Instance = (instance != null) ? instance : new MattressProtectorPage();
 
+    public MattressProtectorPage(){
+        pageURL = "/mattress-protector";
+    }
+
     /** Common elements **/
 
     public PageHeader header = PageHeader.Instance;

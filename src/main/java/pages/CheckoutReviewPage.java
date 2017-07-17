@@ -12,9 +12,12 @@ import java.util.List;
  */
 public class CheckoutReviewPage extends BasePage{
 
-    private final static String pageTitle = "";
     private static CheckoutReviewPage instance;
     public static CheckoutReviewPage Instance = (instance != null) ? instance : new CheckoutReviewPage();
+
+    public CheckoutReviewPage(){
+        pageURL = "/";
+    }
 
     /** Common elements **/
 
