@@ -2,6 +2,7 @@ package pages;
 
 import enums.ProductTypes;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -24,6 +25,8 @@ public class ShopPage extends BasePage{
     By shopOurComforterButton = By.xpath("(//a[text()='SHOP OUR COMFORTER'])[1]");
     By shopOurCoverButton = By.xpath("(//a[text()='SHOP OUR COVER'])[1]");
     By shopOurDrapesButton = By.xpath("(//a[text()='SHOP OUR DRAPES'])[1]");
+
+    public String shopPageUrl = "https://www.tomorrowsleep.com/drapes";
 
     /** Page Methods */
 
@@ -70,9 +73,9 @@ public class ShopPage extends BasePage{
     }
 
     public DrapesPage clickOnShopOurDrapesButton() {
+        scrollToElement(driver().findElement(shopOurDrapesButton));
         reporter.info("Click on Shop Our Mattress");
         findElement(shopOurDrapesButton).click();
         return DrapesPage.Instance;
     }
-
 }
