@@ -36,7 +36,6 @@ public class BasePage {
        // waitForPageToLoad();
     }
 
-
     public static WebDriver driver(){
         return driver.get();
     }
@@ -129,74 +128,7 @@ public class BasePage {
     public WebElement getWebElement(By by) {
         return findElement(by);
     }
-//
-//        public static boolean verifyPageNotLoading(WebDriver driver, int timeToWait)
-//        {
-//            By loadingIndicator = By.xpath("//div[text()='Loading...']");
-//
-//            int i = 0;
-//            boolean result = false;
-//
-//            while (i < 30)
-//            {
-//                WaitTool.setImplicitWait(driver, 1);
-//                FileIO.logger("Checking page load status...", 2);
-//                FileIO.logger("Current wait time is: " + i, 2);
-//                result = ExpectedConditions.invisibilityOfElementLocated(loadingIndicator).apply(driver);
-//
-//                if (result == true)
-//                {
-//                    FileIO.logger("Loading element is no longer visible. Continuing execution...", 2);
-//                    WaitTool.nullifyImplicitWait(driver);
-//                    break;
-//                }
-//
-//                i = i + 1;
-//
-//            }
-//
-//            return result;
-//
-//        }
 
-//        /**
-//         * Checks for the presence of the loading image commonly associated with
-//         * tables loading within salesforce. In service cloud iframes also utilize
-//         * this loading image (as opposed to the large Loading...overlay) with
-//         * iframes. This function is a duplicate Core.verifyNotLoading that is
-//         * associated with salescloud
-//         *
-//         * @param driver
-//         * @param timeToWait
-//         * @return
-//         */
-//        public static boolean verifyContextNotLoading(WebDriver driver, int timeToWait)
-//        {
-//            By loadingIndicator = By.cssSelector("img[title='Please Wait...']");
-//
-//            int i = 0;
-//            boolean result = false;
-//
-//            while (i < 30)
-//            {
-//                WaitTool.setImplicitWait(driver, 1);
-//                FileIO.logger("Waiting 1 sec then returning result. Current wait time is:" + i, 2);
-//                result = ExpectedConditions.invisibilityOfElementLocated(loadingIndicator).apply(driver);
-//
-//                if (result == true)
-//                {
-//                    FileIO.logger("Context Loading element is no longer visible. Continuing execution.", 2);
-//                    WaitTool.nullifyImplicitWait(driver);
-//                    break;
-//                }
-//
-//                i = i + 1;
-//
-//            }
-//
-//            return result;
-//
-//        }
 
     public static void selectFromDropdown(By element, String value){
         Select dropdown = new Select(findElement(element));
@@ -247,6 +179,7 @@ public class BasePage {
         } catch (Exception e) {
             throw new RuntimeException("Failure clicking on element");
         }
+        waitForPageToLoad();
     }
 
     public static WebElement findElement(By element, int... timeout) {
@@ -312,8 +245,6 @@ public class BasePage {
 
     public static void waitForPageToLoad(){
 
-        //reporter.info("Waiting for page to load");
-
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 
             public Boolean apply(WebDriver driver)
@@ -329,14 +260,10 @@ public class BasePage {
         try
         {
             wait.until(expectation);
-            //reporter.info("Returned a ready state of complete");
         } catch (Exception error)
         {
-            reporter.fail("JavaScript readyState query timeout - The page has not finished loading", error);
+            reporter.fail("JavaScript readyState query timeout - The page has not finished loading");
         }
-
-        //FileIO.takeScreenshot( driver, String.valueOf(System.currentTimeMillis()) );
-
     }
 
     public static void sleepFor(int timeout){

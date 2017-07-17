@@ -12,7 +12,7 @@ public class HomePage extends BasePage{
     private final static String pageTitle = "";
     private static HomePage instance;
     public static HomePage Instance = (instance != null) ? instance : new HomePage();
-    
+
     /** Common elements **/
 
     public PageHeader header = PageHeader.Instance;
@@ -22,8 +22,6 @@ public class HomePage extends BasePage{
     By shopOurMattressButton = By.xpath("(//a[text()='Shop Our Mattress'])[1]");
     By shopOurMonitorButton = By.xpath("(//a[text()='Shop Our Monitor'])[1]");
 
-
-
     /** Page Methods */
 
     public MattressesPage clickOnShopOurMattressButton() {
@@ -32,13 +30,10 @@ public class HomePage extends BasePage{
         return MattressesPage.Instance;
     }
 
-
-
     public MonitorPage clickOnShopOurMonitorButton() {
         scrollToElement(driver().findElement(shopOurMonitorButton));
         reporter.info("Click on Shop Our Monitor");
         findElement(shopOurMonitorButton).click();
         return MonitorPage.Instance;
     }
-
 }

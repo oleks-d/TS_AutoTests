@@ -27,7 +27,8 @@ import javax.xml.xpath.XPathFactory;
 public class FileIO {
 
     static String TARGET_FOLDER = "target";
-    static String DATA_RESOURCES = "src/main/resources/data/";
+    static String DATA_RESOURCES = "src/main/resources/data/staging";
+    static String PROD_DATA_RESOURCES = "src/main/resources/data/production";
     static String CONFIG_FILE = System.getProperty("config");
     static String PROPERTIES = "src/main/resources/" + (( CONFIG_FILE == null ) ? "default" : CONFIG_FILE) + ".properties";
 
@@ -232,10 +233,11 @@ public class FileIO {
             return filename;
     }
 
-    public static String getDataFile(String defaultUser){
-        if(defaultUser == null)
-            ReporterManager.Instance.fatalFail("Data file location is blank");
-        return DATA_RESOURCES + defaultUser;
+    public static String getDataFile(String filename){
+        if (FileIO.getConfigProperty("EnvType").equals("PROD"))
+            return PROD_DATA_RESOURCES + filename;
+        else
+            return DATA_RESOURCES + filename;
     }
 }
 

@@ -23,13 +23,6 @@ public class MattressesPage extends BasePage{
 
         /** Page Methods */
 
-
-//        public MattressesPage selectMattressSizeByIndex(int value) {
-//            Select weaponSelect = new Select(findElement(selectMattressSize));
-//            weaponSelect.selectByIndex(value);
-//            return this;
-//        }
-
     public MattressesPage selectMattressSize(String value){
         reporter.info("Select mattress size: " + value);
         findElement(selectMattressSize).click();

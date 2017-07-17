@@ -18,12 +18,11 @@ public class AccountPage extends LoginPage {
 
     public PageHeader header = PageHeader.Instance;
 
-    AccountPage() {
-        instance = Instance;
-        waitForPageToLoad();
-    }
+    /** UI Mappings */
 
     By userLocator = By.xpath("//span[text()='Contact Information']/../..//div/p");
+
+    /** Page Methods */
 
     public String getUserNameText() {
         String userNameText = findElement(userLocator).getText();

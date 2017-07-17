@@ -134,6 +134,7 @@ public class CheckoutPage extends BasePage {
 
     public boolean itemDisplayedOnCheckoutPage(ItemEntity item) {
         ArrayList<ItemEntity> items = getAllCheckoutPageItems();
+        reporter.info("Expected item: " + item.toString());
         return items.stream()
                 .filter(cur -> item.getTitle().equals(cur.getTitle()))
                 .filter(cur -> item.getQty() == cur.getQty())

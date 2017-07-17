@@ -76,7 +76,7 @@ public class DriverProvider {
 
     public static String getCurrentBrowserName() {
         if (BROWSER_TYPE == null)
-            if (FileIO.getConfigProperty("Driver").equals("ff"))
+            if (FileIO.getConfigProperty("Driver").equals("firefox"))
                 BROWSER_TYPE = BrowserType.FIREFOX;
             else
                 BROWSER_TYPE = BrowserType.CHROME;

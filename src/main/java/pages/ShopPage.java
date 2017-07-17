@@ -74,5 +74,4 @@ public class ShopPage extends BasePage{
         findElement(shopOurDrapesButton).click();
         return DrapesPage.Instance;
     }
-
 }

@@ -16,24 +16,15 @@ public class PlushPillowPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        /** UI Mappings */
+    /** UI Mappings */
 
-        By addToCartButton = By.id("product-addtocart-button");
+    By addToCartButton = By.id("product-addtocart-button");
 
+    /** Page Methods */
 
-        /** Page Methods */
-//
-//    public PlushPillowPage selectMonitorType(String monitorType) {
-//        reporter.info("Select monitor type: " + monitorType);
-//        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
-//        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
-//            reporter.fail("Item was not selected: " + monitorType);
-//        return this;
-//    }
-//
-//    public PlushPillowPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public PlushPillowPage clickAddToCart() {
+        reporter.info("Click Add to cart button");
+        clickOnElement(addToCartButton);
+        return this;
+    }
 }

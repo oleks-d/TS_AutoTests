@@ -6,9 +6,14 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-/**
+/*
  * Created by odiachuk on 12.07.17.
+ *
+ *
+ * Class contains all methods related with Top menu items and Cart items
+ *
  */
 public class PageHeader extends BasePage {
 
@@ -38,6 +43,7 @@ public class PageHeader extends BasePage {
     By cartItemPrice  = By.cssSelector("span.minicart-price span.price");
     By cartBox = By.xpath("//div[@data-role='dropdownDialog']");
     By cartCheckoutButton = By.cssSelector("button#top-cart-btn-checkout");
+    By viewCatButton = By.cssSelector("a.action.viewcart");
 
     By cartItemDetails = By.cssSelector("dl.product.options.list span");
 
@@ -140,13 +146,13 @@ public class PageHeader extends BasePage {
 
     public boolean itemWasFoundInCart(ItemEntity item) {
         ArrayList<ItemEntity> items = getAllCartItems();
-         return items.stream()
-                .filter(cur -> item.getTitle().equals(cur.getTitle()))
-                .filter(cur -> item.getQty() == cur.getQty())
-                .filter(cur -> item.getPrice() == cur.getPrice())
+        reporter.info("Expected item: " + item.toString());
+        return items.stream()
+                 .filter(cur -> item.getTitle().equals(cur.getTitle()))
+                 .filter(cur -> item.getQty() == cur.getQty())
+                 .filter(cur -> item.getPrice() == cur.getPrice())
                  .filter(cur -> cur.getType().contains(item.getType()))
                  .filter(cur -> cur.getSize().contains(item.getSize())).count() > 0;
-
     }
 
     public CheckoutPage clickOnCheckoutButton(){

@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
  */
 public class DrapesPage extends BasePage{
 
-
         private final static String pageTitle = "";
         private static DrapesPage instance;
         public static DrapesPage Instance = (instance != null) ? instance : new DrapesPage();
@@ -16,28 +15,32 @@ public class DrapesPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        DrapesPage(){
-            URL.set("/drapes");
+    /** UI Mappings */
+
+    By addToCartButton = By.id("product-addtocart-button");
+    By selectDrapesSize = By.cssSelector("div.bed-size-select");
+
+    /** Page Methods */
+
+    public DrapesPage clickAddToCart() {
+        reporter.info("Click Add to cart button");
+        clickOnElement(addToCartButton);
+        return this;
+    }
+
+    public DrapesPage selectDrapesSize(String value) {
+            reporter.info("Select Drapes size: " + value);
+            findElement(selectDrapesSize).click();
+            findElement(By.xpath("//div[@class='option' and contains(text(),'" + value + "')]")).click();
+            if (!findElement(selectDrapesSize).getText().contains(value)){
+                reporter.fail("Item was not changed to: " + value);
         }
+        return this;
+    }
 
-        /** UI Mappings */
-
-        By addToCartButton = By.id("product-addtocart-button");
-
-
-        /** Page Methods */
-
-//    public DrapesPage selectMonitorType(String monitorType) {
-//        reporter.info("Select monitor type: " + monitorType);
-//        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
-//        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
-//            reporter.fail("Item was not selected: " + monitorType);
-//        return this;
-//    }
-//
-//    public DrapesPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public DrapesPage selectDrapesColor(String color) {
+        reporter.info("Select Drapes color: " + color);
+        clickOnElement(By.xpath("//div[@option-label='" + color + "']"));
+        return this;
+    }
 }

@@ -16,24 +16,27 @@ public class MattressProtectorPage extends BasePage{
 
     public PageHeader header = PageHeader.Instance;
 
-        /** UI Mappings */
+    /** UI Mappings */
 
-        By addToCartButton = By.id("product-addtocart-button");
-
+    By addToCartButton = By.id("product-addtocart-button");
+    By selectProtectorSize = By.cssSelector("div.bed-size-select");
 
         /** Page Methods */
 
-//    public MattressProtectorPage selectMonitorType(String monitorType) {
-//        reporter.info("Select monitor type: " + monitorType);
-//        findElement(By.xpath("//div[@option-label='" + monitorType + "']")).click();
-//        if (!findElement(By.xpath("//div[@option-label='" + monitorType + "']")).getAttribute("class").contains("selected"))
-//            reporter.fail("Item was not selected: " + monitorType);
-//        return this;
-//    }
-//
-//    public MattressProtectorPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+        public MattressProtectorPage selectProtectorSize(String size) {
+            reporter.info("Select Protector size: " + size);
+            findElement(selectProtectorSize).click();
+            findElement(By.xpath("//div[@class='option' and contains(text(),'" + size + "')]")).click();
+            if (!findElement(selectProtectorSize).getText().contains(size)){
+                reporter.fail("Item was not changed to: " + size);
+            }
+            return this;
+        }
+
+    public MattressProtectorPage clickAddToCart() {
+        reporter.info("Click Add to cart button");
+        clickOnElement(addToCartButton);
+        return this;
+    }
+
 }

@@ -12,6 +12,7 @@ public class ItemEntity extends BaseEntity{
     float price;
     String size;
     String type;
+    int qty;
 
     @Override
     public String toString() {
@@ -39,8 +40,6 @@ public class ItemEntity extends BaseEntity{
     public void setType(String type) {
         this.type = type;
     }
-
-    int qty;
 
     public ItemEntity(String title, float price, int qty, String size, String type) {
         this.title = title;
