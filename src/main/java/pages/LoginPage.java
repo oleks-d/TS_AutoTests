@@ -72,10 +72,10 @@ public class LoginPage extends BasePage {
         return AccountPage.Instance;
     }
 
-    public clickCreateAnAccount(){
+    public CreateAccountPage clickCreateAnAccount(){
         reporter.info("Click on Create Account button");
         findElement(createAccountLinkLocator).click();
-        return
+        return CreateAccountPage.Instance;
     }
 
 
