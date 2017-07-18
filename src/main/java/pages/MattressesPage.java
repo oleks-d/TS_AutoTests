@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.Select;
 /**
  * Created by odiachuk on 07.07.17.
  */
-public class MattressesPage extends BasePage{
+public class MattressesPage extends BaseProductPage{
 
         private static MattressesPage instance;
         public static MattressesPage Instance = (instance != null) ? instance : new MattressesPage();
@@ -22,7 +22,7 @@ public class MattressesPage extends BasePage{
         /** UI Mappings */
 
         By selectMattressSize = By.cssSelector("div.bed-size-select");
-        By addToCartButton = By.id("product-addtocart-button");
+     //   By addToCartButton = By.id("product-addtocart-button");
 
 
         /** Page Methods */
@@ -42,12 +42,6 @@ public class MattressesPage extends BasePage{
         findElement(By.xpath("//div[@option-label='" + mattressFeel + "']")).click();
         if (!findElement(By.xpath("//div[@option-label='" + mattressFeel + "']")).getAttribute("class").contains("selected"))
             reporter.fail("Item was not selected: " + mattressFeel);
-        return this;
-    }
-
-    public MattressesPage clickAddToCart() {
-        reporter.info("Add to Cart button");
-        clickOnElement(addToCartButton);
         return this;
     }
 }

@@ -88,4 +88,10 @@ public class ViewCartPage extends BasePage {
 
         return result;
     }
+
+    // click on product name on product cart
+    public void clickOnProduct(String itemName) {
+        reporter.info("Open item from View cart page: " + itemName );
+        clickOnElement(By.xpath("(//a[text()='" + itemName + "'])[2]"));
+    }
 }

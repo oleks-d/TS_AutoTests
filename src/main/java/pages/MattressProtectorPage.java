@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 /**
  * Created by odiachuk on 07.07.17.
  */
-public class MattressProtectorPage extends BasePage{
+public class MattressProtectorPage extends BaseProductPage{
 
 
         private final static String pageTitle = "";
@@ -22,7 +22,7 @@ public class MattressProtectorPage extends BasePage{
 
     /** UI Mappings */
 
-    By addToCartButton = By.id("product-addtocart-button");
+ //   By addToCartButton = By.id("product-addtocart-button");
     By selectProtectorSize = By.cssSelector("div.bed-size-select");
 
         /** Page Methods */
@@ -37,10 +37,10 @@ public class MattressProtectorPage extends BasePage{
             return this;
         }
 
-    public MattressProtectorPage clickAddToCart() {
-        reporter.info("Click Add to cart button");
-        clickOnElement(addToCartButton);
-        return this;
-    }
+//    public MattressProtectorPage clickAddToCart() {
+//        reporter.info("Click Add to cart button");
+//        clickOnElement(addToCartButton);
+//        return this;
+//    }
 
 }

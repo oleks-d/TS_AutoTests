@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 /**
  * Created by odiachuk on 07.07.17.
  */
-public class MonitorPage extends BasePage{
+public class MonitorPage extends BaseProductPage{
 
         private static MonitorPage instance;
         public static MonitorPage Instance = (instance != null) ? instance : new MonitorPage();
@@ -34,9 +34,9 @@ public class MonitorPage extends BasePage{
         return this;
     }
 
-    public MonitorPage clickAddToCart() {
-        reporter.info("Click Add to cart button");
-        clickOnElement(addToCartButton);
-        return this;
-    }
+//    public MonitorPage clickAddToCart() {
+//        reporter.info("Click Add to cart button");
+//        clickOnElement(addToCartButton);
+//        return this;
+//    }
 }

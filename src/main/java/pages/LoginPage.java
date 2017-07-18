@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
  */
 public class LoginPage extends BasePage {
 
-    private final static String pageTitle = " ";
     private static LoginPage instance;
     public static LoginPage Instance = (instance != null) ? instance : new LoginPage();
 
@@ -20,7 +19,7 @@ public class LoginPage extends BasePage {
     By usernameLocator = By.id("email");
     By passwordLocator = By.id("pass");
     By loginButtonLocator = By.id("send2");
-    By loginErrorLocator = By.id("");
+ //   By loginErrorLocator = By.id("");
 
 
     /** Page Methods */
@@ -34,12 +33,14 @@ public class LoginPage extends BasePage {
 //        return this.submitForm();
 //    }
 
-    public void enterUsername(String username)
+    public LoginPage enterUsername(String username)
     {
         reporter.info("Entering username: " + username);
 
         findElement(usernameLocator).clear();
         findElement(usernameLocator).sendKeys(username);
+
+        return this;
     }
 
     public void enterPassword(String password)
@@ -56,7 +57,7 @@ public class LoginPage extends BasePage {
 
         clickOnElement(loginButtonLocator);
 
-        try
+        /*try
         {
             if (findElementsIgnoreException(loginErrorLocator, 2).size() > 0)
             {
@@ -67,6 +68,7 @@ public class LoginPage extends BasePage {
         {
             reporter.fail(e.getMessage(), e);
         }
+        */
 
         return AccountPage.Instance;
     }

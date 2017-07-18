@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 /**
  * Created by odiachuk on 07.07.17.
  */
-public class FoamPillowPage extends BasePage{
+public class FoamPillowPage extends BaseProductPage{
 
         private static FoamPillowPage instance;
         public static FoamPillowPage Instance = (instance != null) ? instance : new FoamPillowPage();
@@ -20,13 +20,13 @@ public class FoamPillowPage extends BasePage{
 
         /** UI Mappings */
 
-        By addToCartButton = By.id("product-addtocart-button");
+//        By addToCartButton = By.id("product-addtocart-button");
 
         /** Page Methods */
-
-    public FoamPillowPage clickAddToCart() {
-        reporter.info("Click Add to cart button");
-        clickOnElement(addToCartButton);
-        return this;
-    }
+//
+//    public FoamPillowPage clickAddToCart() {
+//        reporter.info("Click Add to cart button");
+//        clickOnElement(addToCartButton);
+//        return this;
+//    }
 }

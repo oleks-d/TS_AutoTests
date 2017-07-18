@@ -14,15 +14,16 @@ import utils.ReporterManager;
  */
 public class BasePage {
 
-
     static ReporterManager reporter = ReporterManager.Instance;
 
-    public  static String BASE_URL = (FileIO.getConfigProperty("Environment"));
-    public  String pageURL = "";
-    public  String pageTitle = "";
+    public final static String BASE_URL = (FileIO.getConfigProperty("Environment"));
+
+    public String pageURL = "";
+    public String pageTitle = "";
+
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
-    static final int DEFAULT_TIMEOUT = getTimeout();
+    public static final int DEFAULT_TIMEOUT = getTimeout();
 
     private static int getTimeout() {
         String timeout = FileIO.getConfigProperty("DefaultTimeoutInSeconds");
@@ -41,7 +42,6 @@ public class BasePage {
     public static WebDriver driver(){
         return driver.get();
     }
-
 
     public boolean isPageLoaded() {
         boolean result = false;
@@ -251,7 +251,7 @@ public class BasePage {
     }
 
     public static void waitForPageToLoad(){
-sleepFor(1000); // todo fixme
+        sleepFor(1000); // todo fixme
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 
             public Boolean apply(WebDriver driver)
@@ -300,6 +300,8 @@ sleepFor(1000); // todo fixme
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     } */
 
+
+    // Does not work because of geckodriver bug - https://stackoverflow.com/questions/40360223/webdriverexception-moveto-did-not-match-a-known-command
     public void hoverItem(By element){
         Actions action = new Actions(driver());
         action.moveToElement(findElement(element)).build().perform();

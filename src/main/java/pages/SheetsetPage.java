@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 /**
  * Created by odiachuk on 07.07.17.
  */
-public class SheetsetPage extends BasePage{
+public class SheetsetPage extends BaseProductPage{
 
         private static SheetsetPage instance;
         public static SheetsetPage Instance = (instance != null) ? instance : new SheetsetPage();
@@ -34,9 +34,9 @@ public class SheetsetPage extends BasePage{
         return this;
     }
 
-    public SheetsetPage clickAddToCart() {
-        reporter.info("Click Add to cart button");
-        clickOnElement(addToCartButton);
-        return this;
-    }
+//    public SheetsetPage clickAddToCart() {
+//        reporter.info("Click Add to cart button");
+//        clickOnElement(addToCartButton);
+//        return this;
+//    }
 }

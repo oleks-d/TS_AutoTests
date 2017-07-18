@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 /**
  * Created by odiachuk on 07.07.17.
  */
-public class ComforterPage extends BasePage{
+public class ComforterPage extends BaseProductPage{
 
         private static ComforterPage instance;
         public static ComforterPage Instance = (instance != null) ? instance : new ComforterPage();
@@ -20,7 +20,7 @@ public class ComforterPage extends BasePage{
 
         /** UI Mappings */
 
-        By addToCartButton = By.id("product-addtocart-button");
+        //By addToCartButton = By.id("product-addtocart-button");
         By selectComforterSize = By.cssSelector("div.bed-size-select");
 
         /** Page Methods */
@@ -35,9 +35,9 @@ public class ComforterPage extends BasePage{
                 return this;
         }
 
-    public ComforterPage clickAddToCart() {
-        reporter.info("Click Add to cart button");
-        clickOnElement(addToCartButton);
-        return this;
-    }
+//    public ComforterPage clickAddToCart() {
+//        reporter.info("Click Add to cart button");
+//        clickOnElement(addToCartButton);
+//        return this;
+//    }
 }

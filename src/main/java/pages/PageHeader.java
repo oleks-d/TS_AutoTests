@@ -43,7 +43,7 @@ public class PageHeader extends BasePage {
     By cartItemPrice  = By.cssSelector("span.minicart-price span.price");
     By cartBox = By.xpath("//div[@data-role='dropdownDialog']");
     By cartCheckoutButton = By.cssSelector("button#top-cart-btn-checkout");
-    By viewCatButton = By.cssSelector("a.action.viewcart");
+    By viewCartButton = By.cssSelector("a.action.viewcart");
 
     By cartItemDetails = By.cssSelector("dl.product.options.list span");
 
@@ -69,12 +69,13 @@ public class PageHeader extends BasePage {
 
     public PageHeader openCart(){
         reporter.info("Open Cart (Click on Show cart buttton)");
-        sleepFor(2000); //todo fixme!!
+        //sleepFor(3000); //todo fixme!!
         if (isElementPresent(cartBox)){
             findElement(showCartButton).click();
-            sleepFor(1000);
         };
-        findElement(showCartButton).click();
+        if (!isElementPresent(cartBox)){
+            findElement(showCartButton).click();
+        };
         findElement (cartItems);
         return this;
     }
@@ -162,6 +163,13 @@ public class PageHeader extends BasePage {
         openCart();
         clickOnElement(cartCheckoutButton);
         return CheckoutPage.Instance;
+    }
+
+    public ViewCartPage clickOnViewCartButton(){
+        reporter.info("Click on View Cart button");
+        openCart();
+        clickOnElement(viewCartButton);
+        return ViewCartPage.Instance;
     }
 
     public void openMenuByItemName(String itemName) {

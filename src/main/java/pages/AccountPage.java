@@ -28,7 +28,7 @@ public class AccountPage extends LoginPage {
 
     public String getUserNameText() {
         String userNameText = findElement(userLocator).getText();
-        return  userNameText;
+        return userNameText;
     }
 
 }

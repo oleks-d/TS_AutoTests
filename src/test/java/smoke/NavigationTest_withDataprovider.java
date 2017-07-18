@@ -28,17 +28,27 @@ public class NavigationTest_withDataprovider extends BaseTest {
         };
     }
 
-
     @Test (dataProvider = "provider")
+    @TestName (name="Navigation validation")
     public void topMenuValidation(ProductTypes type, Class page, String itemName) throws Exception {
 
         HomePage home = HomePage.Instance;
         CheckoutPage checkout = CheckoutPage.Instance;
         CheckoutReviewPage review = CheckoutReviewPage.Instance;
-        BasePage bp = (BasePage) page.getConstructor().newInstance();
+        BaseProductPage bp = (BaseProductPage) page.getConstructor().newInstance();
 
         home.open();
         home.header.openMenuByItemName(itemName);
+
+        Assert.assertTrue(bp.isPageLoaded(), "Page was not opened: " + bp.getURL());
+
+        if (type == ProductTypes.MONITOR) // no default value for monitor - user have to select type before Adding to cart
+            MonitorPage.Instance.selectMonitorType("One Person");
+
+        bp.clickAddToCart();
+
+        ViewCartPage cart = home.header.clickOnViewCartButton();
+        cart.clickOnProduct(type.toString());
 
         Assert.assertTrue(bp.isPageLoaded(), "Page was not opened: " + bp.getURL());
 
