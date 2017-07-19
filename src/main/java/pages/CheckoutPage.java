@@ -129,7 +129,8 @@ public class CheckoutPage extends BasePage {
                 .setEmail(user.getContacts().getEmail())
                 .setPhone(user.getContacts().getPhone())
                 .setPostcode(user.getAddress().getZip())
-                .setStreet(user.getAddress().getStreet())
+                .setStreet(user.getAddress().getStreet_1())
+                .setStreet(user.getAddress().getStreet_2())
                 .selectRegion(user.getAddress().getRegion());
         return this;
     }
