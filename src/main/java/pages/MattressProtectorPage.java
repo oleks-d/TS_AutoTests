@@ -37,10 +37,9 @@ public class MattressProtectorPage extends BaseProductPage{
             return this;
         }
 
-//    public MattressProtectorPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public MattressProtectorPage clickAddToCart() {
+        super.clickAddToCart();
+        return this;
+    }
 
 }

@@ -25,11 +25,10 @@ public class DrapesPage extends BaseProductPage{
 
     /** Page Methods */
 
-//    public DrapesPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public DrapesPage clickAddToCart() {
+        super.clickAddToCart();
+        return this;
+    }
 
     public DrapesPage selectDrapesSize(String value) {
             reporter.info("Select Drapes size: " + value);

@@ -44,4 +44,9 @@ public class MattressesPage extends BaseProductPage{
             reporter.fail("Item was not selected: " + mattressFeel);
         return this;
     }
+
+    public MattressesPage clickAddToCart() {
+        super.clickAddToCart();
+        return this;
+    }
 }

@@ -12,10 +12,9 @@ public class BaseProductPage extends BasePage{
     public PageHeader header = PageHeader.Instance;
 
         /** UI Mappings */
-
         By selectMattressSize = By.cssSelector("div.bed-size-select");
         By addToCartButton = By.id("product-addtocart-button");
-
+        By updateItemButton = By.id("product-updatecart-button");
 
         /** Page Methods */
 
@@ -40,6 +39,12 @@ public class BaseProductPage extends BasePage{
     public BaseProductPage clickAddToCart() {
         reporter.info("Add to Cart button");
         clickOnElement(addToCartButton);
+        return this;
+    }
+
+    public BaseProductPage clickUpdateCart() {
+        reporter.info("Update cart item button");
+        clickOnElement(updateItemButton);
         return this;
     }
 }

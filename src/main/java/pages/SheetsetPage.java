@@ -34,9 +34,8 @@ public class SheetsetPage extends BaseProductPage{
         return this;
     }
 
-//    public SheetsetPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public SheetsetPage clickAddToCart() {
+        super.clickAddToCart();
+        return this;
+    }
 }

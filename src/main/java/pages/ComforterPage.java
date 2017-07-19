@@ -35,9 +35,8 @@ public class ComforterPage extends BaseProductPage{
                 return this;
         }
 
-//    public ComforterPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public ComforterPage clickAddToCart() {
+        super.clickAddToCart();
+        return this;
+    }
 }

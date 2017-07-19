@@ -68,15 +68,14 @@ public class PageHeader extends BasePage {
     /** Cart Methods */
 
     public PageHeader openCart(){
-        reporter.info("Open Cart (Click on Show cart buttton)");
-        //sleepFor(3000); //todo fixme!!
+        reporter.info("Open Cart (Click on Show cart button)");
         if (isElementPresent(cartBox)){
             findElement(showCartButton).click();
         };
         if (!isElementPresent(cartBox)){
             findElement(showCartButton).click();
         };
-        findElement (cartItems);
+        findElementIgnoreException (cartItems);
         return this;
     }
 

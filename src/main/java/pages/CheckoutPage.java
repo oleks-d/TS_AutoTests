@@ -148,7 +148,7 @@ public class CheckoutPage extends BasePage {
     private ArrayList<ItemEntity> getAllCheckoutPageItems() {
         ArrayList<ItemEntity> result = new ArrayList<>();
         reporter.info("Getting order items");
-        findElement(orderItems); // wait for order
+        findElementIgnoreException(orderItems); // wait for order
         List<WebElement> itemsList = findElements(orderItems);
         for (WebElement orderItem : itemsList ) {
             ItemEntity currentItem = new ItemEntity();

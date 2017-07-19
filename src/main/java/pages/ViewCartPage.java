@@ -28,7 +28,6 @@ public class ViewCartPage extends BasePage {
      * UI Mappings
      */
 
-
     //order list
 
     By orderItems = By.cssSelector("tr.item-info");
@@ -36,9 +35,10 @@ public class ViewCartPage extends BasePage {
     By orderItemQty = By.cssSelector("input");
     By orderItemPrice = By.cssSelector("span.price");
     By orderItemDetails= By.cssSelector("dd");
+    By orderItemEditButton = By.cssSelector("a.action.action-edit");
+    By orderItemDeleteButton = By.cssSelector("a.action.action-delete");
 
     /** Page Methods */
-
 
     public boolean itemDisplayedOnCheckoutPage(ItemEntity item) {
         ArrayList<ItemEntity> items = getAllCheckoutPageItems();
@@ -53,7 +53,7 @@ public class ViewCartPage extends BasePage {
     private ArrayList<ItemEntity> getAllCheckoutPageItems() {
         ArrayList<ItemEntity> result = new ArrayList<>();
         reporter.info("Getting order items");
-        findElement(orderItems); // wait for order
+        findElementIgnoreException(orderItems); // wait for order
         List<WebElement> itemsList = findElements(orderItems);
         for (WebElement orderItem : itemsList ) {
             ItemEntity currentItem = new ItemEntity();
@@ -94,4 +94,32 @@ public class ViewCartPage extends BasePage {
         reporter.info("Open item from View cart page: " + itemName );
         clickOnElement(By.xpath("(//a[text()='" + itemName + "'])[2]"));
     }
+
+    //click on edit button for item in View Cart
+    public void clickOnEditProduct(String itemName) {
+        reporter.info("Edit item from View cart page: " + itemName );
+        findElement(orderItems); // wait for order
+        List<WebElement> itemsList = findElements(orderItems);
+        for (WebElement orderItem : itemsList ) {
+            if ( orderItem.findElement(orderItemName).getText().equals(itemName)) {
+                orderItem.findElement(orderItemEditButton).click();
+                return;
+            }
+        }
+    }
+
+    //click on delete button for item in View Cart
+    public void clickOnDeleteProduct(String itemName) {
+        reporter.info("Delete item from View cart page: " + itemName );
+        findElement(orderItems); // wait for order
+        List<WebElement> itemsList = findElements(orderItems);
+        for (WebElement orderItem : itemsList ) {
+            if ( orderItem.findElement(orderItemName).getText().equals(itemName)) {
+                orderItem.findElement(orderItemDeleteButton).click();
+                return;
+            }
+        }
+    }
+
+
 }

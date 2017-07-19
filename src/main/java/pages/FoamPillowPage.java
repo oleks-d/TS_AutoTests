@@ -23,10 +23,9 @@ public class FoamPillowPage extends BaseProductPage{
 //        By addToCartButton = By.id("product-addtocart-button");
 
         /** Page Methods */
-//
-//    public FoamPillowPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+
+    public FoamPillowPage clickAddToCart() {
+        super.clickAddToCart();
+        return this;
+    }
 }

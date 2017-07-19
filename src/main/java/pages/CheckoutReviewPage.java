@@ -58,7 +58,7 @@ public class CheckoutReviewPage extends BasePage{
     private ArrayList<ItemEntity> getAllOrderItems() {
         ArrayList<ItemEntity> result = new ArrayList<>();
         reporter.info("Getting order items");
-        findElement(orderItems); //wait for items
+        findElementIgnoreException(orderItems); //wait for items
         List<WebElement> itemsList = findElements(orderItems);
         for (WebElement orderItem : itemsList ) {
             ItemEntity currentItem = new ItemEntity();
