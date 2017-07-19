@@ -28,10 +28,10 @@ public class My_Account_GeneralValidationTest extends BaseTest {
         Assert.assertTrue(account.getSocialAccounts().contains("Linked accounts"), "Failed to open My Social Accounts");
 
         account.ClickOnMyDashboard();
-        Assert.assertTrue(account.getDashboardAccount().contains("Account Information") && account.getDashboardAddress().contains("Address Book"), "Failed to open Dashboard");
+        Assert.assertTrue(account.verifyDashboardElements() , "Failed to open Dashboard");
 
         account.ClickOnMyAccountInfo();
-
+        Assert.assertTrue(account.verifyAccountInfoElements(), "Failed to open Account Info");
 
         account.ClickOnMyAddressBook();
 

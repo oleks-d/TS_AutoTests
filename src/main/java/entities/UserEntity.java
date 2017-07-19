@@ -8,12 +8,22 @@ public class UserEntity extends BaseEntity{
     String lastname;
     String password;
 
+    public UserEntity(String firstname, String lastname, String password, ContactsEntity contacts, AddressEntity address) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.password = password;
+        this.contacts = contacts;
+        this.address = address;
+    }
+
     ContactsEntity contacts;
     AddressEntity address;
 
-    public String getFirstname() {
-        return firstname;
+    public UserEntity() {
+
     }
+
+    public String getFirstname() {return firstname;}
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
