@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import sun.jvm.hotspot.utilities.Assert;
 
 /**
  * Created by Kos on 7/12/17.

@@ -87,7 +87,7 @@ public class PageHeader extends BasePage {
 
         openCart();
         for (String expectedField : expectedContent){
-            currentCartItems = findElements(cartItems);
+            currentCartItems = findElementsIgnoreException(cartItems);
             for (WebElement cartItem : currentCartItems ) {
                 if (cartItem.findElement(cartItemName).getText().contains(itemName)) {
                     String currentContent = cartItem.findElement(cartItemContent).getText();
@@ -115,7 +115,7 @@ public class PageHeader extends BasePage {
 
         openCart();
 
-        List<WebElement> cartItemsList = findElements(cartItems);
+        List<WebElement> cartItemsList = findElementsIgnoreException(cartItems);
         for (WebElement cartItem : cartItemsList ) {
             ItemEntity currentItem = new ItemEntity();
 

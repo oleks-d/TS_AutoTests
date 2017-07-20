@@ -150,7 +150,7 @@ public class CheckoutPage extends BasePage {
         ArrayList<ItemEntity> result = new ArrayList<>();
         reporter.info("Getting order items");
         findElementIgnoreException(orderItems); // wait for order
-        List<WebElement> itemsList = findElements(orderItems);
+        List<WebElement> itemsList = findElementsIgnoreException(orderItems);
         for (WebElement orderItem : itemsList ) {
             ItemEntity currentItem = new ItemEntity();
 

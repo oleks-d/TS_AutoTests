@@ -59,7 +59,7 @@ public class CheckoutReviewPage extends BasePage{
         ArrayList<ItemEntity> result = new ArrayList<>();
         reporter.info("Getting order items");
         findElementIgnoreException(orderItems); //wait for items
-        List<WebElement> itemsList = findElements(orderItems);
+        List<WebElement> itemsList = findElementsIgnoreException(orderItems);
         for (WebElement orderItem : itemsList ) {
             ItemEntity currentItem = new ItemEntity();
 
