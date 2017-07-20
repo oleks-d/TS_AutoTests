@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import sun.jvm.hotspot.memory.HeapBlock;
 import utils.Tools;
 
 /**
