@@ -28,11 +28,7 @@ public class PageHeader extends BasePage {
     //top menu
     By topMenuItem_Shop = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Shop']");
     By topMenuItem_Sleep = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Sleep']");
-<<<<<<< HEAD
-=======
-
     By topMenuItem_FAQ = By.xpath(".//*[@class='help-number-wrapper']//a[contains(text(),' HELP')]");
->>>>>>> upstream/master
     By topMenuItem_SignIn = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign In')]");
     By topMenuItem_Review = By.xpath("//ul[@class='header links']//a[contains(text(),'Reviews')]"); // MY CLASS
 
@@ -67,7 +63,6 @@ public class PageHeader extends BasePage {
         clickOnElement(topMenuItem_SignIn);
         return LoginPage.Instance;
     }
-<<<<<<< HEAD
 
     //MY METHOD
 
@@ -77,13 +72,11 @@ public class PageHeader extends BasePage {
         return ReviewsPage.Instance;
     }
 
-=======
     public FaqPage clickFaqMenuItem(){
         reporter.info("Click on Help menu item");
         clickOnElement(topMenuItem_FAQ);
         return FaqPage.Instance;
     }
->>>>>>> upstream/master
 
     /** Cart Methods */
 
