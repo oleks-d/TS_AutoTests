@@ -1,5 +1,6 @@
 package pages;
 
+import entities.UserEntity;
 import org.openqa.selenium.By;
 
 /**
@@ -23,17 +24,17 @@ public class LoginPage extends BasePage {
 
     /** Page Methods */
 
-    public LoginPage enterUsername(String username) {
-        reporter.info("Entering username: " + username);
+    public LoginPage enterUsername(UserEntity user) {
+        reporter.info("Entering username: " + user.getUsername());
         findElement(usernameLocator).clear();
-        findElement(usernameLocator).sendKeys(username);
+        findElement(usernameLocator).sendKeys(user.getUsername());
         return this;
     }
 
-    public void enterPassword(String password) {
-        reporter.info("Entering password: " + password);
+    public void enterPassword(UserEntity user) {
+        reporter.info("Entering password: " + user.getPassword());
         findElement(passwordLocator).clear();
-        findElement(passwordLocator).sendKeys(password);
+        findElement(passwordLocator).sendKeys(user.getPassword());
     }
 
     public AccountPage submitForm() {
