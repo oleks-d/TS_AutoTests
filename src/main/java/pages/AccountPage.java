@@ -1,5 +1,7 @@
 package pages;
 
+import entities.UserEntity;
+import org.apache.xpath.operations.Variable;
 import org.openqa.selenium.By;
 
 /**
@@ -11,8 +13,8 @@ public class AccountPage extends LoginPage {
     public static AccountPage Instance = (instance != null) ? instance : new AccountPage();
 
     public AccountPage(){
-        pageURL = "/account";
-    } //todo: check url
+        pageURL = "/customer/account/";
+    }
 
     /**
      * Common elements
@@ -32,14 +34,17 @@ public class AccountPage extends LoginPage {
     By myReviews = By.xpath("//*[@id=\'block-collapsible-nav\']/ul/li[6]/a");
     By myNewsletter = By.xpath("//*[@id=\'block-collapsible-nav\']/ul/li[7]/a");
 
+
     //My Social Accounts
+
     By linkedAccounts = By.xpath("//*[@id=\'maincontent\']/div[2]/div[1]/div[3]/div[1]/strong");
 
 
 
 
     //Dashboard Elements
-    By userNameLocator = By.xpath("//span[text()='Contact Information']/../..//div/p");
+
+    By userNameLocator = By.xpath(" //DIV[@class='box box-information']");
     By editAccountButton = By.xpath("(//A[@class='action edit'])[1]");
     By changePasswordButton = By.xpath("//A[@href='https://www.tomorrowsleep.com/customer/account/edit/changepass/1/']");
 
@@ -53,6 +58,7 @@ public class AccountPage extends LoginPage {
 
 
     //Account Info Elements
+
     By firstNameField = By.xpath("//INPUT[@id='firstname']");
     By lastNameField = By.xpath("//INPUT[@id='lastname']");
     By accountInfoEmailButton = By.xpath("//SPAN[text()='Change Email']");
@@ -60,7 +66,7 @@ public class AccountPage extends LoginPage {
 
     //Address Book Elements
     By billingAddressBox = By.xpath("//DIV[@class='box box-address-billing']");
-    public By shippingAddressBox = By.xpath("//DIV[@class='box box-address-shipping']");
+    By shippingAddressBox = By.xpath("//DIV[@class='box box-address-shipping']");
     By changeBillingAddressButton = By.xpath("//SPAN[text()='Change Billing Address']");
     By changeShippingAddressButton = By.xpath("//SPAN[text()='Change Shipping Address']");
 
@@ -75,31 +81,18 @@ public class AccountPage extends LoginPage {
     By countryField = By.id("country");
     By saveAddressButton = By.xpath("(//SPAN[text()='Save Address'][text()='Save Address'])[1]");
 
-    public By updatedAddressSuccessMessage = By.xpath("//DIV[@class='message-success success message']");
-    //My Orders Elements
+    By updatedAddressSuccessMessage = By.xpath("//DIV[@class='message-success success message']");
 
-    //My Reviews Elements
+    //My O)rders Elements todo need to add order history locator if there are any
+    By noOrdersMessage = By.xpath("//SPAN[text()='You have placed no orders.']");
 
-    //Newsletter elements
+    //My Reviews Elements todo blank page issue
+
+    //Newsletter elements todo
+
+
 
     /** Page Methods */
-    public void ClickOnMyOrders(){
-        reporter.info("Click on My Orders");
-        findElement(myOrders).click();
-    }
-
-    public void ClickOnMyReviews(){
-        reporter.info("Click on My Reviews");
-        findElement(myReviews).click();
-    }
-
-    public void ClickOnMyNewsletter(){
-        reporter.info("Click on My Newsletter");
-        findElement(myNewsletter).click();
-    }
-
-
-
 
     //My Social Account Methods
     public void ClickOnMySocialAccounts(){
@@ -108,8 +101,7 @@ public class AccountPage extends LoginPage {
     }
 
     public String getSocialAccounts(){
-        String getSocialAccounts = findElement(linkedAccounts).getText();
-        return getSocialAccounts;
+        return findElement(linkedAccounts).getText();
     }
 
 
@@ -122,24 +114,19 @@ public class AccountPage extends LoginPage {
     }
 
     public String getUserNameText() {
-        String userNameText = findElement(userNameLocator).getText();
-        return  userNameText;
+        return findElement(userNameLocator).getText();
     }
 
     public boolean verifyDashboardElements(){
         reporter.info("Check for elements on Dasboard");
-        if (isElementPresent(editAccountButton)
+        return isElementPresent(editAccountButton)
                 && isElementPresent(changePasswordButton)
                 && isElementPresent(subscriptionLocator)
                 && isElementPresent(editSubscriptionButton)
                 && isElementPresent(defaultBillingAddressLocator)
                 && isElementPresent(deafultShippingAddressLocator)
                 && isElementPresent(editBillingAddress)
-                && isElementPresent(editShippingAddress)){
-            return true;
-        }else{
-            return false;
-        }
+                && isElementPresent(editShippingAddress);
     }
 
     //Account Info Methods
@@ -150,14 +137,10 @@ public class AccountPage extends LoginPage {
 
     public boolean verifyAccountInfoElements(){
         reporter.info("Check for elements on Account Info");
-        if (isElementPresent(firstNameField)
+        return isElementPresent(firstNameField)
                 && isElementPresent(lastNameField)
                 && isElementPresent(accountInfoEmailButton)
-                && isElementPresent(accountInfoPasswordButton)){
-            return true;
-        }else{
-            return false;
-        }
+                && isElementPresent(accountInfoPasswordButton);
     }
 
 
@@ -170,89 +153,134 @@ public class AccountPage extends LoginPage {
 
     public boolean verifyAddressBookElements(){
         reporter.info("Check for elements on Address Book");
-        if (isElementPresent(billingAddressBox)
+        return isElementPresent(billingAddressBox)
                 && isElementPresent(shippingAddressBox)
                 && isElementPresent(changeBillingAddressButton)
-                && isElementPresent(changeShippingAddressButton)){
-            return true;
-        }else{
-            return false;
-        }
+                && isElementPresent(changeShippingAddressButton);
     }
 
-    public AccountPage ClickOnChangeShippingAddressButton(){
-        reporter.info("Click on change shipping address");
+    public void ClickOnChangeShippingAddressButton(){
+        reporter.info("Click on Change Shipping Address");
         findElement(changeShippingAddressButton).click();
-        return this;
     }
 
-    public AccountPage updateAddress(String firstname, String lastname, String company, String phone, String fax,
-                                     String street_1, String street_2, String city, String region, String country, String zip){
+    public void ClickOnChangeBillingAddressButton(){
+        reporter.info("Click on Change Billing Address");
+        findElement(changeBillingAddressButton).click();
+    }
+
+    public void updateAddress(UserEntity user){
         reporter.info("Enter new address");
 
-        reporter.info("The firstname is " + firstname);
+        reporter.info("The firstname is " + user.getFirstname());
         findElement(firstNameField).clear();
-        findElement(firstNameField).sendKeys(firstname);
+        findElement(firstNameField).sendKeys(user.getFirstname());
 
-        reporter.info("The lastname is " + lastname);
+        reporter.info("The lastname is " + user.getLastname());
         findElement(lastNameField).clear();
-        findElement(lastNameField).sendKeys(lastname);
+        findElement(lastNameField).sendKeys(user.getLastname());
 
-        reporter.info("The company is " + company);
+        reporter.info("The company is " + user.getContacts().getCompany());
         findElement(companyField).clear();
-        findElement(companyField).sendKeys(company);
+        findElement(companyField).sendKeys(user.getContacts().getCompany());
 
-        reporter.info("Phone number is " + phone);
+        reporter.info("Phone number is " + user.getContacts().getPhone());
         findElement(phoneNumberField).clear();
-        findElement(phoneNumberField).sendKeys(phone);
+        findElement(phoneNumberField).sendKeys(user.getContacts().getPhone());
 
-        reporter.info("Fax is " + fax);
+        reporter.info("Fax is " + user.getContacts().getFax());
         findElement(faxNumberField).clear();
-        findElement(faxNumberField).sendKeys(fax);
+        findElement(faxNumberField).sendKeys(user.getContacts().getFax());
 
-        reporter.info("Street address 1 is " + street_1);
+        reporter.info("Street address 1 is " + user.getAddress().getStreet_1());
         findElement(street1AddressField).clear();
-        findElement(street1AddressField).sendKeys(street_1);
+        findElement(street1AddressField).sendKeys(user.getAddress().getStreet_1());
 
-        reporter.info("Street address 2 is " + street_2);
+        reporter.info("Street address 2 is " + user.getAddress().getStreet_2());
         findElement(street2AddressField).clear();
-        findElement(street2AddressField).sendKeys(street_2);
+        findElement(street2AddressField).sendKeys(user.getAddress().getStreet_2());
 
-        reporter.info("City is " + city);
+        reporter.info("City is " + user.getAddress().getCity());
         findElement(cityField).clear();
-        findElement(cityField).sendKeys(city);
+        findElement(cityField).sendKeys(user.getAddress().getCity());
 
-        reporter.info(region + " is selected for State");
-        selectFromDropdown(stateField, region);
+        reporter.info(user.getAddress().getRegion() + " is selected for State");
+        selectFromDropdown(stateField, user.getAddress().getRegion());
 
-        reporter.info("Zip is " + zip);
+        reporter.info("Zip is " + user.getAddress().getZip());
         findElement(zipField).clear();
-        findElement(zipField).sendKeys(zip);
+        findElement(zipField).sendKeys(user.getAddress().getZip());
 
-        reporter.info(country +" is selected for Country");
-        selectFromDropdown(countryField, country);
+        reporter.info(user.getAddress().getCountry() +" is selected for Country");
+        selectFromDropdown(countryField, user.getAddress().getCountry());
 
         reporter.info("Click on Save Address");
         findElement(saveAddressButton).click();
 
-        return this;
+        //return this;
     }
 
-    public boolean verifyAddressUpdate(String company, String phone, String fax,
-                        String street_1, String street_2, String city, String region, String country, String zip){
-        reporter.info("Search for updated data in the Address Box");
-        if( findElement(shippingAddressBox).getText().contains(company)
-                && findElement(shippingAddressBox).getText().contains(phone)
-                //&& findElement(shippingAddressBox).getText().contains(fax)
-                && findElement(shippingAddressBox).getText().contains(street_1)
-                && findElement(shippingAddressBox).getText().contains(street_2)
-                && findElement(shippingAddressBox).getText().contains(city)
-                && findElement(shippingAddressBox).getText().contains(region)
-                && findElement(shippingAddressBox).getText().contains(country)
-                && findElement(shippingAddressBox).getText().contains(zip)){
-            return true;
-        }else{
-            return false;
-        }
+    public boolean verifyAddressUpdateShipping(UserEntity user){
+        reporter.info("Search for updated data in the Shipping Address Box");
+        return findElement(shippingAddressBox).getText().contains(user.getFirstname())
+                && findElement(shippingAddressBox).getText().contains(user.getLastname())
+                && findElement(shippingAddressBox).getText().contains(user.getContacts().getCompany())
+                && findElement(shippingAddressBox).getText().contains(user.getContacts().getPhone())
+                //&& findElement(shippingAddressBox).getText().contains(user.getContacts().getFax())
+                && findElement(shippingAddressBox).getText().contains(user.getAddress().getStreet_1())
+                && findElement(shippingAddressBox).getText().contains(user.getAddress().getStreet_2())
+                && findElement(shippingAddressBox).getText().contains(user.getAddress().getCity())
+                && findElement(shippingAddressBox).getText().contains(user.getAddress().getRegion())
+                && findElement(shippingAddressBox).getText().contains(user.getAddress().getCountry())
+                && findElement(shippingAddressBox).getText().contains(user.getAddress().getZip());
     }
+
+    public boolean verifyAddressUpdateBilling(UserEntity user){
+        reporter.info("Search for updated data in the Shipping Address Box");
+        return findElement(billingAddressBox).getText().contains(user.getFirstname())
+                && findElement(billingAddressBox).getText().contains(user.getLastname())
+                && findElement(billingAddressBox).getText().contains(user.getContacts().getCompany())
+                && findElement(billingAddressBox).getText().contains(user.getContacts().getPhone())
+                //&& findElement(billingAddressBox).getText().contains(user.getContacts().getFax())
+                && findElement(billingAddressBox).getText().contains(user.getAddress().getStreet_1())
+                && findElement(billingAddressBox).getText().contains(user.getAddress().getStreet_2())
+                && findElement(billingAddressBox).getText().contains(user.getAddress().getCity())
+                && findElement(billingAddressBox).getText().contains(user.getAddress().getRegion())
+                && findElement(billingAddressBox).getText().contains(user.getAddress().getCountry())
+                && findElement(billingAddressBox).getText().contains(user.getAddress().getZip());
+    }
+
+    public boolean verifyUpdatedAddressMessage(){
+        return isElementPresent(updatedAddressSuccessMessage);
+    }
+
+
+    //My Orders Methods
+
+    public void ClickOnMyOrders(){
+        reporter.info("Click on My Orders");
+        findElement(myOrders).click();
+    }
+
+    public boolean verifyNoOrdersMessage(){
+        reporter.info("Check for elements on My Orders page");
+        return isElementPresent(noOrdersMessage);
+    }
+
+    //My Reviews Methods todo
+
+    public void ClickOnMyReviews(){
+        reporter.info("Click on My Reviews");
+        findElement(myReviews).click();
+    }
+
+    //My Newsletter Methods todo
+
+    public void ClickOnMyNewsletter(){
+        reporter.info("Click on My Newsletter");
+        findElement(myNewsletter).click();
+    }
+
+
 }
+

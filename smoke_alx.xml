@@ -1,7 +1,7 @@
 <suite name="Suite" parallel="none" thread-count="2">
     <test name="Test">
         <classes>
-            <class name="smoke.Sign_In_GeneralValidationTest"/>
+            <class name="smoke.Smoke_FAQ_FullTest"/>
         </classes>
     </test> <!-- test -->
 </suite> <!-- suite -->
