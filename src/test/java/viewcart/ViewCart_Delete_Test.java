@@ -1,44 +1,42 @@
-package smoke;
+package viewcart;
 
 import annotations.TestName;
-import entities.ItemEntity;
-import entities.UserEntity;
 import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.BaseTest;
-import utils.EntitiesFactory;
-import utils.FileIO;
 
-public class NavigationTest_withDataprovider extends BaseTest {
+public class ViewCart_Delete_Test extends BaseTest {
 
-    @DataProvider(name = "provider")
-    public Object[][] provider (){
+    @DataProvider(name = "default_item_provider")
+    public Object[][] provider () throws Exception {
         return new Object[][]{
                 {ProductTypes.MONITOR, MonitorPage.class, "Monitor"},
                 {ProductTypes.MATTRESS, MattressesPage.class, "Mattress" },
                 {ProductTypes.MATTRESS_PROTECTOR, MattressProtectorPage.class, "Protector" },
-                {ProductTypes.COMFORTER, ComforterPage.class, "Comforter"},
+                {ProductTypes.COMFORTER,  ComforterPage.class, "Comforter"},
                 {ProductTypes.PLUSH_PILLOW, PlushPillowPage.class, "Plush Pillow"},
-                {ProductTypes.FOAM_PILLOW, FoamPillowPage.class, "Foam Pillow"},
+                {ProductTypes.FOAM_PILLOW,  FoamPillowPage.class, "Foam Pillow"},
                 {ProductTypes.DRAPES, DrapesPage.class, "Drapes"},
-                {ProductTypes.SHEETSET, SheetsetPage.class, "Sheets"},
+                {ProductTypes.SHEETSET, SheetsetPage.class, "Sheets"}
         };
     }
 
-    @Test (dataProvider = "provider")
-    @TestName (name="Navigation validation")
-    public void topMenuValidation(ProductTypes type, Class page, String itemName) throws Exception {
 
+    @Test(dataProvider="default_item_provider")
+    @TestName(name = "Delate Item from Cart")
+    public void viewCart_Delete_Test(ProductTypes type, Class page, String itemMenuName) throws Exception {
+
+        //init pages
         HomePage home = HomePage.Instance;
-        CheckoutPage checkout = CheckoutPage.Instance;
-        CheckoutReviewPage review = CheckoutReviewPage.Instance;
+        ViewCartPage viewcart = ViewCartPage.Instance;
+
         BaseProductPage bp = (BaseProductPage) page.getConstructor().newInstance();
 
         home.open();
-        home.header.openMenuByItemName(itemName);
+        home.header.openMenuByItemName(itemMenuName);
 
         Assert.assertTrue(bp.isPageLoaded(), "Page was not opened: " + bp.getURL());
 
@@ -47,10 +45,14 @@ public class NavigationTest_withDataprovider extends BaseTest {
 
         bp.clickAddToCart();
 
-        ViewCartPage cart = home.header.clickOnViewCartButton();
-        cart.clickOnProduct(type.toString());
+        home.header.clickOnViewCartButton();
 
-        Assert.assertTrue(bp.isPageLoaded(), "Page was not opened: " + bp.getURL());
+        // check item in viewcart
+        Assert.assertTrue(viewcart.itemDisplayedOnViewCartPage(type.toString()),  "Item was not displayed in cart");
+
+        viewcart.clickOnDeleteProduct(type.toString());
+
+        Assert.assertTrue(!viewcart.itemDisplayedOnViewCartPage(type.toString()),  "Item was displayed in cart");
 
     }
 }

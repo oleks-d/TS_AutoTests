@@ -129,7 +129,8 @@ public class CheckoutPage extends BasePage {
                 .setEmail(user.getContacts().getEmail())
                 .setPhone(user.getContacts().getPhone())
                 .setPostcode(user.getAddress().getZip())
-                .setStreet(user.getAddress().getStreet())
+                .setStreet(user.getAddress().getStreet_1())
+                .setStreet(user.getAddress().getStreet_2())
                 .selectRegion(user.getAddress().getRegion());
         return this;
     }
@@ -148,8 +149,8 @@ public class CheckoutPage extends BasePage {
     private ArrayList<ItemEntity> getAllCheckoutPageItems() {
         ArrayList<ItemEntity> result = new ArrayList<>();
         reporter.info("Getting order items");
-        findElement(orderItems); // wait for order
-        List<WebElement> itemsList = findElements(orderItems);
+        findElementIgnoreException(orderItems); // wait for order
+        List<WebElement> itemsList = findElementsIgnoreException(orderItems);
         for (WebElement orderItem : itemsList ) {
             ItemEntity currentItem = new ItemEntity();
 

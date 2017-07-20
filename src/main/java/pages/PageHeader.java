@@ -72,14 +72,14 @@ public class PageHeader extends BasePage {
     /** Cart Methods */
 
     public PageHeader openCart(){
-        reporter.info("Open Cart (Click on Show cart buttton)");
-        sleepFor(2000); //todo fixme!!
+        reporter.info("Open Cart (Click on Show cart button)");
         if (isElementPresent(cartBox)){
             findElement(showCartButton).click();
-            sleepFor(1000);
         };
-        findElement(showCartButton).click();
-        findElement (cartItems);
+        if (!isElementPresent(cartBox)){
+            findElement(showCartButton).click();
+        };
+        findElementIgnoreException (cartItems);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class PageHeader extends BasePage {
 
         openCart();
         for (String expectedField : expectedContent){
-            currentCartItems = findElements(cartItems);
+            currentCartItems = findElementsIgnoreException(cartItems);
             for (WebElement cartItem : currentCartItems ) {
                 if (cartItem.findElement(cartItemName).getText().contains(itemName)) {
                     String currentContent = cartItem.findElement(cartItemContent).getText();
@@ -119,7 +119,7 @@ public class PageHeader extends BasePage {
 
         openCart();
 
-        List<WebElement> cartItemsList = findElements(cartItems);
+        List<WebElement> cartItemsList = findElementsIgnoreException(cartItems);
         for (WebElement cartItem : cartItemsList ) {
             ItemEntity currentItem = new ItemEntity();
 
@@ -166,6 +166,13 @@ public class PageHeader extends BasePage {
         openCart();
         clickOnElement(cartCheckoutButton);
         return CheckoutPage.Instance;
+    }
+
+    public ViewCartPage clickOnViewCartButton(){
+        reporter.info("Click on View Cart button");
+        openCart();
+        clickOnElement(viewCartButton);
+        return ViewCartPage.Instance;
     }
 
     public void openMenuByItemName(String itemName) {

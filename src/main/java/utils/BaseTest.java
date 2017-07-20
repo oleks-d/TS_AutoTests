@@ -34,7 +34,7 @@ public class BaseTest{
             Assert.fail();
         }
 
-        BasePage.driver().manage().window().maximize();
+        //BasePage.driver().manage().window().maximize();
 
     }
 

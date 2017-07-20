@@ -7,17 +7,21 @@ import pages.CreateAccountPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.BaseTest;
+import utils.Tools;
 
 /**
  * Created by Kos on 7/17/17.
  */
 public class CreateAccountTest extends BaseTest {
 
-
     @Test
     public void RegisterNewUser(){
 
-        HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
+        String userName = Tools.getCurDateTime();
+        String userPassword = "!QAZxsw2";
+        String email = userName + "@mail.com";
+
+        HomePage home = HomePage.Instance;
 
         home.open();
 
@@ -28,12 +32,11 @@ public class CreateAccountTest extends BaseTest {
         CreateAccountPage createaccount = CreateAccountPage.Instance;
         createaccount.clickOnCreateAnAccountBlank();
 
-        Assert.assertTrue(createaccount.checkFieldValidation(), "Empty field validation failed");
+        Assert.assertTrue(createaccount.checkFieldsValidation(), "Empty field validation failed");
 
-        createaccount.inputNewUserInfo();
+        createaccount.createAccount(userName, userPassword, email);
 
-        AccountPage account = AccountPage.Instance;
-        Assert.assertTrue(account.getUserNameText().contains(createaccount.userdata), "Failed to create new user account");
+        Assert.assertTrue(AccountPage.Instance.getUserNameText().contains(userName), "Failed to create new user account");
 
     }
 

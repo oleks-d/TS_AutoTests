@@ -16,9 +16,6 @@ public class CreateAccountPage extends BasePage {
         pageURL = "/customer/account/create/";
     }
 
-    public String userdata = Tools.getCurDateTime();
-    String userpassword = "!QAZxsw2";
-
     //* UI Mappings *//
 
     By emailInputField = By.id("email_address");
@@ -45,33 +42,43 @@ public class CreateAccountPage extends BasePage {
         return this;
     }
 
-    public boolean checkFieldValidation(){
+    public boolean checkFieldsValidation(){
         reporter.info("Check for 'This Field is required' message");
-        if (isElementPresent(emailInputFieldError) && isElementPresent(firstNameInputField) && isElementPresent(lastNameInputField) && isElementPresent(passwordInputFieldError) && isElementPresent(confirmPasswordInputFieldError)){
+        if (isElementPresent(emailInputFieldError)
+                && isElementPresent(firstNameInputFieldError)
+                && isElementPresent(lastNameInputFieldError)
+                && isElementPresent(passwordInputFieldError)
+                && isElementPresent(confirmPasswordInputFieldError)){
             return true;
         }else{
             return false;
         }
     }
 
-    public CreateAccountPage inputNewUserInfo(){
-        reporter.info("Enter user Email "+userdata+"@mail.com");
+    public AccountPage createAccount(String userName, String userPassword, String email){
+
+        reporter.info("Enter user Email " + email);
         findElement(emailInputField).clear();
-        findElement(emailInputField).sendKeys(userdata+"@mail.com");
-        reporter.info("Enter Firstname "+userdata);
+        findElement(emailInputField).sendKeys(email);
+
+        reporter.info("Enter Firstname " + userName);
         findElement(firstNameInputField).clear();
-        findElement(firstNameInputField).sendKeys(userdata);
-        reporter.info("Enter Lastname "+userdata);
+        findElement(firstNameInputField).sendKeys(userName);
+
+        reporter.info("Enter Lastname " + userName);
         findElement(lastNameInputField).clear();
-        findElement(lastNameInputField).sendKeys(userdata);
-        reporter.info("Enter Password "+userpassword);
+        findElement(lastNameInputField).sendKeys(userName);
+
+        reporter.info("Enter Password " + userPassword);
         findElement(passwordInputField).clear();
-        findElement(passwordInputField).sendKeys(userpassword);
-        reporter.info("Enter ConfirmPassword "+userpassword);
+        findElement(passwordInputField).sendKeys(userPassword);
+
+        reporter.info("Enter ConfirmPassword " + userPassword);
         findElement(confirmPasswordInputField).clear();
-        findElement(confirmPasswordInputField).sendKeys(userpassword);
+        findElement(confirmPasswordInputField).sendKeys(userPassword);
         findElement(createAnAccountButton).click();
-        return this;
+
+        return AccountPage.Instance;
     }
 
 }

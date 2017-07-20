@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 /**
  * Created by odiachuk on 07.07.17.
  */
-public class DrapesPage extends BasePage{
+public class DrapesPage extends BaseProductPage{
 
         private static DrapesPage instance;
         public static DrapesPage Instance = (instance != null) ? instance : new DrapesPage();
@@ -20,14 +20,13 @@ public class DrapesPage extends BasePage{
 
     /** UI Mappings */
 
-    By addToCartButton = By.id("product-addtocart-button");
+  //  By addToCartButton = By.id("product-addtocart-button");
     By selectDrapesSize = By.cssSelector("div.bed-size-select");
 
     /** Page Methods */
 
     public DrapesPage clickAddToCart() {
-        reporter.info("Click Add to cart button");
-        clickOnElement(addToCartButton);
+        super.clickAddToCart();
         return this;
     }
 
