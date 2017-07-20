@@ -26,8 +26,9 @@ public class PageHeader extends BasePage {
     }
 
     //top menu
-    By topMenuItem_Shop = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Shop']");
-    By topMenuItem_Sleep = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Sleep']");
+    By topMenuItem_Shop     = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Shop']");
+    By topMenuItem_Sleep    = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Sleep']");
+    By topMenuItem_Magazine = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Magazine']");
 
 
     By topMenuItem_SignIn = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign In')]");
@@ -64,6 +65,11 @@ public class PageHeader extends BasePage {
         return LoginPage.Instance;
     }
 
+    public MagazinePage clickOnMagazineItem(){
+        reporter.info("Click on MAGAZINE manu item");
+        clickOnElement(topMenuItem_Magazine);
+        return MagazinePage.Instance;
+    }
 
     /** Cart Methods */
 
