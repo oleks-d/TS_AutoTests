@@ -16,10 +16,10 @@ import utils.FileIO;
 import static pages.BasePage.scrollToElement;
 
 /**
- * Created by obohachuk
+ * Created by obohachuk on 19.07.17
  */
 
-public class AlexSmoke_FAQ extends BaseTest {
+public class Smoke_FAQ_FullTest extends BaseTest {
 
     String searchrequest = "pillow";
     //String searchrequest = "mattress";
