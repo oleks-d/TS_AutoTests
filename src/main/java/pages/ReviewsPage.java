@@ -11,22 +11,29 @@ public class ReviewsPage extends BasePage {
     private static ReviewsPage instance;
     public static ReviewsPage Instance = (instance != null) ? instance : new ReviewsPage();
 
-    public ReviewsPage(){
+    public ReviewsPage() {
         pageURL = "/";
     }
-    /** Common elements **/
+
+    /**
+     * Common elements
+     **/
 
     public PageHeader header = PageHeader.Instance;
 
-    /** UI Mappings */
+    /**
+     * UI Mappings
+     */
 
-    By topMenuItem_Review = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Reviews']")
+    By topMenuItem_Review = By.xpath("//ul[@class='header links']//a[contains(text(),'Reviews')]");
 
-    /** Page Methods */
+    /**
+     * Page Methods
+     */
 
-
-    public ReviewsPage clicklReviewsMenuItem (){
+    public ReviewsPage clickReviews() {
         reporter.info("Click on REVIEW menu item");
-        clickOnElement(topMenuItem_Review);
-        return ReviewsPage.Instance;
+        findElement(topMenuItem_Review).click();
+        return this;
     }
+}

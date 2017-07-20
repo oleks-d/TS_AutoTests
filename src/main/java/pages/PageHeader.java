@@ -30,7 +30,7 @@ public class PageHeader extends BasePage {
     By topMenuItem_Sleep = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Sleep']");
     By topMenuItem_FAQ = By.xpath(".//*[@class='help-number-wrapper']//a[contains(text(),' HELP')]");
     By topMenuItem_SignIn = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign In')]");
-    By topMenuItem_Review = By.xpath("//ul[@class='header links']//a[contains(text(),'Reviews')]"); // MY CLASS
+    By topMenuItem_Review = By.xpath("//ul[@class='header links']//a[contains(text(),'Reviews')]"); // MY XPATH
 
     //cart
     By showCartButton = By.cssSelector("a.action.showcart");
@@ -66,7 +66,7 @@ public class PageHeader extends BasePage {
 
     //MY METHOD
 
-    public ReviewsPage clicklReviewsMenuItem(){
+    public ReviewsPage clickOnReviewsMenuItem(){
         reporter.info("Click on REVIEW menu item");
         clickOnElement(topMenuItem_Review);
         return ReviewsPage.Instance;
