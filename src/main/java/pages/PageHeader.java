@@ -3,7 +3,10 @@ package pages;
 import entities.ItemEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.FileIO;
+import utils.Tools;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +24,6 @@ public class PageHeader extends BasePage {
     public static PageHeader Instance = (instance != null) ? instance : new PageHeader();
 
     PageHeader(){
-        instance = Instance;
         waitForPageToLoad();
     }
 
@@ -47,6 +49,10 @@ public class PageHeader extends BasePage {
 
     By cartItemDetails = By.cssSelector("dl.product.options.list span");
 
+    By cartQtyIndex = By.cssSelector("span.counter-number");
+
+    By LOADING_SPINNER = By.cssSelector("div.fotorama__spinner");
+
     // loader
    // img alt="Loading..."
 
@@ -69,13 +75,10 @@ public class PageHeader extends BasePage {
 
     public PageHeader openCart(){
         reporter.info("Open Cart (Click on Show cart button)");
-        if (isElementPresent(cartBox)){
-            findElement(showCartButton).click();
-        };
-        if (!isElementPresent(cartBox)){
-            findElement(showCartButton).click();
-        };
-        findElementIgnoreException (cartItems);
+        driver().navigate().refresh();
+        waitForPageToLoad();
+        findElement(showCartButton).click();
+
         return this;
     }
 
@@ -121,7 +124,7 @@ public class PageHeader extends BasePage {
 
             currentItem.setTitle(cartItem.findElement(cartItemName).getText());
             currentItem.setQty(Integer.valueOf(cartItem.findElement(cartItemQty).getAttribute("data-item-qty")));
-            currentItem.setPrice(Float.valueOf(cartItem.findElement(cartItemPrice).getText().replace("$","")));
+            currentItem.setPrice(Float.valueOf(cartItem.findElement(cartItemPrice).getText().replace("$","").replace(",","")));
             currentItem.setSize("");
             currentItem.setType("");
 
@@ -174,5 +177,18 @@ public class PageHeader extends BasePage {
     public void openMenuByItemName(String itemName) {
         hoverItem(topMenuItem_Shop);
         clickOnElement(By.xpath("//a[@role='menuitem']/span[text()='" + itemName + "']"));
+    }
+
+    public boolean waitUntilItemWillBeDropedToCart() {
+        return isElementPresentAndDisplay(cartQtyIndex);
+    }
+
+    public void waitForLoading(){  // TODO finish
+        if (isElementPresentAndDisplay(LOADING_SPINNER));
+    }
+
+    public void closeCart() {
+        if (isElementDisplayedRightNow(cartBox))
+            findElement(showCartButton).click();
     }
 }

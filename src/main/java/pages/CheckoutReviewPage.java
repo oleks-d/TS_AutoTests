@@ -65,7 +65,7 @@ public class CheckoutReviewPage extends BasePage{
 
             currentItem.setTitle(orderItem.findElement(orderItemName).getText());
             currentItem.setQty(Integer.valueOf(orderItem.findElement(orderItemQty).getText()));
-            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","")));
+            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","").replace(",","")));
             currentItem.setSize("");
             currentItem.setType("");
 
@@ -93,7 +93,7 @@ public class CheckoutReviewPage extends BasePage{
 
     public float getTotalPrice(){
         float result;
-        result = Float.valueOf(findElement(totalPrice).getText().replace("$",""));
+        result = Float.valueOf(findElement(totalPrice).getText().replace("$","").replace(",",""));
         reporter.info("Total price: " + result);
         return result;
     }

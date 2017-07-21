@@ -55,13 +55,13 @@ public class UpdateAccountTest extends BaseTest {
         account.ClickOnChangeShippingAddressButton();
 
         account.updateAddress(firstname, lastname, user.getContacts().getCompany(), user.getContacts().getPhone(),
-                user.getContacts().getFax(), user.getAddress().getStreet_1(), user.getAddress().getStreet_2(), user.getAddress().getCity(),
+                user.getContacts().getFax(), user.getAddress().getStreet(), user.getAddress().getStreet_2(), user.getAddress().getCity(),
                 user.getAddress().getRegion(), user.getAddress().getCountry(), user.getAddress().getZip());
 
         Assert.assertTrue(account.findElement(account.updatedAddressSuccessMessage).isDisplayed());
 
         Assert.assertTrue(account.verifyAddressUpdate(user.getContacts().getCompany(), user.getContacts().getPhone(),
-                user.getContacts().getFax(), user.getAddress().getStreet_1(), user.getAddress().getStreet_2(), user.getAddress().getCity(),
+                user.getContacts().getFax(), user.getAddress().getStreet(), user.getAddress().getStreet_2(), user.getAddress().getCity(),
                 user.getAddress().getRegion(), user.getAddress().getCountry(), user.getAddress().getZip()), "Failed to update Address");
 
 

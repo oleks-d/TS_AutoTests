@@ -33,6 +33,7 @@ public class CheckoutPage extends BasePage {
     By firstnameField = By.name("firstname");
     By companyField = By.name("company");
     By streetField = By.name("street[0]");
+    By street2Field = By.name("street[1]");
     By cityField = By.name("city");
     By postcodeField = By.name("postcode");
     //select
@@ -83,6 +84,12 @@ public class CheckoutPage extends BasePage {
         return this;
     }
 
+    public CheckoutPage setStreet2(String street2){
+        reporter.info("Set Street details: " + street2);
+        setText(street2Field, street2);
+        return this;
+    }
+
     public CheckoutPage setCity(String city){
         reporter.info("Set City name: " + city);
         findElement(cityField).sendKeys(city);
@@ -129,8 +136,8 @@ public class CheckoutPage extends BasePage {
                 .setEmail(user.getContacts().getEmail())
                 .setPhone(user.getContacts().getPhone())
                 .setPostcode(user.getAddress().getZip())
-                .setStreet(user.getAddress().getStreet_1())
-                .setStreet(user.getAddress().getStreet_2())
+                .setStreet(user.getAddress().getStreet())
+                .setStreet2(user.getAddress().getStreet_2())
                 .selectRegion(user.getAddress().getRegion());
         return this;
     }
@@ -158,7 +165,7 @@ public class CheckoutPage extends BasePage {
 
             currentItem.setQty(Integer.valueOf(orderItem.findElement(orderItemQty).getText()));
 
-            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","")));
+            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","").replace(",","")));
             currentItem.setSize("");
             currentItem.setType("");
 

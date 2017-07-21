@@ -223,14 +223,18 @@ public class FileIO {
 */
 
     public static String takeScreenshot(WebDriver driver){
-            File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            String filename = System.currentTimeMillis() + "screen.png";
-            try {
-                FileUtils.copyFile(file, new File(TARGET_FOLDER + File.separator + filename));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return filename;
+            return takeScreenshot(driver, String.valueOf(System.currentTimeMillis()));
+    }
+
+    public static String takeScreenshot(WebDriver driver, String name){
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String filename = name + "screen.png";
+        try {
+            FileUtils.copyFile(file, new File(TARGET_FOLDER + File.separator + filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return filename;
     }
 
     public static String getDataFile(String filename){
