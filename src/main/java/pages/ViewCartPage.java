@@ -38,6 +38,9 @@ public class ViewCartPage extends BasePage {
     By orderItemEditButton = By.cssSelector("a.action.action-edit");
     By orderItemDeleteButton = By.cssSelector("a.action.action-delete");
 
+    By orderIncreaseQuantityItemButton = By.xpath("//button[@name='update_cart_action' and @title='+']");
+    By orderDecreaseQuantityItemButton = By.xpath("//button[@name='update_cart_action' and @title='-']");
+
     /** Page Methods */
 
     public boolean itemDisplayedOnViewCartPage(ItemEntity item) {
@@ -57,6 +60,14 @@ public class ViewCartPage extends BasePage {
         .count() > 0;
     }
 
+    public boolean itemDisplayedOnViewCartPage(String itemName, int qty) {
+        ArrayList<ItemEntity> items = getAllViewCartPageItems();
+        return items.stream()
+                .filter(cur -> itemName.equals(cur.getTitle()))
+                .filter(cur -> qty == cur.getQty())
+                .count() > 0;
+    }
+
     private ArrayList<ItemEntity> getAllViewCartPageItems() {
         ArrayList<ItemEntity> result = new ArrayList<>();
         reporter.info("Getting order items");
@@ -69,7 +80,7 @@ public class ViewCartPage extends BasePage {
 
             currentItem.setQty(Integer.valueOf(orderItem.findElement(orderItemQty).getAttribute("value")));
 
-            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","")));
+            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","").replace(",","")));
             currentItem.setSize("");
             currentItem.setType("");
 
@@ -123,6 +134,31 @@ public class ViewCartPage extends BasePage {
         for (WebElement orderItem : itemsList ) {
             if ( orderItem.findElement(orderItemName).getText().equals(itemName)) {
                 orderItem.findElement(orderItemDeleteButton).click();
+                return;
+            }
+        }
+    }
+
+
+    public void addQuantity(String itemName) {
+        reporter.info("Increase quantity on View cart page: " + itemName );
+        findElement(orderItems); // wait for order
+        List<WebElement> itemsList = findElements(orderItems);
+        for (WebElement orderItem : itemsList ) {
+            if ( orderItem.findElement(orderItemName).getText().equals(itemName)) {
+                orderItem.findElement(orderIncreaseQuantityItemButton).click();
+                return;
+            }
+        }
+    }
+
+    public void subQuantity(String itemName) {
+        reporter.info("Increase quantity on View cart page: " + itemName );
+        findElement(orderItems); // wait for order
+        List<WebElement> itemsList = findElements(orderItems);
+        for (WebElement orderItem : itemsList ) {
+            if ( orderItem.findElement(orderItemName).getText().equals(itemName)) {
+                orderItem.findElement(orderDecreaseQuantityItemButton).click();
                 return;
             }
         }

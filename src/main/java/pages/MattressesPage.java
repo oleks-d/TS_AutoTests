@@ -29,6 +29,7 @@ public class MattressesPage extends BaseProductPage{
 
     public MattressesPage selectMattressSize(String value){
         reporter.info("Select mattress size: " + value);
+        header.closeCart();
         findElement(selectMattressSize).click();
         findElement(By.xpath("//div[@class='option' and contains(text(),'" + value + "')]")).click();
         if (!findElement(selectMattressSize).getText().contains(value)){
@@ -39,6 +40,7 @@ public class MattressesPage extends BaseProductPage{
 
     public MattressesPage selectMattressFeel(String mattressFeel) {
         reporter.info("Select mattress feel: " + mattressFeel);
+        header.closeCart();
         findElement(By.xpath("//div[@option-label='" + mattressFeel + "']")).click();
         if (!findElement(By.xpath("//div[@option-label='" + mattressFeel + "']")).getAttribute("class").contains("selected"))
             reporter.fail("Item was not selected: " + mattressFeel);

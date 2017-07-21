@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import pages.*;
 import utils.BaseTest;
 
-public class ViewCart_Delete_Test extends BaseTest {
+public class ViewCart_DeleteTest extends BaseTest {
 
     @DataProvider(name = "default_item_provider")
     public Object[][] provider () throws Exception {
@@ -26,7 +26,7 @@ public class ViewCart_Delete_Test extends BaseTest {
 
 
     @Test(dataProvider="default_item_provider")
-    @TestName(name = "Delate Item from Cart")
+    @TestName(name = "Delete Item from Cart")
     public void viewCart_Delete_Test(ProductTypes type, Class page, String itemMenuName) throws Exception {
 
         //init pages

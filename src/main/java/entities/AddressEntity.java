@@ -4,15 +4,15 @@ package entities;
  * Created by odiachuk on 13.07.17.
  */
 public class AddressEntity extends BaseEntity{
-    String street_1;
+    String street;
     String street_2;
     String zip;
     String city;
     String region;
     String country;
 
-    public AddressEntity(String street_1, String street_2, String zip, String city, String region, String country) {
-        this.street_1 = street_1;
+    public AddressEntity(String street, String street_2, String zip, String city, String region, String country) {
+        this.street = street;
         this.street_2 = street_2;
         this.zip = zip;
         this.city = city;
@@ -31,12 +31,12 @@ public class AddressEntity extends BaseEntity{
         this.country = country;
     }
 
-    public String getStreet_1() {
-        return street_1;
+    public String getStreet() {
+        return street;
     }
 
-    public void setStreet_1(String street_1) {
-        this.street_1 = street_1;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getStreet_2() {
