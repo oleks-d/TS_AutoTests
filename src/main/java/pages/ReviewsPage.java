@@ -25,7 +25,7 @@ public class ReviewsPage extends BasePage {
      * UI Mappings
      */
 
-    By topMenuItem_Review = By.xpath("//ul[@class='header links']//a[contains(text(),'Reviews')]");
+    By topMenuItem_Review = By.xpath(".//*[@id='ui-id-6']//a[contains(text(),'REVIEWS')]");
 
     /**
      * Page Methods
