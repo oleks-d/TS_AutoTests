@@ -56,10 +56,9 @@ public class UpdateAccountTest extends BaseTest {
 
         account.updateAddress(user);
 
- //       Assert.assertTrue(account.findElement(account.updatedAddressSuccessMessage).isDisplayed());
+        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success message");
 
- //       Assert.assertTrue(account.verifyAddressUpdate(user), "Failed to update Address");
-
+        Assert.assertTrue(account.verifyAddressUpdateShipping(user), "Failed to update Address");
 
 
     }

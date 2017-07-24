@@ -1,15 +1,11 @@
 package smoke;
 
 import annotations.TestName;
-import entities.AddressEntity;
-import entities.BaseEntity;
-import entities.ContactsEntity;
 import entities.UserEntity;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AccountPage;
-import pages.CreateAccountPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.BaseTest;
@@ -20,7 +16,7 @@ import utils.Tools;
 /**
  * Created by Kos on 7/17/17.
  */
-public class My_Account_ChangeAddressTest extends BaseTest {
+public class My_Account_ChangeEmailTest extends BaseTest {
 
     @DataProvider(name = "provider")
         public Object[][] provider() throws Exception {
@@ -29,8 +25,11 @@ public class My_Account_ChangeAddressTest extends BaseTest {
             };
     }
 
+    String currenttime = Tools.getCurDateTime();
+    String newEmail = currenttime + "@mail.com";
+
     @Test (dataProvider = "provider")
-    @TestName(name="Change Address")
+    @TestName(name="Change Email")
     public void ChangeAccountAddress(UserEntity user) throws Exception {
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
@@ -40,37 +39,20 @@ public class My_Account_ChangeAddressTest extends BaseTest {
         home.header.clickSignInMenuItem();
         LoginPage login = LoginPage.Instance;
 
-        login.enterUsername(user)
-            .enterPassword(user);
-
+        login.enterUsername(user);
+        login.enterPassword(user);
         login.submitForm();
 
         AccountPage account = AccountPage.Instance;
         Assert.assertTrue(account.getUserNameText().contains(user.getUsername()), "Failed to login" );
 
-        account.ClickOnMyAddressBook();
+        account.ClickOnMyAccountInfo();
+        account.clickOnChangeEmailButton();
+
+        account.updateEmail(newEmail, user); //todo save new Email to json
+        Assert.assertTrue(account.getUserNameText().contains(newEmail), "Failed to locate updated Email" );
 
 
-
-        //Update Shipping Address
-        account.ClickOnChangeShippingAddressButton();
-
-        account.updateAddress(user);
-
-        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success Message");
-
-        Assert.assertTrue(account.verifyAddressUpdateShipping(user), "Failed to update Shipping Address");
-
-
-
-        //Update Billing Address
-        account.ClickOnChangeBillingAddressButton();
-
-        account.updateAddress(user);
-
-        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success Message");
-
-        Assert.assertTrue(account.verifyAddressUpdateBilling(user), "Failed to update Billing Address");
 
     }
 

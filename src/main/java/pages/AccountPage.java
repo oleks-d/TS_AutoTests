@@ -61,8 +61,11 @@ public class AccountPage extends LoginPage {
 
     By firstNameField = By.xpath("//INPUT[@id='firstname']");
     By lastNameField = By.xpath("//INPUT[@id='lastname']");
-    By accountInfoEmailButton = By.xpath("//SPAN[text()='Change Email']");
-    By accountInfoPasswordButton = By.xpath("//SPAN[text()='Change Password']");
+    By accountInfoChangeEmailButton = By.xpath("//SPAN[text()='Change Email']");
+    By accountInfoChangePasswordButton = By.xpath("//SPAN[text()='Change Password']");
+    By newEmailField = By.id("email");
+    By currentPasswordField = By.id("current-password");
+    By saveAccountInfoButton = By.xpath("//SPAN[text()='Save']");
 
     //Address Book Elements
     By billingAddressBox = By.xpath("//DIV[@class='box box-address-billing']");
@@ -83,12 +86,14 @@ public class AccountPage extends LoginPage {
 
     By updatedAddressSuccessMessage = By.xpath("//DIV[@class='message-success success message']");
 
-    //My O)rders Elements todo need to add order history locator if there are any
+    //My Orders Elements todo need to add order history locator if there are any
     By noOrdersMessage = By.xpath("//SPAN[text()='You have placed no orders.']");
 
     //My Reviews Elements todo blank page issue
 
     //Newsletter elements todo
+    By subscriptionCheckbox = By.id("subscription");
+    By subscriptionSaveButton = By.xpath("//SPAN[text()='Save']");
 
 
 
@@ -139,8 +144,28 @@ public class AccountPage extends LoginPage {
         reporter.info("Check for elements on Account Info");
         return isElementPresent(firstNameField)
                 && isElementPresent(lastNameField)
-                && isElementPresent(accountInfoEmailButton)
-                && isElementPresent(accountInfoPasswordButton);
+                && isElementPresent(accountInfoChangeEmailButton)
+                && isElementPresent(accountInfoChangePasswordButton);
+    }
+
+    public AccountPage clickOnChangeEmailButton(){
+        reporter.info("Click on change Email");
+        findElement(accountInfoChangeEmailButton).click();
+        return this;
+    }
+
+    public AccountPage updateEmail(String newEmail, UserEntity user){
+        reporter.info("Update Email to " + newEmail);
+
+        findElement(newEmailField).clear();
+        findElement(newEmailField).sendKeys(newEmail);
+
+        findElement(currentPasswordField).clear();
+        findElement(currentPasswordField).sendKeys(user.getPassword());
+
+        findElement(saveAccountInfoButton).click();
+        user.setUsername(newEmail);
+        return this;
     }
 
 
@@ -250,7 +275,7 @@ public class AccountPage extends LoginPage {
                 && findElement(billingAddressBox).getText().contains(user.getAddress().getZip());
     }
 
-    public boolean verifyUpdatedAddressMessage(){
+    public boolean checkForSuccessMessage(){
         return isElementPresent(updatedAddressSuccessMessage);
     }
 
@@ -280,6 +305,7 @@ public class AccountPage extends LoginPage {
         reporter.info("Click on My Newsletter");
         findElement(myNewsletter).click();
     }
+
 
 
 }
