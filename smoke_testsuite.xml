@@ -2,7 +2,7 @@
     <test name="Test">
         <classes>
 
-            <class name="smoke.Smoke_Comforter_FullTest" />
+   <!--         <class name="smoke.Smoke_Comforter_FullTest" />
             <class name="smoke.Smoke_Drapes_FullTest" />
             <class name="smoke.Smoke_FoamPillow_FullTest" />
             <class name="smoke.Smoke_Mattress_FullTest" />
@@ -20,9 +20,10 @@
             <class name="viewcart.ViewCart_UpdateMattressTest" />
             <class name="viewcart.ViewCart_UpdateMonitorTest" />
             <class name="viewcart.ViewCart_UpdatePlushPillowTest" />
-            <class name="viewcart.ViewCart_UpdateSheetsTest" />
-            <class name="viewcart.ViewCart_DeleteTest" />
+            <class name="viewcart.ViewCart_UpdateSheetsTest" /> -->
+
             <class name="viewcart.ViewCart_ChangeQuantityTest" />
+            <class name="viewcart.ViewCart_DeleteTest" />
 
         </classes>
     </test> <!-- test -->

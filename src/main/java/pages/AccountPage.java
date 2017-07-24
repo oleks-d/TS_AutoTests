@@ -192,9 +192,9 @@ public class AccountPage extends LoginPage {
         findElement(faxNumberField).clear();
         findElement(faxNumberField).sendKeys(user.getContacts().getFax());
 
-        reporter.info("Street address 1 is " + user.getAddress().getStreet_1());
+        reporter.info("Street address 1 is " + user.getAddress().getStreet());
         findElement(street1AddressField).clear();
-        findElement(street1AddressField).sendKeys(user.getAddress().getStreet_1());
+        findElement(street1AddressField).sendKeys(user.getAddress().getStreet());
 
         reporter.info("Street address 2 is " + user.getAddress().getStreet_2());
         findElement(street2AddressField).clear();
@@ -227,7 +227,7 @@ public class AccountPage extends LoginPage {
                 && findElement(shippingAddressBox).getText().contains(user.getContacts().getCompany())
                 && findElement(shippingAddressBox).getText().contains(user.getContacts().getPhone())
                 //&& findElement(shippingAddressBox).getText().contains(user.getContacts().getFax())
-                && findElement(shippingAddressBox).getText().contains(user.getAddress().getStreet_1())
+                && findElement(shippingAddressBox).getText().contains(user.getAddress().getStreet())
                 && findElement(shippingAddressBox).getText().contains(user.getAddress().getStreet_2())
                 && findElement(shippingAddressBox).getText().contains(user.getAddress().getCity())
                 && findElement(shippingAddressBox).getText().contains(user.getAddress().getRegion())
@@ -242,7 +242,7 @@ public class AccountPage extends LoginPage {
                 && findElement(billingAddressBox).getText().contains(user.getContacts().getCompany())
                 && findElement(billingAddressBox).getText().contains(user.getContacts().getPhone())
                 //&& findElement(billingAddressBox).getText().contains(user.getContacts().getFax())
-                && findElement(billingAddressBox).getText().contains(user.getAddress().getStreet_1())
+                && findElement(billingAddressBox).getText().contains(user.getAddress().getStreet())
                 && findElement(billingAddressBox).getText().contains(user.getAddress().getStreet_2())
                 && findElement(billingAddressBox).getText().contains(user.getAddress().getCity())
                 && findElement(billingAddressBox).getText().contains(user.getAddress().getRegion())
