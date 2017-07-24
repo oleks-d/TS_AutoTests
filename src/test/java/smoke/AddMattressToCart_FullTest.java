@@ -1,5 +1,6 @@
 package smoke;
 
+import account.SetupProcedures;
 import entities.ItemEntity;
 import entities.UserEntity;
 import enums.ProductTypes;

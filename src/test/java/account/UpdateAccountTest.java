@@ -1,5 +1,6 @@
-package smoke;
+package account;
 
+import annotations.TestName;
 import entities.AddressEntity;
 import entities.BaseEntity;
 import entities.ContactsEntity;
@@ -26,19 +27,22 @@ public class UpdateAccountTest extends BaseTest {
     String firstname = "reserving";
     String lastname = "data";
 
-    @DataProvider(name = "provider")
-        public Object[][] provider() throws Exception {
-            return new Object[][]{
-                    //{new UserEntity("","","", new ContactsEntity("","",""), new AddressEntity("","","","",""))},
-                    {
-                        EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"))}
-            };
-    }
+    @Test
+    @TestName(name = "Update Account")
+    public void updateAccount() throws Exception {
 
-    @Test (dataProvider = "provider")
-    public void UpdateAccount(UserEntity user) throws Exception {
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("UserTemplate.json"));
 
-        HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
+
+        SetupProcedures sp = new SetupProcedures();
+
+        String nameOfNewUser = sp.setupNewAccount();
+
+        user.setUsername(nameOfNewUser);
+        user.getContacts().setEmail(nameOfNewUser);
+
+
+        HomePage home = HomePage.Instance;
 
         home.open();
 

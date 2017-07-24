@@ -1,4 +1,4 @@
-package smoke;
+package account;
 
 import annotations.TestName;
 import entities.UserEntity;
@@ -14,17 +14,11 @@ import utils.FileIO;
 
 public class Smoke_SignInValidationTest extends BaseTest {
 
-    @DataProvider(name = "provider")
-    public Object[][] provider() throws Exception {
-        return new Object[][]{
-                {EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"))}
-        };
-    }
-
-
-    @Test  (dataProvider = "provider")
+    @Test
     @TestName(name="SignIn validation")
-    public void userSignIn_GeneralValidationTest(UserEntity user) throws Exception {
+    public void userSignIn_GeneralValidationTest() throws Exception {
+
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"));
 
         HomePage home = HomePage.Instance;
         home.open();

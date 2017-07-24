@@ -1,4 +1,4 @@
-package smoke;
+package account;
 
 import annotations.TestName;
 import entities.UserEntity;
@@ -15,7 +15,7 @@ import utils.FileIO;
 /**
  * Created by Kos on 7/17/17.
  */
-public class My_Account_GeneralValidationTest extends BaseTest {
+public class MyAccount_GeneralValidationTest extends BaseTest {
 
     @DataProvider(name = "provider")
     public Object[][] provider() throws Exception {

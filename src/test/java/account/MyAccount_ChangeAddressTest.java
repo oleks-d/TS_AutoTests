@@ -1,4 +1,4 @@
-package smoke;
+package account;
 
 import annotations.TestName;
 import entities.AddressEntity;
@@ -20,7 +20,7 @@ import utils.Tools;
 /**
  * Created by Kos on 7/17/17.
  */
-public class My_Account_ChangeAddressTest extends BaseTest {
+public class MyAccount_ChangeAddressTest extends BaseTest {
 
     @DataProvider(name = "provider")
         public Object[][] provider() throws Exception {

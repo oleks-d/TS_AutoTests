@@ -1,5 +1,6 @@
 package utils;
 
+import entities.AddressEntity;
 import entities.ItemEntity;
 import entities.UserEntity;
 
@@ -18,5 +19,9 @@ public class EntitiesFactory {
 
     public static ItemEntity getItem(String dataFile) throws Exception {
         return JSONReader.toObjectFromFile(ItemEntity.class, dataFile);
+    }
+
+    public static AddressEntity getAddress(String dataFile) throws Exception {
+        return JSONReader.toObjectFromFile(AddressEntity.class, dataFile);
     }
 }

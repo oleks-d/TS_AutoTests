@@ -1,4 +1,4 @@
-package smoke;
+package account;
 
 import annotations.TestName;
 import entities.UserEntity;
@@ -16,7 +16,7 @@ import utils.Tools;
 /**
  * Created by Kos on 7/17/17.
  */
-public class My_Account_ChangeEmailTest extends BaseTest {
+public class MyAccount_ChangeEmailTest extends BaseTest {
 
     @DataProvider(name = "provider")
         public Object[][] provider() throws Exception {

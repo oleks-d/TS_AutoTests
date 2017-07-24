@@ -2,7 +2,7 @@
     <test name="Test">
         <classes>
 
-   <!--         <class name="smoke.Smoke_Comforter_FullTest" />
+            <class name="smoke.Smoke_Comforter_FullTest" />
             <class name="smoke.Smoke_Drapes_FullTest" />
             <class name="smoke.Smoke_FoamPillow_FullTest" />
             <class name="smoke.Smoke_Mattress_FullTest" />
@@ -11,7 +11,7 @@
             <class name="smoke.Smoke_Protector_FullTest" />
             <class name="smoke.Smoke_Sheets_FullTest" />
 
-            <class name="smoke.Smoke_SignInValidationTest" />
+            <class name="account.Smoke_SignInValidationTest" />
             <class name="smoke.NavigationTest_withDataprovider" />
             <class name="viewcart.ViewCart_UpdateProtectorTest" />
             <class name="viewcart.ViewCart_UpdateComforterTest" />
