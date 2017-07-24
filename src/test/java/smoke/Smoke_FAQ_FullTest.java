@@ -21,31 +21,32 @@ import static pages.BasePage.scrollToElement;
 
 public class Smoke_FAQ_FullTest extends BaseTest {
 
+    // Search requests
     String searchrequest = "pillow";
     //String searchrequest = "mattress";
     //String searchrequest = "comforter";
 
     @Test
     @TestName(name = "FAQ Test")
-    public void alexSmoke_FAQ() throws Exception {
+    public void smoke_FAQ_FullTest() throws Exception {
 
 
-        //init pages
+        // Init pages
         HomePage home = HomePage.Instance;
         FaqPage faq = FaqPage.Instance;
 
-        //open home page and go to help page
+        // Open home page and go to help page
         home.open();
         home.header.clickFaqMenuItem();
 
-        faq.clickOnfaqChatSupport();
-
+        // Test search request and field
         faq.clickOnFaqSearchField();
         faq.sendSearchRequest(searchrequest);
         faq.clickOnFaqSearchButton();
         Assert.assertTrue(faq.getSearchRequestText().contains(searchrequest), "Request failed");
         faq.open();
 
+        // Test FAQ sections
         faq.clickOnfaqOurMattress();
         Assert.assertTrue(faq.getFaqMattressText().contains("Our Mattress"), "Failed to open");
         faq.open();
@@ -70,10 +71,10 @@ public class Smoke_FAQ_FullTest extends BaseTest {
         Assert.assertTrue(faq.getFaqReturnsAndWarrantyText().contains("Returns & Warranty"), "Failed to open");
         faq.open();
 
-//        faq.clickOnfaqChatSupport();
-//        //Assert.assertTrue(faq.getFaqChatSupportInputWindow().contains("message"), "Failed to open");
+        // Verify Support chat window for persistence
+        faq.clickOnfaqChatSupport();
+//        Assert.assertTrue(faq.getFaqChatSupportInputWindow().contains("Send Message"), "Failed to open");
 //        faq.open();
-
 
     }
 }
