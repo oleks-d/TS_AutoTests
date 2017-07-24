@@ -38,6 +38,8 @@ public class Smoke_FAQ_FullTest extends BaseTest {
         home.open();
         home.header.clickFaqMenuItem();
 
+        faq.clickOnfaqChatSupport();
+
         faq.clickOnFaqSearchField();
         faq.sendSearchRequest(searchrequest);
         faq.clickOnFaqSearchButton();

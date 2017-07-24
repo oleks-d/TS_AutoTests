@@ -18,8 +18,10 @@ public class SetupProcedures {
         String userName = Tools.getRandomUserEmail();
         String userPassword = userName;
 
-        HomePage.Instance.open();
-        CreateAccountPage.Instance.createAccount(userName, userPassword);
+        CreateAccountPage accountPage = CreateAccountPage.Instance;
+        accountPage.open();
+        accountPage.createAccount(userName, userPassword);
+        HomePage.Instance.header.clickSignOutMenuItem();
 
         return userName;
     }

@@ -1,6 +1,5 @@
-package smoke;
+package old;
 
-import account.SetupProcedures;
 import entities.ItemEntity;
 import entities.UserEntity;
 import enums.ProductTypes;
@@ -14,15 +13,25 @@ import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
 
-public class AddMattressToCart_FullTest extends BaseTest {
+public class AddMattressToCart_FullTest_Dataprovider extends BaseTest {
 
     String mattressSize = "Full";
     String mattressFeel = "Medium Soft";
+
     int qty = 1;
 
     String userDataFile =  FileIO.getConfigProperty("DefaultUser"); // file name from properties
 
-    @Test
+    @DataProvider(name = "provider")
+    public Object[][] provider (){
+        return new Object[][]{
+                { new ItemEntity(ProductTypes.MATTRESS.getValue(),  800, qty, mattressSize, mattressFeel)},
+                { new ItemEntity(ProductTypes.MATTRESS.getValue(), 1000, qty, mattressSize, mattressFeel)}
+        };
+    }
+
+
+    @Test (dataProvider = "provider")
     public void addMattressToCart_GeneralValidationTest() throws Exception {
 
         //ItemEntity item = new ItemEntity(ProductTypes.MATTRESS.getValue(), price, qty, mattressSize, mattressFeel);

@@ -33,6 +33,8 @@ public class PageHeader extends BasePage {
 
     By topMenuItem_FAQ = By.xpath(".//*[@class='help-number-wrapper']//a[contains(text(),' HELP')]");
     By topMenuItem_SignIn = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign In')]");
+    By topMenuItem_Account = By.xpath("//ul[@class='header links']//span[text()='Account']");
+    By topMenuItem_SignOut = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign Out')]");
 
     //cart
     By showCartButton = By.cssSelector("a.action.showcart");
@@ -164,6 +166,16 @@ public class PageHeader extends BasePage {
                  .filter(cur -> cur.getSize().contains(item.getSize())).count() > 0;
     }
 
+   /* public void clickDeleteButton(ItemEntity item){
+        List<WebElement> cartItemsList = findElementsIgnoreException(cartItems);
+        for (WebElement cartItem : cartItemsList ) {
+
+        // for each item in list
+        //      if   title == expected title && .... qty price type size
+        //              cartItem.findElement(deletebutton).click()
+        //
+    } */
+
     public CheckoutPage clickOnCheckoutButton(){
         reporter.info("Click on Checkout button");
         openCart();
@@ -194,5 +206,11 @@ public class PageHeader extends BasePage {
     public void closeCart() {
         if (isElementDisplayedRightNow(cartBox))
             findElement(showCartButton).click();
+    }
+
+    public void clickSignOutMenuItem() {
+        reporter.info("Click on SIGN Out menu item");
+        findElement(topMenuItem_Account).click();
+        clickOnElement(topMenuItem_SignOut);
     }
 }

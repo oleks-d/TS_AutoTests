@@ -132,14 +132,13 @@ public class FaqPage extends BasePage{
 
     //FAQ Chat Support
 
-//    public FaqPage clickOnfaqChatSupport() {
-//        driver().switchTo().frame(driver().findElement(By.xpath("//iframe[@data-test-id='ChatWidgetButton-iframe']")));
-//        //driver().switchTo().frame(driver().findElement(faqChatSupport));
-//        //scrollToElement(driver().findElement(faqChatSupport));
-//        reporter.info("Click on Chat Support window");
-//        findElement(faqChatSupport).click();
-//        return this;
-//    }
+    public FaqPage clickOnfaqChatSupport() {
+        reporter.info("Click on Chat Support window");
+        switchToFrame(By.xpath("//iframe[@data-test-id='ChatWidgetButton-iframe']"));
+        clickOnElement(By.xpath("//div"));
+        switchToDefaultContent();
+        return this;
+    }
 
 
 

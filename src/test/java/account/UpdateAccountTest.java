@@ -37,7 +37,6 @@ public class UpdateAccountTest extends BaseTest {
         SetupProcedures sp = new SetupProcedures();
 
         String nameOfNewUser = sp.setupNewAccount();
-
         user.setUsername(nameOfNewUser);
         user.getContacts().setEmail(nameOfNewUser);
 
