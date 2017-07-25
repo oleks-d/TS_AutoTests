@@ -9,9 +9,10 @@ public class UserEntity extends BaseEntity{
     String username;
     String password;
 
-    public UserEntity(String firstname, String lastname, String password, ContactsEntity contacts, AddressEntity address) {
+    public UserEntity(String firstname, String lastname, String password, String username,  ContactsEntity contacts, AddressEntity address) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.username = username;
         this.password = password;
         this.contacts = contacts;
         this.address = address;
@@ -37,9 +38,7 @@ public class UserEntity extends BaseEntity{
 
     public String getUsername() { return username; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) { this.username = username; }
 
     public String getPassword() {
         return password;

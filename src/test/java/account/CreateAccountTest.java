@@ -1,4 +1,4 @@
-package smoke;
+package account;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -17,9 +17,8 @@ public class CreateAccountTest extends BaseTest {
     @Test
     public void RegisterNewUser(){
 
-        String userName = Tools.getCurDateTime();
+        String userName = Tools.getRandomUserEmail();
         String userPassword = "!QAZxsw2";
-        String email = userName + "@mail.com";
 
         HomePage home = HomePage.Instance;
 
@@ -30,11 +29,11 @@ public class CreateAccountTest extends BaseTest {
         login.clickCreateAnAccount();
 
         CreateAccountPage createaccount = CreateAccountPage.Instance;
-        createaccount.clickOnCreateAnAccountBlank();
+        createaccount.clickOnCreateAnAccount();
 
         Assert.assertTrue(createaccount.checkFieldsValidation(), "Empty field validation failed");
 
-        createaccount.createAccount(userName, userPassword, email);
+        createaccount.createAccount(userName, userPassword);
 
         Assert.assertTrue(AccountPage.Instance.getUserNameText().contains(userName), "Failed to create new user account");
 

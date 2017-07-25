@@ -1,8 +1,14 @@
 {
+  "username" : "qazxsw@mailinator.com",
+  "password" : "!@qwASzx",
+  "firstname" : "reserving",
+  "lastname" : "data",
+
   "contacts" : {
     "email" : "some@domain.xxx",
     "phone" : "773-495-8072",
-    "company" : "Automation"
+    "company" : "Automation",
+    "fax" : "7760000007"
   },
   "address" : {
     "street" : "5320 N Sheridan",

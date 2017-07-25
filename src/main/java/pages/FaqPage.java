@@ -44,14 +44,7 @@ public class FaqPage extends BasePage{
     By faqReturnsAndWarrantyTitle = By.xpath(".//*[text()='Returns & Warranty']");
     By faqSearchResults = By.xpath(".//*[@class='title_desktop']/h2");
 
-    By faqChatSupportLocator = By.xpath("//div/label[text()='Leave us a Message']");
-
-
-
-
-
-
-
+    //By faqChatSupportLocator = By.xpath("//*/label[text()='Leave us a Message']");
 
 
     public String faqPageUrl = "https://www.tomorrowsleep.com/faq";
@@ -79,7 +72,6 @@ public class FaqPage extends BasePage{
     public FaqPage clickOnFaqSearchButton() {
         scrollToElement(driver().findElement(faqSearchButton));
         reporter.info("Click on Search Button");
-       // String clickOnFaqSearchButton = findElement(faqSearchResults).getText();
         findElement(faqSearchButton).click();
         return this;
     }
@@ -132,14 +124,13 @@ public class FaqPage extends BasePage{
 
     //FAQ Chat Support
 
-//    public FaqPage clickOnfaqChatSupport() {
-//        driver().switchTo().frame(driver().findElement(By.xpath("//iframe[@data-test-id='ChatWidgetButton-iframe']")));
-//        //driver().switchTo().frame(driver().findElement(faqChatSupport));
-//        //scrollToElement(driver().findElement(faqChatSupport));
-//        reporter.info("Click on Chat Support window");
-//        findElement(faqChatSupport).click();
-//        return this;
-//    }
+    public FaqPage clickOnfaqChatSupport() {
+        reporter.info("Click on Chat Support window");
+        switchToFrame(By.xpath("//iframe[@data-test-id='ChatWidgetButton-iframe']"));
+        clickOnElement(By.xpath("//div"));
+        switchToDefaultContent();
+        return this;
+    }
 
 
 
@@ -149,11 +140,14 @@ public class FaqPage extends BasePage{
     public String getSearchRequestText() {
         scrollToElement(driver().findElement(faqSearchResults));
         String getSearchRequestText = findElement(faqSearchResults).getText();
-//        if(getSearchRequestText.contains("gffgfg")){
-//            return getSearchRequestText;
-//        } else {
-//            reporter.fail("Requeste text field doesn;t matc " + "[" + getSearchRequestText + "]");
-//        }
+
+        /*
+        if(getSearchRequestText.contains(getSearchRequestText)){
+            return getSearchRequestText;
+        } else {
+            reporter.fail("Requeste text field doesn't match " + "[" + getSearchRequestText + "]");
+        }
+        */
         reporter.info("Search request is: " + "[" + getSearchRequestText + "]");
         return getSearchRequestText;
     }
@@ -164,50 +158,52 @@ public class FaqPage extends BasePage{
     public String getFaqMattressText() {
         scrollToElement(driver().findElement(faqMattressTitle));
         String getFaqMattressText = findElement(faqMattressTitle).getText();
-        reporter.info("FAQ Title is " + getFaqMattressText);
+        reporter.info("FAQ Title is " + "'" + getFaqMattressText + "'");
         return getFaqMattressText;
     }
     public String getFaqSleepSystemText() {
         scrollToElement(driver().findElement(faqSleepSystemTitle));
         String getFaqSleepSystepText = findElement(faqSleepSystemTitle).getText();
-        reporter.info("FAQ Title is " + getFaqSleepSystepText);
+        reporter.info("FAQ Title is " + "'" + getFaqSleepSystepText + "'");
         return getFaqSleepSystepText;
     }
 
     public String getFaqSleeptrackerText() {
         scrollToElement(driver().findElement(faqSleeptrackerTitle));
         String getFaqSleeptrackerText = findElement(faqSleeptrackerTitle).getText();
-        reporter.info("FAQ Title is " + getFaqSleeptrackerText);
+        reporter.info("FAQ Title is " + "'" + getFaqSleeptrackerText + "'");
         return getFaqSleeptrackerText;
     }
 
     public String getFaqPurchasingText() {
         scrollToElement(driver().findElement(faqPurchasingTitle));
         String getFaqPurchasingText = findElement(faqPurchasingTitle).getText();
-        reporter.info("FAQ Title is " + getFaqPurchasingText);
+        reporter.info("FAQ Title is " + "'" + getFaqPurchasingText + "'");
         return getFaqPurchasingText;
     }
 
     public String getFaqShippingText() {
         scrollToElement(driver().findElement(faqShippingTitle));
         String getFaqShippingText = findElement(faqShippingTitle).getText();
-        reporter.info("FAQ Title is " + getFaqShippingText);
+        reporter.info("FAQ Title is " + "'" + getFaqShippingText + "'");
         return getFaqShippingText;
     }
 
     public String getFaqReturnsAndWarrantyText() {
         scrollToElement(driver().findElement(faqReturnsAndWarrantyTitle));
         String getFaqReturnsAndWarrantyText = findElement(faqReturnsAndWarrantyTitle).getText();
-        reporter.info("FAQ Title is " + getFaqReturnsAndWarrantyText);
+        reporter.info("FAQ Title is " + "'" + getFaqReturnsAndWarrantyText + "'");
         return getFaqReturnsAndWarrantyText;
     }
 
-    public String getFaqChatSupportInputWindow() {
-        scrollToElement(driver().findElement(faqChatSupportLocator));
-        String getFaqChatSupportInputWindow = findElement(faqChatSupportLocator).getText();
-        reporter.info("FAQ Title is " + getFaqChatSupportInputWindow);
-        return getFaqChatSupportInputWindow;
-    }
+    // Chat Verification
+
+//    public String getFaqChatSupportInputWindow() {
+//        //scrollToElement(driver().findElement(faqChatSupportLocator));
+//        String getFaqChatSupportInputWindow = findElement(faqChatSupportLocator).getText();
+//        reporter.info("Chat window is captured: " + getFaqChatSupportInputWindow);
+//        return getFaqChatSupportInputWindow;
+//    }
 
 
 }

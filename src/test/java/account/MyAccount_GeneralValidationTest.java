@@ -1,4 +1,4 @@
-package smoke;
+package account;
 
 import annotations.TestName;
 import entities.UserEntity;
@@ -15,7 +15,7 @@ import utils.FileIO;
 /**
  * Created by Kos on 7/17/17.
  */
-public class My_Account_GeneralValidationTest extends BaseTest {
+public class MyAccount_GeneralValidationTest extends BaseTest {
 
     @DataProvider(name = "provider")
     public Object[][] provider() throws Exception {
@@ -44,24 +44,25 @@ public class My_Account_GeneralValidationTest extends BaseTest {
 
 
         //Browse through My Account pages
-        account.ClickOnMySocialAccounts();
-        Assert.assertTrue(account.getSocialAccounts().contains("Linked accounts"), "Failed to open My Social Accounts");
-
-        account.ClickOnMyDashboard();
-        Assert.assertTrue(account.verifyDashboardElements() , "Failed to open Dashboard");
-
-        account.ClickOnMyAccountInfo();
-        Assert.assertTrue(account.verifyAccountInfoElements(), "Failed to open Account Info");
-
-        account.ClickOnMyAddressBook();
-        Assert.assertTrue(account.verifyAddressBookElements(), "Failed to open Address Book" );
-
-        account.ClickOnMyOrders();
-        Assert.assertTrue(account.verifyNoOrdersMessage(), "Failed to open My Orders");
+//        account.ClickOnMySocialAccounts();
+//        Assert.assertTrue(account.getSocialAccounts().contains("Linked accounts"), "Failed to open My Social Accounts");
+//
+//        account.ClickOnMyDashboard();
+//        Assert.assertTrue(account.verifyDashboardElements() , "Failed to open Dashboard");
+//
+//        account.ClickOnMyAccountInfo();
+//        Assert.assertTrue(account.verifyAccountInfoElements(), "Failed to open Account Info");
+//
+//        account.ClickOnMyAddressBook();
+//        Assert.assertTrue(account.verifyAddressBookElements(), "Failed to open Address Book" );
+//
+//        account.ClickOnMyOrders();
+//        Assert.assertTrue(account.verifyNoOrdersMessage(), "Failed to open My Orders");
 
         //account.ClickOnMyReviews();
 
         account.ClickOnMyNewsletter();
+        //account.();
     }
 
 }

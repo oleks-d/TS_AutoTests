@@ -1,4 +1,4 @@
-package smoke;
+package account;
 
 import annotations.TestName;
 import entities.AddressEntity;
@@ -20,7 +20,7 @@ import utils.Tools;
 /**
  * Created by Kos on 7/17/17.
  */
-public class My_Account_ChangeAddressTest extends BaseTest {
+public class MyAccount_ChangeAddressTest extends BaseTest {
 
     @DataProvider(name = "provider")
         public Object[][] provider() throws Exception {
@@ -57,7 +57,7 @@ public class My_Account_ChangeAddressTest extends BaseTest {
 
         account.updateAddress(user);
 
-        Assert.assertTrue(account.verifyUpdatedAddressMessage(), "Failed to locate Success Message");
+        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success Message");
 
         Assert.assertTrue(account.verifyAddressUpdateShipping(user), "Failed to update Shipping Address");
 
@@ -68,7 +68,7 @@ public class My_Account_ChangeAddressTest extends BaseTest {
 
         account.updateAddress(user);
 
-        Assert.assertTrue(account.verifyUpdatedAddressMessage(), "Failed to locate Success Message");
+        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success Message");
 
         Assert.assertTrue(account.verifyAddressUpdateBilling(user), "Failed to update Billing Address");
 

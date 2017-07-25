@@ -1,11 +1,11 @@
 {
-  "username" : "test_automation@randommail.com",
-  "password" : "!QAZxsw2",
-  "firstname" : "Automation",
-  "lastname" : "Team",
+  "username" : "",
+  "password" : "qwerty123@",
+  "firstname" : "reserving",
+  "lastname" : "data",
 
   "contacts" : {
-    "email" : "test_automation@randommail.com",
+    "email" : "",
     "phone" : "773-495-8072",
     "company" : "Automation",
     "fax" : "7760000007"

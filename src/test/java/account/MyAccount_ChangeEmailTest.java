@@ -1,4 +1,4 @@
-package smoke;
+package account;
 
 import annotations.TestName;
 import entities.UserEntity;
@@ -11,22 +11,26 @@ import pages.LoginPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.Tools;
 
-import javax.naming.Name;
-
-public class Sign_In_GeneralValidationTest extends BaseTest {
+/**
+ * Created by Kos on 7/17/17.
+ */
+public class MyAccount_ChangeEmailTest extends BaseTest {
 
     @DataProvider(name = "provider")
-    public Object[][] provider() throws Exception {
-        return new Object[][]{
-                {EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"))}
-        };
+        public Object[][] provider() throws Exception {
+            return new Object[][]{
+                    {EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"))}
+            };
     }
 
+    String currenttime = Tools.getCurDateTime();
+    String newEmail = currenttime + "@mail.com";
 
     @Test (dataProvider = "provider")
-    @TestName(name="SignIn Validation")
-    public void userSignIn_GeneralValidationTest(UserEntity user) throws Exception {
+    @TestName(name="Change Email")
+    public void ChangeAccountAddress(UserEntity user) throws Exception {
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 
@@ -41,6 +45,14 @@ public class Sign_In_GeneralValidationTest extends BaseTest {
 
         AccountPage account = AccountPage.Instance;
         Assert.assertTrue(account.getUserNameText().contains(user.getUsername()), "Failed to login" );
+
+        account.ClickOnMyAccountInfo();
+        account.clickOnChangeEmailButton();
+
+        account.updateEmail(newEmail, user); //todo save new Email to json
+        Assert.assertTrue(account.getUserNameText().contains(newEmail), "Failed to locate updated Email" );
+
+
 
     }
 

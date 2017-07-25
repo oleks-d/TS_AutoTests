@@ -25,4 +25,9 @@ public class Tools {
         problem.printStackTrace(printWriter);
         return result.toString();
     }
+
+    public static String getRandomUserEmail() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss_");
+        return sdf.format(new Date(System.currentTimeMillis())) + String.valueOf(System.currentTimeMillis()).substring(10,13) + "@somedomain.com";
+    }
 }
