@@ -4,6 +4,7 @@ import entities.ItemEntity;
 import entities.UserEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +81,7 @@ public class ViewCartPage extends BasePage {
 
             currentItem.setQty(Integer.valueOf(orderItem.findElement(orderItemQty).getAttribute("value")));
 
-            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","").replace(",","")));
+            currentItem.setPrice(Tools.convertStringPriceToFloat(orderItem.findElement(orderItemPrice).getText()));
             currentItem.setSize("");
             currentItem.setType("");
 

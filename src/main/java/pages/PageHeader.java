@@ -49,6 +49,9 @@ public class PageHeader extends BasePage {
     By cartBox = By.xpath("//div[@data-role='dropdownDialog']");
     By cartCheckoutButton = By.cssSelector("button#top-cart-btn-checkout");
     By viewCartButton = By.cssSelector("a.action.viewcart");
+    By deleteCartButton = By.cssSelector("a.action.delete");
+    By acceptDeletingFromCartButton = By.cssSelector("button.action-primary.action-accept");
+
 
     By cartItemDetails = By.cssSelector("dl.product.options.list span");
 
@@ -140,7 +143,7 @@ public class PageHeader extends BasePage {
 
             currentItem.setTitle(cartItem.findElement(cartItemName).getText());
             currentItem.setQty(Integer.valueOf(cartItem.findElement(cartItemQty).getAttribute("data-item-qty")));
-            currentItem.setPrice(Float.valueOf(cartItem.findElement(cartItemPrice).getText().replace("$","").replace(",","")));
+            currentItem.setPrice(Tools.convertStringPriceToFloat(cartItem.findElement(cartItemPrice).getText()));
             currentItem.setSize("");
             currentItem.setType("");
 
@@ -176,16 +179,6 @@ public class PageHeader extends BasePage {
                  .filter(cur -> cur.getSize().contains(item.getSize())).count() > 0;
     }
 
-   /* public void clickDeleteButton(ItemEntity item){
-        List<WebElement> cartItemsList = findElementsIgnoreException(cartItems);
-        for (WebElement cartItem : cartItemsList ) {
-
-        // for each item in list
-        //      if   title == expected title && .... qty price type size
-        //              cartItem.findElement(deletebutton).click()
-        //
-    } */
-
     public CheckoutPage clickOnCheckoutButton(){
         reporter.info("Click on Checkout button");
         openCart();
@@ -198,6 +191,24 @@ public class PageHeader extends BasePage {
         openCart();
         clickOnElement(viewCartButton);
         return ViewCartPage.Instance;
+    }
+
+    public void clickOnDeleteCartButton(ItemEntity item) {
+        closeCart();
+        openCart();
+        List<WebElement> cartItemsList = findElementsIgnoreException(cartItems);
+        for (int i = 0; i < cartItemsList.size(); i++) {
+            WebElement cartItem = cartItemsList.get(i);
+            if (cartItem.findElement(cartItemName).getText().contains(item.getTitle()) &&
+                    Tools.convertStringPriceToFloat(cartItem.findElement(cartItemPrice).getText()) == item.getPrice() &&
+                    cartItem.findElement(cartItemQty).getAttribute("data-item-qty").equals(String.valueOf(item.getQty()))) {
+                cartItem.findElement(deleteCartButton).click();
+
+                clickOnElement(acceptDeletingFromCartButton);
+            }
+        }
+        reporter.info("Click on Delete Cart button");
+
     }
 
     public void openMenuByItemName(String itemName) {
