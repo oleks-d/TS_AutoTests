@@ -42,7 +42,7 @@ public class BasePage {
     private static int getShortTimeout() {
         String timeout = FileIO.getConfigProperty("ShortTimeoutInSeconds");
         if (timeout == null ) {
-            timeout = "2";
+            timeout = "3";
         };
 
         return Integer.parseInt(timeout);

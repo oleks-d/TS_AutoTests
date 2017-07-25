@@ -51,6 +51,8 @@ public class PageHeader extends BasePage {
 
     By cartItemDetails = By.cssSelector("dl.product.options.list span");
 
+    By closeCartButton = By.id("btn-minicart-close");
+
     By cartQtyIndex = By.cssSelector("span.counter-number");
 
     By LOADING_SPINNER = By.cssSelector("div.fotorama__spinner");
@@ -204,8 +206,10 @@ public class PageHeader extends BasePage {
     }
 
     public void closeCart() {
-        if (isElementDisplayedRightNow(cartBox))
-            findElement(showCartButton).click();
+        if (isElementDisplayedRightNow(closeCartButton)){
+            reporter.info("Closing cart");
+            clickOnElementIgnoreException(closeCartButton);
+        };
     }
 
     public void clickSignOutMenuItem() {
