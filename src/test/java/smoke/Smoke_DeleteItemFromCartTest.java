@@ -2,9 +2,8 @@ package smoke;
 
 import annotations.TestName;
 import entities.ItemEntity;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.BaseProductPage;
 import pages.HomePage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
@@ -21,16 +20,17 @@ public class Smoke_DeleteItemFromCartTest extends BaseTest {
     public void Smoke_DeleteItemFromCartTest() throws Exception {
 
         ItemEntity item = EntitiesFactory.getItem( FileIO.getDataFile("Default_FoamPillow.json") );
+        item.setQty(2);
 
         HomePage home = HomePage.Instance;
 
         home.open();
         home.clickOnShopFoamPillowButton().clickAddToCart();
 
-        org.testng.Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was not displayed in cart");
+        Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was not displayed in cart");
 
         home.header.clickOnDeleteCartButton(item);
 
-        org.testng.Assert.assertFalse(home.header.itemWasFoundInCart(item),  "Item was deleted from cart");
+        Assert.assertFalse(home.header.itemWasFoundInCart(item),  "Item was deleted from cart");
     }
 }
