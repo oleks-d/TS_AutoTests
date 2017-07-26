@@ -47,8 +47,8 @@ public class UpdateAccountTest extends BaseTest {
 
         home.header.clickSignInMenuItem();
         LoginPage login = LoginPage.Instance;
-        login.enterUsername(user);
-        login.enterPassword(user);
+        login.enterUsername(nameOfNewUser);
+        login.enterPassword(nameOfNewUser);
         login.submitForm();
 
         AccountPage account = AccountPage.Instance;

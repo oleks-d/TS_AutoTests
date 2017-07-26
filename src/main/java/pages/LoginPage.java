@@ -24,17 +24,17 @@ public class LoginPage extends BasePage {
 
     /** Page Methods */
 
-    public LoginPage enterUsername(UserEntity user) {
-        reporter.info("Entering username: " + user.getUsername());
+    public LoginPage enterUsername(String user) {
+        reporter.info("Entering username: " + user);
         findElement(usernameLocator).clear();
-        findElement(usernameLocator).sendKeys(user.getUsername());
+        findElement(usernameLocator).sendKeys(user);
         return this;
     }
 
-    public void enterPassword(UserEntity user) {
-        reporter.info("Entering password: " + user.getPassword());
+    public void enterPassword(String pass) {
+        reporter.info("Entering password: " + pass);
         findElement(passwordLocator).clear();
-        findElement(passwordLocator).sendKeys(user.getPassword());
+        findElement(passwordLocator).sendKeys(pass);
     }
 
     public AccountPage submitForm() {

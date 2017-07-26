@@ -3,30 +3,31 @@
         <classes>
 
             <class name="viewcart.ViewCart_ChangeQuantityTest" />
-            <class name="smoke.NavigationTest_withDataprovider" />
-            <class name="smoke.Smoke_Comforter_FullTest" />
-            <class name="smoke.Smoke_Drapes_FullTest" />
-            <class name="smoke.Smoke_FoamPillow_FullTest" />
-            <class name="smoke.Smoke_Mattress_FullTest" />
-            <class name="smoke.Smoke_Monitor_FullTest" />
-            <class name="smoke.Smoke_PlushPillow_FullTest" />
-            <class name="smoke.Smoke_Protector_FullTest" />
-            <class name="smoke.Smoke_Sheets_FullTest" />
             <class name="viewcart.ViewCart_DeleteTest" />
+            <class name="smoke.NavigationTest_withDataprovider" />
 
-            <!--<class name="account.Smoke_SignInValidationTest" />-->
-            <!--<class name="account.UpdateAccountTest" />-->
-            <!--<class name="account.CreateAccountTest" />-->
-            <!--<class name="account.MyAccount_ChangeAddressTest" />-->
-            <!--<class name="account.MyAccount_ChangeEmailTest" />-->
-            <!--<class name="account.MyAccount_GeneralValidationTest" />-->
+            <class name="smoke.Smoke_Protector_FullTest" />
+            <class name="smoke.Smoke_Comforter_FullTest" />
+            <class name="smoke.Smoke_Sheets_FullTest" />
+            <class name="smoke.Smoke_Drapes_FullTest" />
+            <class name="smoke.Smoke_Monitor_FullTest" />
+            <class name="smoke.Smoke_Mattress_FullTest" />
+            <class name="smoke.Smoke_FoamPillow_FullTest" />
+            <class name="smoke.Smoke_PlushPillow_FullTest" />
 
+            <class name="account.Smoke_SignInValidationTest" />
+            <class name="account.UpdateAccountTest" />
+            <class name="account.CreateAccountTest" />
+            <class name="account.MyAccount_ChangeAddressTest" />
+            <class name="account.MyAccount_ChangeEmailTest" />
+            <class name="account.MyAccount_GeneralValidationTest" />
+
+            <class name="viewcart.ViewCart_UpdateMonitorTest" />
+            <class name="viewcart.ViewCart_UpdateMattressTest" />
             <class name="viewcart.ViewCart_UpdateProtectorTest" />
             <class name="viewcart.ViewCart_UpdateComforterTest" />
             <class name="viewcart.ViewCart_UpdateDrapesTest" />
             <class name="viewcart.ViewCart_UpdateFoamPillowTest" />
-            <class name="viewcart.ViewCart_UpdateMattressTest" />
-            <class name="viewcart.ViewCart_UpdateMonitorTest" />
             <class name="viewcart.ViewCart_UpdatePlushPillowTest" />
             <class name="viewcart.ViewCart_UpdateSheetsTest" />
 

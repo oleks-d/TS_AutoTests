@@ -40,8 +40,8 @@ public class MyAccount_ChangeAddressTest extends BaseTest {
         home.header.clickSignInMenuItem();
         LoginPage login = LoginPage.Instance;
 
-        login.enterUsername(user)
-            .enterPassword(user);
+        login.enterUsername(user.getUsername())
+            .enterPassword(user.getPassword());
 
         login.submitForm();
 

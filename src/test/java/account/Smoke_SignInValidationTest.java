@@ -25,8 +25,8 @@ public class Smoke_SignInValidationTest extends BaseTest {
 
         home.header.clickSignInMenuItem();
         LoginPage login = LoginPage.Instance;
-        login.enterUsername(user);
-        login.enterPassword(user);
+        login.enterUsername(user.getUsername());
+        login.enterPassword(user.getPassword());
         login.submitForm();
 
         AccountPage account = AccountPage.Instance;
