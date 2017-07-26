@@ -36,7 +36,7 @@ public class CreateAccountPage extends BasePage {
 
 
     //* Page Methods *//
-    public CreateAccountPage clickOnCreateAnAccountBlank(){
+    public CreateAccountPage clickOnCreateAnAccount(){
         reporter.info("Click on Create An Account Button");
         findElement(createAnAccountButton).click();
         return this;
@@ -55,11 +55,11 @@ public class CreateAccountPage extends BasePage {
         }
     }
 
-    public AccountPage createAccount(String userName, String userPassword, String email){
+    public AccountPage createAccount(String userName, String userPassword){
 
-        reporter.info("Enter user Email " + email);
+        reporter.info("Enter user Email " + userName);
         findElement(emailInputField).clear();
-        findElement(emailInputField).sendKeys(email);
+        findElement(emailInputField).sendKeys(userName);
 
         reporter.info("Enter Firstname " + userName);
         findElement(firstNameInputField).clear();
@@ -76,7 +76,8 @@ public class CreateAccountPage extends BasePage {
         reporter.info("Enter ConfirmPassword " + userPassword);
         findElement(confirmPasswordInputField).clear();
         findElement(confirmPasswordInputField).sendKeys(userPassword);
-        findElement(createAnAccountButton).click();
+
+        clickOnCreateAnAccount();
 
         return AccountPage.Instance;
     }

@@ -6,8 +6,10 @@ import java.util.List;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
+import org.testng.annotations.DataProvider;
 import utils.FileIO;
 import utils.ReporterManager;
+import utils.Tools;
 
 /**
  * Created by odiachuk on 07.07.17.
@@ -24,6 +26,8 @@ public class BasePage {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
     public static final int DEFAULT_TIMEOUT = getTimeout();
+    public static final int SHORT_TIMEOUT = getShortTimeout();
+    public static final int STATIC_TIMEOUT =  getStaticTimeout();
 
     private static int getTimeout() {
         String timeout = FileIO.getConfigProperty("DefaultTimeoutInSeconds");
@@ -32,6 +36,23 @@ public class BasePage {
             timeout = "15";
         };
 
+        return Integer.parseInt(timeout);
+    }
+
+    private static int getShortTimeout() {
+        String timeout = FileIO.getConfigProperty("ShortTimeoutInSeconds");
+        if (timeout == null ) {
+            timeout = "3";
+        };
+
+        return Integer.parseInt(timeout);
+    }
+
+    private static int getStaticTimeout() {
+        String timeout = FileIO.getConfigProperty("StaticTimeoutMilliseconds");
+            if (timeout == null ) {
+                    timeout = "1000";
+            };
         return Integer.parseInt(timeout);
     }
 
@@ -94,13 +115,20 @@ public class BasePage {
         findElement(By.cssSelector(cssSelector)).sendKeys(text);
     }
 
+    public void setText(By element, String value){
+        if (value != null) {
+            findElement(element).clear();
+            findElement(element).sendKeys(value);
+        }
+    }
+
     public boolean isTextPresent(String text) {
         return driver().getPageSource().contains(text);
     }
 
     public boolean isElementPresent(By by) {
         try {
-            WebElement element = findElement(by);
+            WebElement element = findElementIgnoreException(by);
             return element.isDisplayed();
         } catch (RuntimeException e) {
             return false;
@@ -117,7 +145,7 @@ public class BasePage {
 
     public boolean isElementPresent(String _cssSelector) {
         try {
-            findElement(By.cssSelector(_cssSelector));
+            findElementIgnoreException(By.cssSelector(_cssSelector));
             return true;
         } catch (RuntimeException e) {
             return false;
@@ -126,7 +154,15 @@ public class BasePage {
 
     public boolean isElementPresentAndDisplay(By by) {
         try {
-            return findElement(by).isDisplayed();
+            return findElementIgnoreException(by).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isElementDisplayedRightNow(By by) {
+        try {
+            return findElementIgnoreException(by, SHORT_TIMEOUT).isDisplayed();
         } catch (Exception e) {
             return false;
         }
@@ -145,21 +181,29 @@ public class BasePage {
 
     public static void clickOnElementIgnoreException(By element, int... timeout) {
         waitForPageToLoad();
+        int timeoutForFindElement = timeout.length < 1 ? DEFAULT_TIMEOUT : timeout[0];
         try {
-            clickOnElement(element, timeout[0]);
-        } catch (RuntimeException e) {
-            reporter.info("Got exception. Exception is expected and ignored.");
+            (new WebDriverWait(driver(), timeoutForFindElement))
+                    .until(ExpectedConditions.visibilityOfElementLocated(element));
+            driver().findElement(element).click();
+        } catch (Exception e) {
+            // nothing
         }
+        waitForPageToLoad();
     }
 
     public static WebElement findElementIgnoreException(By element, int... timeout) {
         waitForPageToLoad();
+        int timeoutForFindElement = timeout.length < 1 ? DEFAULT_TIMEOUT : timeout[0];
+        waitForPageToLoad();
         try {
-            return findElement(element, timeout[0]);
-        } catch (RuntimeException e) {
-            reporter.info("Got exception. Exception is expected and ignored.");
+            //synchronize();
+            (new WebDriverWait(driver(), timeoutForFindElement))
+                    .until(ExpectedConditions.visibilityOfElementLocated(element));
+            return driver().findElement(element);
+        } catch (Exception e) {
+            return null;
         }
-        return null;
     }
 
     public static List<WebElement> findElementsIgnoreException(By element, int... timeout) {
@@ -171,7 +215,7 @@ public class BasePage {
                     .until(ExpectedConditions.presenceOfElementLocated(element));
             return driver().findElements(element);
         } catch (Exception e) {
-            reporter.info("Got exception. Exception is expected and ignored.");
+            //reporter.info("Got exception. Exception is expected and ignored.");
             return new ArrayList<WebElement>();
         }
     }
@@ -184,7 +228,8 @@ public class BasePage {
                     .until(ExpectedConditions.visibilityOfElementLocated(element));
             driver().findElement(element).click();
         } catch (Exception e) {
-            throw new RuntimeException("Failure clicking on element");
+            reporter.fail(Tools.getStackTrace(e));
+            throw new RuntimeException("Failure clicking on element" );
         }
         waitForPageToLoad();
     }
@@ -198,6 +243,7 @@ public class BasePage {
                     .until(ExpectedConditions.visibilityOfElementLocated(element));
             return driver().findElement(element);
         } catch (Exception e) {
+            reporter.fail(Tools.getStackTrace(e));
             throw new RuntimeException("Failure finding element");
         }
     }
@@ -211,6 +257,7 @@ public class BasePage {
                     .until(ExpectedConditions.presenceOfElementLocated(element));
             return driver().findElements(element);
         } catch (Exception e) {
+            reporter.fail(Tools.getStackTrace(e));
             throw new RuntimeException("Failure finding elements");
         }
     }
@@ -251,7 +298,7 @@ public class BasePage {
     }
 
     public static void waitForPageToLoad(){
-        sleepFor(1000); // todo fixme
+        sleepFor(STATIC_TIMEOUT); // todo fixme
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 
             public Boolean apply(WebDriver driver)
@@ -271,6 +318,34 @@ public class BasePage {
         {
             reporter.fail("JavaScript readyState query timeout - The page has not finished loading");
         }
+
+//        String source = driver().getPageSource();
+//
+//        expectation = new ExpectedCondition<Boolean>() {
+//
+//            public Boolean apply(WebDriver driver)
+//            {
+//                return ((JavascriptExecutor) driver).executeScript("return jQuery.active")
+//                        .equals("0");
+//            }
+//
+//        };
+//
+//        wait = new WebDriverWait(driver(), DEFAULT_TIMEOUT);
+//
+//        try
+//        {
+//            wait.until(expectation);
+//        } catch (Exception error)
+//        {
+//            reporter.fail("The page has not finished loading");
+//        }
+
+    }
+
+    static void waitForElement(By by){
+        WebDriverWait wait = new WebDriverWait(driver(), DEFAULT_TIMEOUT);
+        wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     public static void sleepFor(int timeout){
@@ -303,7 +378,19 @@ public class BasePage {
 
     // Does not work because of geckodriver bug - https://stackoverflow.com/questions/40360223/webdriverexception-moveto-did-not-match-a-known-command
     public void hoverItem(By element){
+        reporter.info("Put mouse pointer over element: " + element.toString());
         Actions action = new Actions(driver());
         action.moveToElement(findElement(element)).build().perform();
     }
+
+    public void switchToFrame(By xpath) {
+        reporter.info("Switch to frame: " + xpath.toString());
+        driver().switchTo().frame(findElement(xpath));
+    }
+
+    public void switchToDefaultContent(){
+        reporter.info("Switch to default content");
+        driver().switchTo().defaultContent();
+    }
+
 }

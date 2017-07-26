@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CheckoutPage;
 import pages.CheckoutReviewPage;
+import pages.DrapesPage;
 import pages.HomePage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
@@ -30,10 +31,11 @@ public class Smoke_Drapes_FullTest extends BaseTest {
         //open home page and add Drapes to cart
         home.open();
         home.header.clickShopMenuItem()
-                .clickOnShopOurDrapesButton()
-                .selectDrapesSize(item.getSize())
+                .clickOnShopOurDrapesButton();
+                DrapesPage.Instance.selectDrapesSize(item.getSize())
                 .selectDrapesColor(item.getType())
                 .clickAddToCart();
+
 
         // check item in cart
         Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was not displayed in cart");

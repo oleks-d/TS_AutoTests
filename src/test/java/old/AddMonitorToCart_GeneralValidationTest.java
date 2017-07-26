@@ -1,4 +1,4 @@
-package smoke;
+package old;
 
 import enums.ProductTypes;
 import org.testng.Assert;

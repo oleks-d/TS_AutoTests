@@ -3,6 +3,7 @@ package pages;
 import entities.ItemEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,14 +59,14 @@ public class CheckoutReviewPage extends BasePage{
     private ArrayList<ItemEntity> getAllOrderItems() {
         ArrayList<ItemEntity> result = new ArrayList<>();
         reporter.info("Getting order items");
-        findElement(orderItems); //wait for items
-        List<WebElement> itemsList = findElements(orderItems);
+        findElementIgnoreException(orderItems); //wait for items
+        List<WebElement> itemsList = findElementsIgnoreException(orderItems);
         for (WebElement orderItem : itemsList ) {
             ItemEntity currentItem = new ItemEntity();
 
             currentItem.setTitle(orderItem.findElement(orderItemName).getText());
             currentItem.setQty(Integer.valueOf(orderItem.findElement(orderItemQty).getText()));
-            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","")));
+            currentItem.setPrice(Tools.convertStringPriceToFloat(orderItem.findElement(orderItemPrice).getText()));
             currentItem.setSize("");
             currentItem.setType("");
 
@@ -93,7 +94,7 @@ public class CheckoutReviewPage extends BasePage{
 
     public float getTotalPrice(){
         float result;
-        result = Float.valueOf(findElement(totalPrice).getText().replace("$",""));
+        result = Tools.convertStringPriceToFloat(findElement(totalPrice).getText());
         reporter.info("Total price: " + result);
         return result;
     }

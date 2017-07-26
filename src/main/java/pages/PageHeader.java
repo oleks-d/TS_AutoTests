@@ -3,7 +3,10 @@ package pages;
 import entities.ItemEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.FileIO;
+import utils.Tools;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,16 +24,19 @@ public class PageHeader extends BasePage {
     public static PageHeader Instance = (instance != null) ? instance : new PageHeader();
 
     PageHeader(){
-        instance = Instance;
         waitForPageToLoad();
     }
 
     //top menu
-    By topMenuItem_Shop     = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Shop']");
-    By topMenuItem_Sleep    = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Sleep']");
+    By topMenuItem_Shop = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Shop']");
+    By topMenuItem_Sleep = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Sleep']");
     By topMenuItem_Magazine = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Magazine']");
-
+    By topMenuItem_FAQ = By.xpath(".//*[@class='help-number-wrapper']//a[contains(text(),' HELP')]");
     By topMenuItem_SignIn = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign In')]");
+
+    By topMenuItem_Reviews = By.xpath(".//*[@id='ui-id-6']/span");
+    By topMenuItem_Account = By.xpath("//ul[@class='header links']//span[text()='Account']");
+    By topMenuItem_SignOut = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign Out')]");
 
     //cart
     By showCartButton = By.cssSelector("a.action.showcart");
@@ -44,8 +50,17 @@ public class PageHeader extends BasePage {
     By cartBox = By.xpath("//div[@data-role='dropdownDialog']");
     By cartCheckoutButton = By.cssSelector("button#top-cart-btn-checkout");
     By viewCartButton = By.cssSelector("a.action.viewcart");
+    By deleteCartButton = By.cssSelector("a.action.delete");
+    By acceptDeletingFromCartButton = By.cssSelector("button.action-primary.action-accept");
+
 
     By cartItemDetails = By.cssSelector("dl.product.options.list span");
+
+    By closeCartButton = By.id("btn-minicart-close");
+
+    By cartQtyIndex = By.cssSelector("span.counter-number");
+
+    By LOADING_SPINNER = By.cssSelector("div.fotorama__spinner");
 
     // loader
    // img alt="Loading..."
@@ -70,19 +85,27 @@ public class PageHeader extends BasePage {
         return MagazinePage.Instance;
     }
 
+    public ReviewsPage clickReviewsMenuItem(){
+        reporter.info("Click on REVIEW menu item");
+        clickOnElement(topMenuItem_Reviews);
+        return ReviewsPage.Instance;
+    }
+
+    public FaqPage clickFaqMenuItem(){
+        reporter.info("Click on Help menu item");
+        clickOnElement(topMenuItem_FAQ);
+        return FaqPage.Instance;
+    }
+
 
     /** Cart Methods */
 
     public PageHeader openCart(){
-        reporter.info("Open Cart (Click on Show cart buttton)");
-        //sleepFor(3000); //todo fixme!!
-        if (isElementPresent(cartBox)){
-            findElement(showCartButton).click();
-        };
-        if (!isElementPresent(cartBox)){
-            findElement(showCartButton).click();
-        };
-        findElement (cartItems);
+        reporter.info("Open Cart (Click on Show cart button)");
+        driver().navigate().refresh();
+        waitForPageToLoad();
+        findElement(showCartButton).click();
+
         return this;
     }
 
@@ -94,7 +117,7 @@ public class PageHeader extends BasePage {
 
         openCart();
         for (String expectedField : expectedContent){
-            currentCartItems = findElements(cartItems);
+            currentCartItems = findElementsIgnoreException(cartItems);
             for (WebElement cartItem : currentCartItems ) {
                 if (cartItem.findElement(cartItemName).getText().contains(itemName)) {
                     String currentContent = cartItem.findElement(cartItemContent).getText();
@@ -122,13 +145,13 @@ public class PageHeader extends BasePage {
 
         openCart();
 
-        List<WebElement> cartItemsList = findElements(cartItems);
+        List<WebElement> cartItemsList = findElementsIgnoreException(cartItems);
         for (WebElement cartItem : cartItemsList ) {
             ItemEntity currentItem = new ItemEntity();
 
             currentItem.setTitle(cartItem.findElement(cartItemName).getText());
             currentItem.setQty(Integer.valueOf(cartItem.findElement(cartItemQty).getAttribute("data-item-qty")));
-            currentItem.setPrice(Float.valueOf(cartItem.findElement(cartItemPrice).getText().replace("$","")));
+            currentItem.setPrice(Tools.convertStringPriceToFloat(cartItem.findElement(cartItemPrice).getText()));
             currentItem.setSize("");
             currentItem.setType("");
 
@@ -178,8 +201,47 @@ public class PageHeader extends BasePage {
         return ViewCartPage.Instance;
     }
 
+    public void clickOnDeleteCartButton(ItemEntity item) {
+        closeCart();
+        openCart();
+        List<WebElement> cartItemsList = findElementsIgnoreException(cartItems);
+        for (int i = 0; i < cartItemsList.size(); i++) {
+            WebElement cartItem = cartItemsList.get(i);
+            if (cartItem.findElement(cartItemName).getText().contains(item.getTitle()) &&
+                    Tools.convertStringPriceToFloat(cartItem.findElement(cartItemPrice).getText()) == item.getPrice() &&
+                    cartItem.findElement(cartItemQty).getAttribute("data-item-qty").equals(String.valueOf(item.getQty()))) {
+                cartItem.findElement(deleteCartButton).click();
+
+                clickOnElement(acceptDeletingFromCartButton);
+            }
+        }
+        reporter.info("Click on Delete Cart button");
+
+    }
+
     public void openMenuByItemName(String itemName) {
         hoverItem(topMenuItem_Shop);
         clickOnElement(By.xpath("//a[@role='menuitem']/span[text()='" + itemName + "']"));
+    }
+
+    public boolean waitUntilItemWillBeDropedToCart() {
+        return isElementPresentAndDisplay(cartQtyIndex);
+    }
+
+    public void waitForLoading(){  // TODO finish
+        if (isElementPresentAndDisplay(LOADING_SPINNER));
+    }
+
+    public void closeCart() {
+        if (isElementDisplayedRightNow(closeCartButton)){
+            reporter.info("Closing cart");
+            clickOnElementIgnoreException(closeCartButton);
+        };
+    }
+
+    public void clickSignOutMenuItem() {
+        reporter.info("Click on SIGN Out menu item");
+        findElement(topMenuItem_Account).click();
+        clickOnElement(topMenuItem_SignOut);
     }
 }

@@ -4,6 +4,7 @@ import entities.ItemEntity;
 import entities.UserEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class CheckoutPage extends BasePage {
     By firstnameField = By.name("firstname");
     By companyField = By.name("company");
     By streetField = By.name("street[0]");
+    By street2Field = By.name("street[1]");
     By cityField = By.name("city");
     By postcodeField = By.name("postcode");
     //select
@@ -83,6 +85,12 @@ public class CheckoutPage extends BasePage {
         return this;
     }
 
+    public CheckoutPage setStreet2(String street2){
+        reporter.info("Set Street details: " + street2);
+        setText(street2Field, street2);
+        return this;
+    }
+
     public CheckoutPage setCity(String city){
         reporter.info("Set City name: " + city);
         findElement(cityField).sendKeys(city);
@@ -130,6 +138,7 @@ public class CheckoutPage extends BasePage {
                 .setPhone(user.getContacts().getPhone())
                 .setPostcode(user.getAddress().getZip())
                 .setStreet(user.getAddress().getStreet())
+                .setStreet2(user.getAddress().getStreet_2())
                 .selectRegion(user.getAddress().getRegion());
         return this;
     }
@@ -148,8 +157,8 @@ public class CheckoutPage extends BasePage {
     private ArrayList<ItemEntity> getAllCheckoutPageItems() {
         ArrayList<ItemEntity> result = new ArrayList<>();
         reporter.info("Getting order items");
-        findElement(orderItems); // wait for order
-        List<WebElement> itemsList = findElements(orderItems);
+        findElementIgnoreException(orderItems); // wait for order
+        List<WebElement> itemsList = findElementsIgnoreException(orderItems);
         for (WebElement orderItem : itemsList ) {
             ItemEntity currentItem = new ItemEntity();
 
@@ -157,7 +166,7 @@ public class CheckoutPage extends BasePage {
 
             currentItem.setQty(Integer.valueOf(orderItem.findElement(orderItemQty).getText()));
 
-            currentItem.setPrice(Float.valueOf(orderItem.findElement(orderItemPrice).getText().replace("$","")));
+            currentItem.setPrice(Tools.convertStringPriceToFloat(orderItem.findElement(orderItemPrice).getText()));
             currentItem.setSize("");
             currentItem.setType("");
 

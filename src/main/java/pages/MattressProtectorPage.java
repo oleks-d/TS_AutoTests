@@ -29,6 +29,7 @@ public class MattressProtectorPage extends BaseProductPage{
 
         public MattressProtectorPage selectProtectorSize(String size) {
             reporter.info("Select Protector size: " + size);
+            header.closeCart();
             findElement(selectProtectorSize).click();
             findElement(By.xpath("//div[@class='option' and contains(text(),'" + size + "')]")).click();
             if (!findElement(selectProtectorSize).getText().contains(size)){
@@ -37,10 +38,9 @@ public class MattressProtectorPage extends BaseProductPage{
             return this;
         }
 
-//    public MattressProtectorPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public MattressProtectorPage clickAddToCart() {
+        super.clickAddToCart();
+        return this;
+    }
 
 }

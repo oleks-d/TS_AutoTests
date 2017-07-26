@@ -1,0 +1,21 @@
+{
+  "username" : "test_automation@randommail.com",
+  "password" : "!QAZxsw2",
+  "firstname" : "Automation",
+  "lastname" : "Team",
+
+  "contacts" : {
+    "email" : "test_automation@randommail.com",
+    "phone" : "773-495-8072",
+    "company" : "Automation",
+    "fax" : "7760000007"
+  },
+  "address" : {
+    "street" : "5320 N Sheridan",
+    "street_2" : "1234",
+    "city" : "Chicago",
+    "region" : "Illinois",
+    "country" : "United States",
+    "zip" : "60640"
+  }
+}

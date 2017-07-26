@@ -24,9 +24,8 @@ public class PlushPillowPage extends BaseProductPage{
 
     /** Page Methods */
 
-//    public PlushPillowPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public PlushPillowPage clickAddToCart() {
+        super.clickAddToCart();
+        return this;
+    }
 }

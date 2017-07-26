@@ -1,10 +1,7 @@
-<suite name="Suite" parallel="none" thread-count="2">
+<suite name="Suite" parallel="none" thread-count="1">
     <test name="Test">
         <classes>
-            <class name="smoke.AddMattressToCart_GeneralValidationTest"/>
-            <class name="smoke.AddMonitorToCart_GeneralValidationTest"/>
-            <class name="smoke.AddMattressToCart_FullTest"/>
-            <class name="smoke.Sign_In_GeneralValidationTest"/>
+            <class name="smoke.Smoke_Mattress_FullTest"/>
         </classes>
     </test> <!-- test -->
 </suite> <!-- suite -->

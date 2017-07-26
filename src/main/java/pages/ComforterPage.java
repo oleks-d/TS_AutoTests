@@ -1,6 +1,8 @@
 package pages;
 
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 
 /**
  * Created by odiachuk on 07.07.17.
@@ -26,8 +28,14 @@ public class ComforterPage extends BaseProductPage{
         /** Page Methods */
 
         public ComforterPage selectComforterSize(String size) {
+                header.closeCart();
                 reporter.info("Select Comforter size: " + size);
-                findElement(selectComforterSize).click();
+                try {  // TODO
+                    findElement(selectComforterSize).click();
+                } catch(WebDriverException e){
+                    header.closeCart();
+                    findElement(selectComforterSize).click();
+                }
                 findElement(By.xpath("//div[@class='option' and contains(text(),'" + size + "')]")).click();
                 if (!findElement(selectComforterSize).getText().contains(size)){
                         reporter.fail("Item was not changed to: " + size);
@@ -35,9 +43,8 @@ public class ComforterPage extends BaseProductPage{
                 return this;
         }
 
-//    public ComforterPage clickAddToCart() {
-//        reporter.info("Click Add to cart button");
-//        clickOnElement(addToCartButton);
-//        return this;
-//    }
+    public ComforterPage clickAddToCart() {
+        super.clickAddToCart();
+        return this;
+    }
 }

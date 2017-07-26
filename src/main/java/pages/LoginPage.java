@@ -1,5 +1,6 @@
 package pages;
 
+import entities.UserEntity;
 import org.openqa.selenium.By;
 
 /**
@@ -19,57 +20,26 @@ public class LoginPage extends BasePage {
     By usernameLocator = By.id("email");
     By passwordLocator = By.id("pass");
     By loginButtonLocator = By.id("send2");
-    //   By loginErrorLocator = By.id("");
     By createAccountLinkLocator = By.xpath("//SPAN[text()='CREATE AN ACCOUNT']");
 
     /** Page Methods */
 
-//    public HomePage doLogin(String password)
-//    {
-//        reporter.info("Logging in using the pass: " + password);
-//
-//        this.open();
-//        this.enterPassword(password);
-//        return this.submitForm();
-//    }
-
-    public LoginPage enterUsername(String username)
-    {
-        reporter.info("Entering username: " + username);
-
+    public LoginPage enterUsername(String user) {
+        reporter.info("Entering username: " + user);
         findElement(usernameLocator).clear();
-        findElement(usernameLocator).sendKeys(username);
-
+        findElement(usernameLocator).sendKeys(user);
         return this;
     }
 
-    public void enterPassword(String password)
-    {
-        reporter.info("Entering password: " + password);
-
+    public void enterPassword(String pass) {
+        reporter.info("Entering password: " + pass);
         findElement(passwordLocator).clear();
-        findElement(passwordLocator).sendKeys(password);
+        findElement(passwordLocator).sendKeys(pass);
     }
 
-    public AccountPage submitForm()
-    {
+    public AccountPage submitForm() {
         reporter.info("Submitting Login form");
-
         clickOnElement(loginButtonLocator);
-
-        /*try
-        {
-            if (findElementsIgnoreException(loginErrorLocator, 2).size() > 0)
-            {
-                throw new Exception("Username/Password combination was NOT valid... ");
-            }
-
-        } catch (Exception e)
-        {
-            reporter.fail(e.getMessage(), e);
-        }
-        */
-
         return AccountPage.Instance;
     }
 
