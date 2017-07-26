@@ -1,0 +1,20 @@
+{
+  "categoryName" : "Play",
+  "articles": [
+    {
+      "title": "How to Prevent a Hangover: An Hour-by-Hour Guide",
+      "author": "Patrick Burke",
+      "date": "July 24, 2017"
+    },
+    {
+      "title": "The Sleep Apothecary: Mugwort + Dreams",
+      "author": "Jenny Horowitz",
+      "date": "July 9, 2017"
+    },
+    {
+      "title": "Sound Asleep: A Review of Drew Ackerman’s Sleep with Me Podcast",
+      "author": "Patrick Burke",
+      "date": "July 8, 2017"
+    }
+  ]
+}

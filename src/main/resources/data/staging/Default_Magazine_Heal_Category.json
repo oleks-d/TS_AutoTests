@@ -1,0 +1,15 @@
+{
+  "categoryName" : "In Bed With",
+  "articles": [
+    {
+      "title": "How to Overcome the Fear of Sleeping Alone",
+      "author": "Elizabeth Smith",
+      "date": "July 8, 2017"
+    },
+    {
+      "title" : "Aromatherapy: Essential Oils That Help You Sleep",
+      "author": "Patrick Burke",
+      "date"  : "June 23, 2017"
+    }
+  ]
+}
