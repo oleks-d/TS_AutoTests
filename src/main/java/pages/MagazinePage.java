@@ -16,20 +16,8 @@ public class MagazinePage extends BasePage {
 
     // URLs of magazine categories
     public final String urlTemplate = "/category/%s/";
-    //or
-    public final String sleepCategory_URL       = "/category/sleep/";
-    public final String healCategory_URL        = "/category/heal/";
-    public final String playCategory_URL        = "/category/play/";
-    public final String inBegWithCategory_URL   = "/category/in-bed-with/";
-
     // magazine categories buttons
     public final String buttonTemplate = "//ul[@id='menu-main-1']//a[text()='%s']";
-    //or
-    public final By sleepCategory      = By.xpath("//ul[@id='menu-main-1']//a[text()='SLEEP']");
-    public final By healCategory       = By.xpath("//ul[@id='menu-main-1']//a[text()='HEAL']");
-    public final By playCategory       = By.xpath("//ul[@id='menu-main-1']//a[text()='PLAY']");
-    public final By InBedWithCategory  = By.xpath("//ul[@id='menu-main-1']//a[text()='PLAY']");
-
 
         /** UI Mappings */
     By articleLocator = By.cssSelector(".entry-title");
@@ -40,22 +28,30 @@ public class MagazinePage extends BasePage {
 
     @Override
     public String getURL() {
-        reporter.info("The requested URL is: " + BASE_URL + pageURL + categoryURL);
-        return BASE_URL + pageURL + categoryURL;
+        reporter.info("getURL() returned: " + BASE_URL + pageURL + categoryURL);
+        return super.getURL() + categoryURL;
     }
 
-    public void clickOnCategory(String categoryName){
-        By categoryButton;
+    // makes URL category using url template and category name
+    public String makeCategoryrUrl(String makeUrlOfMe){
         String newUrl;
-        if (categoryName.contains(" ")){
-
+        makeUrlOfMe = makeUrlOfMe.toLowerCase();
+        if (makeUrlOfMe.contains(" ")){
+            String format = makeUrlOfMe.replace(" ", "-");
+            newUrl = String.format(urlTemplate, format);
+        }else {
+            newUrl = String.format(urlTemplate, makeUrlOfMe);
         }
-        categoryButton = By.xpath(String.format(buttonTemplate, categoryName.toUpperCase()));
+        return newUrl;
+    }
+
+    public MagazinePage clickOnCategory(String categoryName){
+        By categoryButton = By.xpath(String.format(buttonTemplate, categoryName.toUpperCase()));
         reporter.info("Click on " + categoryButton);
         clickOnElement(categoryButton);
-        newUrl = String.format(urlTemplate, categoryName.toLowerCase());
-        reporter.info("Url changed from " + this.BASE_URL + this.pageURL + " to " + this.getURL());
-        categoryURL = newUrl;
+        String newUrl = makeCategoryrUrl(categoryName);
+        this.categoryURL = newUrl;
+        return this;
     }
 
     public int getArticlesQty(){
@@ -68,21 +64,8 @@ public class MagazinePage extends BasePage {
         List<WebElement> listOfElemets = MagazinePage.findElements(articleLocator);
         List<String> listOfTitles = new ArrayList<>();
         listOfElemets.stream().forEach(x-> listOfTitles.add(x.getText()));
-        reporter.info("Articles found: ");
-        listOfTitles.stream().forEach(x-> reporter.info(x));
+        reporter.info("getArticleTitles() returned " + listOfTitles.size() + " articles: ");
         return listOfTitles;
-    }
-
-    public void clickOnSleepCategory(){
-        reporter.info("Click on " + sleepCategory);
-        clickOnElement(sleepCategory);
-        categoryURL = sleepCategory_URL;
-    }
-
-    public void clickOnHealCategory(){
-        reporter.info("Click on " + healCategory);
-        clickOnElement(healCategory);
-        categoryURL = healCategory_URL;
     }
 
 

@@ -1,0 +1,45 @@
+{
+  "categoryName" : "In Bed With",
+  "articles": [
+    {
+      "title" : "In Bed With Pia Arrobio",
+      "author": "Elizabeth Smith",
+      "date"  : "July 24, 2017"
+    },
+    {
+      "title" : "In Bed With Vanessa Packer",
+      "author": "Patrick Burke",
+      "date"  : "June 20, 2017"
+    },
+    {
+      "title" : "In Bed With Hannah Cheng",
+      "author": "Elizabeth Smith",
+      "date"  : "July 19, 2017"
+    },
+    {
+      "title" : "In Bed With Pari Ehsan",
+      "author": "Elizabeth Smith",
+      "date"  : "July 13, 2017"
+    },
+    {
+      "title" : "In Bed With Scott Conant",
+      "author": "Patrick Burke",
+      "date"  : "June 13, 2017"
+    },
+    {
+      "title" : "In Bed With Kirsty Godso",
+      "author": "Elizabeth Smith",
+      "date"  : "July 7, 2017"
+    },
+    {
+      "title" : "In Bed With Andrew Steinthal",
+      "author": "Elizabeth Smith",
+      "date"  : "July 7, 2017"
+    },
+    {
+      "title" : "In Bed With Katie Sturino",
+      "author": "Elizabeth Smith",
+      "date"  : "July 1, 2017"
+    }
+  ]
+}
