@@ -215,7 +215,7 @@ public class PageHeader extends BasePage {
         return Integer.valueOf(result[0]);
     }
 
-    public int getCountOfGoodsInCart(ItemEntity... items) {
+    public int getCountOfGoodsInCart() {
         reporter.info("Counting sum of goods in the cart");
         closeCart();
         openCart();

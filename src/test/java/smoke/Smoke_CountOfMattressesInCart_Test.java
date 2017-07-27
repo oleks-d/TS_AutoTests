@@ -13,7 +13,7 @@ import utils.FileIO;
  * @author Taras
  * @since 7/25/2017.
  */
-public class CountOfGoods_Test extends BaseTest {
+public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
 
     String biggerMattressSize = "Full";
     String biggerMattressFeel = "Medium Soft";
@@ -24,7 +24,7 @@ public class CountOfGoods_Test extends BaseTest {
 
     @Test
     @TestName(name = "Check count of goods in cart and cart flag in header")
-    public void countOfGoods_Test() throws Exception {
+    public void countOfMattressesInCart_Test() throws Exception {
 
         // creating of two system entities
         ItemEntity biggerMattress = EntitiesFactory.getItem(FileIO.getDataFile("Default_Mattress.json"));
@@ -41,7 +41,7 @@ public class CountOfGoods_Test extends BaseTest {
 
         //checking if "bigger" mattresses were counted
         countOfGoodsFromCartIcon = mattressesPage.header.getCountOfGoodsFromCartIcon();
-        countOfGoodsInCart = mattressesPage.header.getCountOfGoodsInCart(biggerMattress, smallerMattress);
+        countOfGoodsInCart = mattressesPage.header.getCountOfGoodsInCart();
         Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "First time. Count of added to cart items equal to count from cart icon");
 
         //adding another item (model of smaller mattresses) to the cart
@@ -51,7 +51,7 @@ public class CountOfGoods_Test extends BaseTest {
         mattressesPage.selectMattressSize(smallerMattress.getSize()).selectMattressFeel(smallerMattress.getType()).clickAddToCart();
 
         countOfGoodsFromCartIcon = mattressesPage.header.getCountOfGoodsFromCartIcon();
-        countOfGoodsInCart = mattressesPage.header.getCountOfGoodsInCart(biggerMattress, smallerMattress);
+        countOfGoodsInCart = mattressesPage.header.getCountOfGoodsInCart();
 
         //checking if "smaller" mattress was added and counted
         Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "Second time. Count of added to cart items equal to count from cart icon");
