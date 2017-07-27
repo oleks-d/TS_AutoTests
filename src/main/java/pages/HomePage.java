@@ -22,7 +22,6 @@ public class HomePage extends BasePage{
     By shopOurMattressButton = By.xpath("(//a[text()='Shop Our Mattress'])[1]");
     By shopOurMonitorButton = By.xpath("(//a[text()='Shop Our Monitor'])[1]");
     By shopFoamPillowButton = By.xpath("(//a[text()='Shop Our Pillow'])[1]");
-
     /** Page Methods */
 
     public MattressesPage clickOnShopOurMattressButton() {
@@ -39,7 +38,6 @@ public class HomePage extends BasePage{
     }
 
     public FoamPillowPage clickOnShopFoamPillowButton() {
-        waitForPageToLoad();
         scrollToElement(driver().findElement(shopFoamPillowButton));
         reporter.info("Click on Shop Our Pillow");
         findElement(shopFoamPillowButton).click();

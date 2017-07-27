@@ -1,9 +1,6 @@
 package pages;
 
-import enums.ProductTypes;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 
 /**
  * Created by odiachuk on 07.07.17.
@@ -27,6 +24,8 @@ public class ShopPage extends BasePage{
     By shopOurSheetsButton = By.xpath("(//a[text()='SHOP OUR SHEETS'])[1]");
     By shopOurComforterButton = By.xpath("(//a[text()='SHOP OUR COMFORTER'])[1]");
     By shopOurCoverButton = By.xpath("(//a[text()='SHOP OUR COVER'])[1]");
+    By shopSheetsButton = By.xpath("(//a[text()='SHOP OUR SHEETS'])[1]");
+
     By shopOurDrapesButton = By.xpath("(//a[text()='SHOP OUR DRAPES'])[1]");
 
     public String shopPageUrl = "https://www.tomorrowsleep.com/drapes";
@@ -87,4 +86,12 @@ public class ShopPage extends BasePage{
         findElement(shopOurDrapesButton).click();
         return DrapesPage.Instance;
     }
+
+    public SheetsetPage clickOnShopSheetsButton() {
+        scrollToElement(driver().findElement(shopSheetsButton));
+        reporter.info("Click on Shop Our Sheets");
+        findElement(shopSheetsButton).click();
+        return SheetsetPage.Instance;
+    }
+
 }
