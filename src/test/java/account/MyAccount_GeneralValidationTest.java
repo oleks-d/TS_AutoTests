@@ -17,17 +17,11 @@ import utils.FileIO;
  */
 public class MyAccount_GeneralValidationTest extends BaseTest {
 
-    @DataProvider(name = "provider")
-    public Object[][] provider() throws Exception {
-        return new Object[][]{
-                {EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"))}
-        };
-    }
-
-
-    @Test (dataProvider = "provider")
+    @Test
     @TestName(name="My Account General Validation")
-    public void userSignIn_GeneralValidationTest(UserEntity user) throws Exception {
+    public void userSignIn_GeneralValidationTest() throws Exception {
+
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"));
 
         //User Sign in
 

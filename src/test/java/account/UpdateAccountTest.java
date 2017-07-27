@@ -22,24 +22,18 @@ import utils.Tools;
  */
 public class UpdateAccountTest extends BaseTest {
 
-    String username = "qazxsw@mailinator.com";
-    String password = "!@qwASzx";
-    String firstname = "reserving";
-    String lastname = "data";
-
     @Test
-    @TestName(name = "Update Account")
-    public void updateAccount() throws Exception {
+    @TestName(name = "Update Existing Account")
+    public void updateExistingAccount() throws Exception {
 
         UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("UserTemplate.json"));
-
+        UserEntity updatedUser = EntitiesFactory.getUser(FileIO.getDataFile("UserTemplate2.json"));
 
         SetupProcedures sp = new SetupProcedures();
 
-        String nameOfNewUser = sp.setupNewAccount();
+        String nameOfNewUser = sp.setupNewAccount(user);
         user.setUsername(nameOfNewUser);
         user.getContacts().setEmail(nameOfNewUser);
-
 
         HomePage home = HomePage.Instance;
 
@@ -52,18 +46,48 @@ public class UpdateAccountTest extends BaseTest {
         login.submitForm();
 
         AccountPage account = AccountPage.Instance;
-        Assert.assertTrue(account.getUserNameText().contains(username), "Failed to login" );
+        Assert.assertTrue(account.getUserNameText().contains(nameOfNewUser), "Failed to login" );
 
         account.ClickOnMyAddressBook();
         account.ClickOnChangeShippingAddressButton();
 
-        account.updateAddress(user);
+        account.updateAddress(updatedUser); // fill blank fields on Address book
 
         Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success message");
+        Assert.assertTrue(account.verifyAddressUpdateShipping(updatedUser), "Failed to update Address");
+    }
 
+    @Test
+    @TestName(name = "Update New Account")
+    public void updateNewAccount() throws Exception {
+
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("UserTemplate.json"));
+
+        SetupProcedures sp = new SetupProcedures();
+
+        String nameOfNewUser = sp.setupNewAccount();
+        user.setUsername(nameOfNewUser);
+        user.getContacts().setEmail(nameOfNewUser);
+
+        HomePage home = HomePage.Instance;
+
+        home.open();
+
+        home.header.clickSignInMenuItem();
+        LoginPage login = LoginPage.Instance;
+        login.enterUsername(nameOfNewUser);
+        login.enterPassword(nameOfNewUser);
+        login.submitForm();
+
+        AccountPage account = AccountPage.Instance;
+        Assert.assertTrue(account.getUserNameText().contains(nameOfNewUser), "Failed to login" );
+
+        account.ClickOnMyAddressBook();
+
+        account.updateAddress(user); // fill blank fields on Address book
+
+        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success message");
         Assert.assertTrue(account.verifyAddressUpdateShipping(user), "Failed to update Address");
-
-
     }
 
 }

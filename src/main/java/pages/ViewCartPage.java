@@ -142,7 +142,7 @@ public class ViewCartPage extends BasePage {
 
 
     public void addQuantity(String itemName) {
-        reporter.info("Increase quantity on View cart page: " + itemName );
+        reporter.info("Increase number of items on View cart page: " + itemName );
         findElement(orderItems); // wait for order
         List<WebElement> itemsList = findElements(orderItems);
         for (WebElement orderItem : itemsList ) {
@@ -154,7 +154,7 @@ public class ViewCartPage extends BasePage {
     }
 
     public void subQuantity(String itemName) {
-        reporter.info("Increase quantity on View cart page: " + itemName );
+        reporter.info("Decrease number of items on View cart page: " + itemName );
         findElement(orderItems); // wait for order
         List<WebElement> itemsList = findElements(orderItems);
         for (WebElement orderItem : itemsList ) {

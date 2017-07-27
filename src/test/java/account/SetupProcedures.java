@@ -1,6 +1,8 @@
 package account;
 
+import entities.UserEntity;
 import org.testng.Assert;
+import pages.AccountPage;
 import pages.CreateAccountPage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -21,6 +23,30 @@ public class SetupProcedures {
         CreateAccountPage accountPage = CreateAccountPage.Instance;
         accountPage.open();
         accountPage.createAccount(userName, userPassword);
+        HomePage.Instance.header.clickSignOutMenuItem();
+
+        return userName;
+    }
+
+
+    public String setupNewAccount(UserEntity user){
+
+        String userName = Tools.getRandomUserEmail();
+        String userPassword = userName;
+        String userEmail = userName;
+
+        user.setUsername(userName);
+        user.getContacts().setEmail(userEmail);
+        user.setPassword(userPassword);
+
+        CreateAccountPage accountPage = CreateAccountPage.Instance;
+        accountPage.open();
+        accountPage.createAccount(userName, userPassword);
+
+        AccountPage account = AccountPage.Instance;
+        account.ClickOnMyAddressBook();
+        account.updateAddress(user);
+
         HomePage.Instance.header.clickSignOutMenuItem();
 
         return userName;

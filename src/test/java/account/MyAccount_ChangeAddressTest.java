@@ -22,16 +22,11 @@ import utils.Tools;
  */
 public class MyAccount_ChangeAddressTest extends BaseTest {
 
-    @DataProvider(name = "provider")
-        public Object[][] provider() throws Exception {
-            return new Object[][]{
-                    {EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"))}
-            };
-    }
-
-    @Test (dataProvider = "provider")
+    @Test
     @TestName(name="Change Address")
-    public void ChangeAccountAddress(UserEntity user) throws Exception {
+    public void ChangeAccountAddress() throws Exception {
+
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"));
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 

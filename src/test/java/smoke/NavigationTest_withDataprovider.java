@@ -14,7 +14,7 @@ import utils.FileIO;
 
 public class NavigationTest_withDataprovider extends BaseTest {
 
-    @DataProvider(name = "provider")
+    @DataProvider(name = "default_item_provider")
     public Object[][] provider (){
         return new Object[][]{
                 {ProductTypes.MONITOR, MonitorPage.class, "Monitor"},
@@ -28,7 +28,7 @@ public class NavigationTest_withDataprovider extends BaseTest {
         };
     }
 
-    @Test (dataProvider = "provider")
+    @Test (dataProvider = "default_item_provider")
     @TestName (name="Navigation validation")
     public void topMenuValidation(ProductTypes type, Class page, String itemName) throws Exception {
 

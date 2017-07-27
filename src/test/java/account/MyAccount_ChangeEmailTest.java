@@ -18,19 +18,14 @@ import utils.Tools;
  */
 public class MyAccount_ChangeEmailTest extends BaseTest {
 
-    @DataProvider(name = "provider")
-        public Object[][] provider() throws Exception {
-            return new Object[][]{
-                    {EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"))}
-            };
-    }
-
     String currenttime = Tools.getCurDateTime();
     String newEmail = currenttime + "@mail.com";
 
-    @Test (dataProvider = "provider")
+    @Test
     @TestName(name="Change Email")
-    public void ChangeAccountAddress(UserEntity user) throws Exception {
+    public void ChangeAccountAddress() throws Exception {
+
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"));
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 

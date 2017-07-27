@@ -16,11 +16,11 @@ public class BaseTest{
     ReporterManager reporter;
 
     @BeforeMethod
-    public void startTest(Method method) {
+    public void beforeWithData(Object[] data, Method method) {
 
         //init reporter
         reporter = ReporterManager.Instance;
-        reporter.startReporting(method);
+        reporter.startReporting(method, data);
 
         //init threadlocal driver
         try {
