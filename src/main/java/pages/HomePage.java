@@ -1,8 +1,6 @@
 package pages;
 
-import enums.ProductTypes;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 /**
  * Created by odiachuk on 07.07.17.
@@ -47,4 +45,5 @@ public class HomePage extends BasePage{
         findElement(shopFoamPillowButton).click();
         return FoamPillowPage.Instance;
     }
+
 }
