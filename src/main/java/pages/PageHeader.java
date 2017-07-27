@@ -38,7 +38,8 @@ public class PageHeader extends BasePage {
     By cartItemName = By.cssSelector("strong.product-item-name");
     By cartItemContent = By.cssSelector("div.content");
     By cartItemQty = By.xpath("./div/div/label[text()='Qty']/following::input[1]");
-    By cartItemPrice = By.cssSelector("span.minicart-price span.price");
+    By cartItemPrice = By.xpath("./div/div[@class='price-container'][1]");
+//    By cartItemPrice = By.cssSelector("span.minicart-price span.price");
     By cartBox = By.xpath("//div[@data-role='dropdownDialog']");
     By cartCheckoutButton = By.cssSelector("button#top-cart-btn-checkout");
     By viewCartButton = By.cssSelector("a.action.viewcart");
@@ -219,12 +220,9 @@ public class PageHeader extends BasePage {
         openCart();
         int count = 0;
         List<WebElement> cartItemsList = findElementsIgnoreException(cartItems);
-        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < cartItemsList.size(); i++) {
             WebElement cartItem = cartItemsList.get(i);
             count = count + Integer.valueOf(cartItem.findElement(cartItemQty).getAttribute("data-item-qty"));
-            sb.append(" " + cartItem.findElement(cartItemPrice).getText());
-
         }
         return count;
     }

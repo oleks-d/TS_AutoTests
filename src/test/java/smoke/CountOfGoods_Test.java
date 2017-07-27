@@ -4,7 +4,6 @@ import annotations.TestName;
 import entities.ItemEntity;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomePage;
 import pages.MattressesPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
@@ -41,9 +40,9 @@ public class CountOfGoods_Test extends BaseTest {
         mattressesPage.selectMattressSize(biggerMattress.getSize()).selectMattressFeel(biggerMattress.getType()).clickAddToCart();
 
         //checking if "bigger" mattresses were counted
-//        countOfGoodsFromCartIcon = mattressesPage.header.getCountOfGoodsFromCartIcon();
-//        countOfGoodsInCart = mattressesPage.header.getCountOfGoodsInCart(biggerMattress, smallerMattress);
-//        Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "First time. Count of added to cart items equal to count from cart icon");
+        countOfGoodsFromCartIcon = mattressesPage.header.getCountOfGoodsFromCartIcon();
+        countOfGoodsInCart = mattressesPage.header.getCountOfGoodsInCart(biggerMattress, smallerMattress);
+        Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "First time. Count of added to cart items equal to count from cart icon");
 
         //adding another item (model of smaller mattresses) to the cart
         mattressesPage.open();
