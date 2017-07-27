@@ -154,19 +154,38 @@ public class AccountPage extends LoginPage {
         return this;
     }
 
-    public AccountPage updateEmail(String newEmail, UserEntity user){
+    public AccountPage updateEmail(String newEmail, String pass){
         reporter.info("Update Email to " + newEmail);
 
         findElement(newEmailField).clear();
         findElement(newEmailField).sendKeys(newEmail);
 
         findElement(currentPasswordField).clear();
-        findElement(currentPasswordField).sendKeys(user.getPassword());
+        findElement(currentPasswordField).sendKeys(pass);
 
         findElement(saveAccountInfoButton).click();
-        user.setUsername(newEmail);
         return this;
     }
+
+    public AccountPage updateFirstname(String firstname){
+        reporter.info("Update firstname to " + firstname);
+        findElement(firstNameField).clear();
+        findElement(firstNameField).sendKeys(firstname);
+        return this;
+    }
+
+    public AccountPage updateLastname(String lastname){
+        reporter.info("Update Lastname to " + lastname);
+        findElement(lastNameField).clear();
+        findElement(lastNameField).sendKeys(lastname);
+        return this;
+    }
+
+    public AccountPage clickOnSaveAccountInfoButton(){
+        findElement(saveAccountInfoButton).click();
+        return this;
+    }
+
 
 
 

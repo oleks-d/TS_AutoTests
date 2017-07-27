@@ -1,11 +1,15 @@
 package account;
 
 import annotations.TestName;
+import entities.AddressEntity;
+import entities.BaseEntity;
+import entities.ContactsEntity;
 import entities.UserEntity;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AccountPage;
+import pages.CreateAccountPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.BaseTest;
@@ -16,16 +20,20 @@ import utils.Tools;
 /**
  * Created by Kos on 7/17/17.
  */
-public class MyAccount_ChangeEmailTest extends BaseTest {
+public class MyAccount_ChangeFullNameTest extends BaseTest {
 
     @Test
-    @TestName(name="Change Email")
-    public void ChangeAccountAddress() throws Exception {
+    @TestName(name = "Update full name")
+    public void updateAccount() throws Exception {
+
 
         SetupProcedures sp = new SetupProcedures();
+
         String nameOfNewUser = sp.setupNewAccount();
 
-        String newEmail = Tools.getRandomUserEmail();
+        String newFirstname = Tools.getCurDateTime() + "first";
+        String newLastname = Tools.getCurDateTime() + "last";
+
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 
@@ -33,7 +41,6 @@ public class MyAccount_ChangeEmailTest extends BaseTest {
 
         home.header.clickSignInMenuItem();
         LoginPage login = LoginPage.Instance;
-
         login.enterUsername(nameOfNewUser);
         login.enterPassword(nameOfNewUser);
         login.submitForm();
@@ -41,11 +48,13 @@ public class MyAccount_ChangeEmailTest extends BaseTest {
         AccountPage account = AccountPage.Instance;
         Assert.assertTrue(account.getUserNameText().contains(nameOfNewUser), "Failed to login" );
 
-        account.ClickOnMyAccountInfo();
-        account.clickOnChangeEmailButton(); //Update Email
+        account.ClickOnMyAccountInfo();  //Update first and last name
+        account.updateFirstname(newFirstname);
+        account.updateLastname(newLastname);
+        account.clickOnSaveAccountInfoButton();
 
-        account.updateEmail(newEmail, nameOfNewUser);
-        Assert.assertTrue(account.getUserNameText().contains(newEmail), "Failed to locate updated Email" );
+        Assert.assertTrue(account.getUserNameText().contains(newFirstname), "Failed to locate updated Firstname");
+        Assert.assertTrue(account.getUserNameText().contains(newLastname), "Failed to locate updated Lastname");
     }
 
 }

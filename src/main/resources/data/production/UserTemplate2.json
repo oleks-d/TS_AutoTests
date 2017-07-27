@@ -1,21 +1,21 @@
 {
   "username" : "",
   "password" : "",
-  "firstname" : "firsrt",
-  "lastname" : "last",
+  "firstname" : "Update",
+  "lastname" : "Procedure",
 
   "contacts" : {
     "email" : "",
-    "phone" : "555-495-8072",
-    "company" : "AutomationNew",
-    "fax" : "6660000007"
+    "phone" : "555-000-1000",
+    "company" : "Updated Auto",
+    "fax" : "555-000-1000"
   },
   "address" : {
-    "street" : "900 Pump Road",
-    "street_2" : "11",
-    "city" : "Richmond",
-    "region" : "Virginia",
+    "street" : "514 S. Magnolia St.",
+    "street_2" : "0001",
+    "city" : "Orlando",
+    "region" : "Florida",
     "country" : "United States",
-    "zip" : "23238"
+    "zip" : "32806"
   }
 }
