@@ -16,7 +16,7 @@
             <class name="smoke.Smoke_PlushPillow_FullTest" />
 
             <class name="account.Smoke_SignInValidationTest" />
-            <class name="account.UpdateAccountTest" />
+            <class name="account.MyAccount_ChangeFullNameTest" />
             <class name="account.CreateAccountTest" />
             <class name="account.MyAccount_ChangeAddressTest" />
             <class name="account.MyAccount_ChangeEmailTest" />
