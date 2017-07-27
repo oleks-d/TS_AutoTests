@@ -1,0 +1,21 @@
+{
+  "username" : "",
+  "password" : "",
+  "firstname" : "Update",
+  "lastname" : "Procedure",
+
+  "contacts" : {
+    "email" : "",
+    "phone" : "555-000-1000",
+    "company" : "Updated Auto",
+    "fax" : "555-000-1000"
+  },
+  "address" : {
+    "street" : "514 S. Magnolia St.",
+    "street_2" : "0001",
+    "city" : "Orlando",
+    "region" : "Florida",
+    "country" : "United States",
+    "zip" : "32806"
+  }
+}
