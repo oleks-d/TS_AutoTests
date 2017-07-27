@@ -1,37 +1,32 @@
 package account;
 
 import annotations.TestName;
-import entities.UserEntity;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.BaseTest;
-import utils.EntitiesFactory;
-import utils.FileIO;
 import utils.Tools;
 
 /**
  * Created by Kos on 7/17/17.
  */
-public class MyAccount_ChangeEmailTest extends BaseTest {
+public class MyAccount_ChangePasswordTest extends BaseTest {
 
     @Test
-    @TestName(name="Change Email")
+    @TestName(name="Change Password")
     public void ChangeAccountEmail() throws Exception {
 
         SetupProcedures sp = new SetupProcedures();
         String nameOfNewUser = sp.setupNewAccount();
-
-        String newEmail = Tools.getRandomUserEmail();
+        String newPass = Tools.getRandomUserEmail();
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 
         home.open();
-
         home.header.clickSignInMenuItem();
+
         LoginPage login = LoginPage.Instance;
 
         login.enterUsername(nameOfNewUser);
@@ -42,12 +37,21 @@ public class MyAccount_ChangeEmailTest extends BaseTest {
         Assert.assertTrue(account.getUserNameText().contains(nameOfNewUser), "Failed to login" );
 
 
-        //Update Email
+        //Update password
         account.ClickOnMyAccountInfo();
-        account.clickOnChangeEmailButton();
+        account.clickOnChangePasswordButton();
+        account.updatePassword(nameOfNewUser, newPass);
 
-        account.updateEmail(newEmail, nameOfNewUser);
-        Assert.assertTrue(account.getUserNameText().contains(newEmail), "Failed to locate updated Email" );
+        account.header.clickSignOutMenuItem();
+
+
+        //Login with updated password
+        login.open();
+        login.enterUsername(nameOfNewUser);
+        login.enterPassword(newPass);
+        login.submitForm();
+        Assert.assertTrue(account.getUserNameText().contains(nameOfNewUser), "Failed to login after password update" );
+
     }
 
 }
