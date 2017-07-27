@@ -1,0 +1,21 @@
+{
+  "username" : "",
+  "password" : "",
+  "firstname" : "firsrt",
+  "lastname" : "last",
+
+  "contacts" : {
+    "email" : "",
+    "phone" : "555-495-8072",
+    "company" : "AutomationNew",
+    "fax" : "6660000007"
+  },
+  "address" : {
+    "street" : "900 Pump Road",
+    "street_2" : "11",
+    "city" : "Richmond",
+    "region" : "Virginia",
+    "country" : "United States",
+    "zip" : "23238"
+  }
+}
