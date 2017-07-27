@@ -1,11 +1,11 @@
 {
-  "username" : "qazxsw@mailinator.com",
-  "password" : "!@qwASzx",
-  "firstname" : "reserving",
-  "lastname" : "data",
+  "username" : "test_automation@randommail.com",
+  "password" : "!QAZxsw2",
+  "firstname" : "Automation",
+  "lastname" : "Team",
 
   "contacts" : {
-    "email" : "some@domain.xxx",
+    "email" : "test_automation@randommail.com",
     "phone" : "773-495-8072",
     "company" : "Automation",
     "fax" : "7760000007"

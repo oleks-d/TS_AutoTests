@@ -18,19 +18,14 @@ import utils.Tools;
  */
 public class MyAccount_ChangeEmailTest extends BaseTest {
 
-    @DataProvider(name = "provider")
-        public Object[][] provider() throws Exception {
-            return new Object[][]{
-                    {EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"))}
-            };
-    }
-
-    String currenttime = Tools.getCurDateTime();
-    String newEmail = currenttime + "@mail.com";
-
-    @Test (dataProvider = "provider")
+    @Test
     @TestName(name="Change Email")
-    public void ChangeAccountAddress(UserEntity user) throws Exception {
+    public void ChangeAccountAddress() throws Exception {
+
+        SetupProcedures sp = new SetupProcedures();
+        String nameOfNewUser = sp.setupNewAccount();
+
+        String newEmail = Tools.getRandomUserEmail();
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 
@@ -39,21 +34,18 @@ public class MyAccount_ChangeEmailTest extends BaseTest {
         home.header.clickSignInMenuItem();
         LoginPage login = LoginPage.Instance;
 
-        login.enterUsername(user.getUsername());
-        login.enterPassword(user.getPassword());
+        login.enterUsername(nameOfNewUser);
+        login.enterPassword(nameOfNewUser);
         login.submitForm();
 
         AccountPage account = AccountPage.Instance;
-        Assert.assertTrue(account.getUserNameText().contains(user.getUsername()), "Failed to login" );
+        Assert.assertTrue(account.getUserNameText().contains(nameOfNewUser), "Failed to login" );
 
         account.ClickOnMyAccountInfo();
-        account.clickOnChangeEmailButton();
+        account.clickOnChangeEmailButton(); //Update Email
 
-        account.updateEmail(newEmail, user); //todo save new Email to json
+        account.updateEmail(newEmail, nameOfNewUser);
         Assert.assertTrue(account.getUserNameText().contains(newEmail), "Failed to locate updated Email" );
-
-
-
     }
 
 }

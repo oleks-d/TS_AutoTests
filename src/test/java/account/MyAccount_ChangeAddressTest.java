@@ -22,56 +22,71 @@ import utils.Tools;
  */
 public class MyAccount_ChangeAddressTest extends BaseTest {
 
-    @DataProvider(name = "provider")
-        public Object[][] provider() throws Exception {
-            return new Object[][]{
-                    {EntitiesFactory.getUser(FileIO.getDataFile("AccTest_User.json"))}
-            };
-    }
+    @Test
+    @TestName(name = "Update Existing Account")
+    public void updateExistingAccount() throws Exception {
 
-    @Test (dataProvider = "provider")
-    @TestName(name="Change Address")
-    public void ChangeAccountAddress(UserEntity user) throws Exception {
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("UserTemplate.json"));
+        UserEntity updatedUser = EntitiesFactory.getUser(FileIO.getDataFile("UserTemplate2.json"));
 
-        HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
+        SetupProcedures sp = new SetupProcedures();
+
+        String nameOfNewUser = sp.setupNewAccount(user);
+        user.setUsername(nameOfNewUser);
+        user.getContacts().setEmail(nameOfNewUser);
+
+        HomePage home = HomePage.Instance;
 
         home.open();
 
         home.header.clickSignInMenuItem();
         LoginPage login = LoginPage.Instance;
-
-        login.enterUsername(user.getUsername())
-            .enterPassword(user.getPassword());
-
+        login.enterUsername(nameOfNewUser);
+        login.enterPassword(nameOfNewUser);
         login.submitForm();
 
         AccountPage account = AccountPage.Instance;
-        Assert.assertTrue(account.getUserNameText().contains(user.getUsername()), "Failed to login" );
+        Assert.assertTrue(account.getUserNameText().contains(nameOfNewUser), "Failed to login" );
+
+        account.ClickOnMyAddressBook();
+        account.ClickOnChangeShippingAddressButton();
+
+        account.updateAddress(updatedUser); // fill blank fields on Address book
+
+        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success message");
+        Assert.assertTrue(account.verifyAddressUpdateShipping(updatedUser), "Failed to update Address");
+    }
+
+    @Test
+    @TestName(name = "Update New Account")
+    public void updateNewAccount() throws Exception {
+
+        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("UserTemplate.json"));
+
+        SetupProcedures sp = new SetupProcedures();
+
+        String nameOfNewUser = sp.setupNewAccount();
+        user.setUsername(nameOfNewUser);
+        user.getContacts().setEmail(nameOfNewUser);
+
+        HomePage home = HomePage.Instance;
+
+        home.open();
+
+        home.header.clickSignInMenuItem();
+        LoginPage login = LoginPage.Instance;
+        login.enterUsername(nameOfNewUser);
+        login.enterPassword(nameOfNewUser);
+        login.submitForm();
+
+        AccountPage account = AccountPage.Instance;
+        Assert.assertTrue(account.getUserNameText().contains(nameOfNewUser), "Failed to login" );
 
         account.ClickOnMyAddressBook();
 
+        account.updateAddress(user); // fill blank fields on Address book
 
-
-        //Update Shipping Address
-        account.ClickOnChangeShippingAddressButton();
-
-        account.updateAddress(user);
-
-        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success Message");
-
-        Assert.assertTrue(account.verifyAddressUpdateShipping(user), "Failed to update Shipping Address");
-
-
-
-        //Update Billing Address
-        account.ClickOnChangeBillingAddressButton();
-
-        account.updateAddress(user);
-
-        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success Message");
-
-        Assert.assertTrue(account.verifyAddressUpdateBilling(user), "Failed to update Billing Address");
-
+        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success message");
+        Assert.assertTrue(account.verifyAddressUpdateShipping(user), "Failed to update Address");
     }
-
 }

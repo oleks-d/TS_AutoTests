@@ -4,12 +4,10 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import annotations.TestName;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.Test;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -69,7 +67,7 @@ import com.relevantcodes.extentreports.NetworkMode;
             getInstance().flush();
         }
 
-        public String getTestName(Method m) {
+        public String getTestName(Method m, Object[] data) {
             String testName = null;
             String address = null;
 
@@ -85,10 +83,13 @@ import com.relevantcodes.extentreports.NetworkMode;
                         + m.getAnnotation(Test.class).testName() + "</a>";
             } else {
                 try{
-                    testName = m.getAnnotation(TestName.class).name();}
+                    testName = m.getAnnotation(TestName.class).name(); // get name from annotation
+                    testName = testName + " - " + data[0].toString(); // add value from first DataProvider parameter ot test name
+                }
                 catch(Exception e){
                     //no TestName specified
-                }
+                };
+
             }
 
             if (testName == null || testName.equals("")) {
@@ -116,15 +117,15 @@ import com.relevantcodes.extentreports.NetworkMode;
         }
 
 
-        public void startReporting(Method m) {
-            startTest(m, getTestName(m), getTestDescription(m));
+        public void startReporting(Method m, Object[] data) {
+            startTest(m, getTestName(m, data), getTestDescription(m));
             String testGroups = "";
             for (String gr : getTestGroups(m)) {
                 testGroups = testGroups + gr + "; ";
             }
             logger.info(
                     "--------------------------------------------------------------------------------------------------------");
-            logger.info("Started test '" + getTestName(m) + "' Groups: '" + testGroups.trim() + "'");
+            logger.info("Started test '" + getTestName(m, data) + "' Groups: '" + testGroups.trim() + "'");
         }
 
         public void stopReporting(){

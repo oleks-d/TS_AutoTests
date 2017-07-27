@@ -20,28 +20,22 @@ import utils.Tools;
 /**
  * Created by Kos on 7/17/17.
  */
-public class UpdateAccountTest extends BaseTest {
-
-    String username = "qazxsw@mailinator.com";
-    String password = "!@qwASzx";
-    String firstname = "reserving";
-    String lastname = "data";
+public class MyAccount_ChangeFullNameTest extends BaseTest {
 
     @Test
-    @TestName(name = "Update Account")
+    @TestName(name = "Update full name")
     public void updateAccount() throws Exception {
-
-        UserEntity user = EntitiesFactory.getUser(FileIO.getDataFile("UserTemplate.json"));
 
 
         SetupProcedures sp = new SetupProcedures();
 
         String nameOfNewUser = sp.setupNewAccount();
-        user.setUsername(nameOfNewUser);
-        user.getContacts().setEmail(nameOfNewUser);
+
+        String newFirstname = Tools.getCurDateTime() + "first";
+        String newLastname = Tools.getCurDateTime() + "last";
 
 
-        HomePage home = HomePage.Instance;
+        HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 
         home.open();
 
@@ -52,18 +46,15 @@ public class UpdateAccountTest extends BaseTest {
         login.submitForm();
 
         AccountPage account = AccountPage.Instance;
-        Assert.assertTrue(account.getUserNameText().contains(username), "Failed to login" );
+        Assert.assertTrue(account.getUserNameText().contains(nameOfNewUser), "Failed to login" );
 
-        account.ClickOnMyAddressBook();
-        account.ClickOnChangeShippingAddressButton();
+        account.ClickOnMyAccountInfo();  //Update first and last name
+        account.updateFirstname(newFirstname);
+        account.updateLastname(newLastname);
+        account.clickOnSaveAccountInfoButton();
 
-        account.updateAddress(user);
-
-        Assert.assertTrue(account.checkForSuccessMessage(), "Failed to locate Success message");
-
-        Assert.assertTrue(account.verifyAddressUpdateShipping(user), "Failed to update Address");
-
-
+        Assert.assertTrue(account.getUserNameText().contains(newFirstname), "Failed to locate updated Firstname");
+        Assert.assertTrue(account.getUserNameText().contains(newLastname), "Failed to locate updated Lastname");
     }
 
 }
