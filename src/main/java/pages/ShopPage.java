@@ -27,6 +27,7 @@ public class ShopPage extends BasePage{
     By shopSheetsButton = By.xpath("(//a[text()='SHOP OUR SHEETS'])[1]");
 
     By shopOurDrapesButton = By.xpath("(//a[text()='SHOP OUR DRAPES'])[1]");
+    By shopComforterButton = By.xpath("(//a[text()='SHOP OUR COMFORTER'])[1]");
 
     public String shopPageUrl = "https://www.tomorrowsleep.com/drapes";
 
@@ -34,6 +35,7 @@ public class ShopPage extends BasePage{
 
     public MattressesPage clickOnShopOurMattressButton() {
         reporter.info("Click on Shop Our Mattress");
+        scrollToElement(driver().findElement(shopOurMattressButton));
         findElement(shopOurMattressButton).click();
         return MattressesPage.Instance;
     }
@@ -92,6 +94,13 @@ public class ShopPage extends BasePage{
         reporter.info("Click on Shop Our Sheets");
         findElement(shopSheetsButton).click();
         return SheetsetPage.Instance;
+    }
+
+    public ComforterPage clickOnShopComforterButton() {
+        scrollToElement(driver().findElement(shopComforterButton));
+        reporter.info("Click on Shop Our Comforter");
+        findElement(shopComforterButton).click();
+        return ComforterPage.Instance;
     }
 
 }

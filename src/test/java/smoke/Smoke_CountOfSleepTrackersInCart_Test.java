@@ -30,7 +30,7 @@ public class Smoke_CountOfSleepTrackersInCart_Test extends BaseTest {
         //Pages initializing
         HomePage homePage = HomePage.Instance;
         homePage.open();
-        MonitorPage monitorPage = homePage.clickOnShopOurMonitorButton();
+        MonitorPage monitorPage = homePage.header.clickShopMenuItem().clickOnShopOurMonitorButton();
 
         //filling the cart with different types and counts of monitor
         monitorPage.selectMonitorType(defaultMonitor.getType()).clickAddToCart();
