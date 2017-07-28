@@ -17,15 +17,8 @@ import utils.FileIO;
  */
 public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
 
-    String biggerMattressSize = "Full";
-    String biggerMattressFeel = "Medium Soft";
-
-    String smallerMattressSize = "Twin";
-    String smallerMattressFeel = "Medium Firm";
-
-
     @Test
-    @TestName(name = "Check count of goods in cart and cart flag in header")
+    @TestName(name = "Check count of mattresses in cart and the cart flag in header")
     public void countOfMattressesInCart_Test() throws Exception {
 
         // creating of two system entities
