@@ -28,10 +28,12 @@ public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
         int countOfGoodsFromCartIcon;
         int countOfGoodsInCart;
 
+        //open pages
         HomePage homePage = HomePage.Instance;
         homePage.open();;
         ShopPage shopPage = homePage.header.clickShopMenuItem();
         MattressesPage mattressesPage = shopPage.clickOnShopOurMattressButton();
+
         //adding two the identical "bigger" mattresses to the cart
         mattressesPage.selectMattressSize(biggerMattress.getSize()).selectMattressFeel(biggerMattress.getType()).clickAddToCart();
         mattressesPage.selectMattressSize(biggerMattress.getSize()).selectMattressFeel(biggerMattress.getType()).clickAddToCart();
@@ -50,7 +52,7 @@ public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
         countOfGoodsFromCartIcon = mattressesPage.header.getCountOfGoodsFromCartIcon();
         countOfGoodsInCart = mattressesPage.header.getCountOfGoodsInCart();
 
-        //checking if "smaller" mattress was added and counted
+        //checking if all mattress were added and counted
         Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "Second time. Count of added to cart items equal to count from cart icon");
     }
 

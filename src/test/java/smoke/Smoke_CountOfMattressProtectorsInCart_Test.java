@@ -28,10 +28,12 @@ public class Smoke_CountOfMattressProtectorsInCart_Test extends BaseTest {
         int countOfGoodsFromCartIcon;
         int countOfGoodsInCart;
 
+        //open pages
         HomePage homePage = HomePage.Instance;
         homePage.open();;
         ShopPage shopPage = homePage.header.clickShopMenuItem();
         MattressProtectorPage protectorPage = shopPage.clickOnShopOurCoverButton();
+
         //adding two the identical "default" protectors to the cart
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(defaultProtector.getType()).clickAddToCart();
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(defaultProtector.getType()).clickAddToCart();
@@ -43,7 +45,7 @@ public class Smoke_CountOfMattressProtectorsInCart_Test extends BaseTest {
 
         protectorPage.open();
 
-        //adding another configuration variants of protectors to the cart
+        //adding another "updated" configuration variants of protectors to the cart
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(updatedProtector.getType()).clickAddToCart();
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(updatedProtector.getType()).clickAddToCart();
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(updatedProtector.getType()).clickAddToCart();

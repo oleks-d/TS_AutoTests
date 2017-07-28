@@ -24,7 +24,7 @@ public class Smoke_CountOfSheetsInCart_Test extends BaseTest {
         int countOfGoodsFromCartIcon;
         int countOfGoodsInCart;
 
-        //init test entities
+        //creating system entities
         ItemEntity defaultSheet = EntitiesFactory.getItem(FileIO.getDataFile("Default_Sheets.json"));
         ItemEntity updatedSheet = EntitiesFactory.getItem(FileIO.getDataFile("Updated_Sheets.json"));
 
@@ -34,9 +34,15 @@ public class Smoke_CountOfSheetsInCart_Test extends BaseTest {
         ShopPage shopPage = homePage.header.clickShopMenuItem();
         SheetsetPage sheetsetPage = shopPage.clickOnShopSheetsButton();
 
-        //filling the cart with different types and counts of monitor
+        //filling the cart with different types and count of sheets
         sheetsetPage.selectSheetsetSize(defaultSheet.getSize()).clickAddToCart();
         sheetsetPage.selectSheetsetSize(defaultSheet.getSize()).clickAddToCart();
+
+        //checking if items were added and counted normally
+        countOfGoodsFromCartIcon = sheetsetPage.header.getCountOfGoodsFromCartIcon();
+        countOfGoodsInCart = sheetsetPage.header.getCountOfGoodsInCart();
+        Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "Count of added to cart items equal to count from cart icon");
+
 
         sheetsetPage.selectSheetsetSize(updatedSheet.getSize()).clickAddToCart();
         sheetsetPage.selectSheetsetSize(updatedSheet.getSize()).clickAddToCart();
@@ -47,7 +53,7 @@ public class Smoke_CountOfSheetsInCart_Test extends BaseTest {
         //getting count of selected goods from cart
         countOfGoodsInCart = sheetsetPage.header.getCountOfGoodsInCart();
 
-        //checking if monitors were added and counted
+        //checking if sheets were added and counted
         Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "Count of added to cart items equal to count from cart icon");
     }
 

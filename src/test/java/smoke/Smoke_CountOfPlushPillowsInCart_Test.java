@@ -20,6 +20,7 @@ public class Smoke_CountOfPlushPillowsInCart_Test extends BaseTest {
         int countOfGoodsFromCartIcon;
         int countOfGoodsInCart;
 
+        //open pages
         HomePage homePage = HomePage.Instance;
         homePage.open();
         PlushPillowPage plushPillowPage = homePage.header.clickShopMenuItem().clickOnShopOurPlushPillowButton();
