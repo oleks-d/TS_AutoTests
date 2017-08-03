@@ -1,11 +1,13 @@
 package smoke;
 
 import annotations.TestName;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.FoamPillowPage;
 import pages.HomePage;
 import utils.BaseTest;
+import utils.ProductSync;
 
 /**
  * @author Taras
@@ -22,12 +24,14 @@ public class Smoke_CountOfFoamPillowsInCart_Test extends BaseTest {
 
         HomePage homePage = HomePage.Instance;
         homePage.open();
+        ProductSync.check(ProductTypes.FOAM_PILLOW);
         FoamPillowPage foamPillowPage = homePage.clickOnShopFoamPillowButton();
 
         //adding three the identical foam pillows to the cart
         foamPillowPage.clickAddToCart();
         foamPillowPage.clickAddToCart();
         foamPillowPage.clickAddToCart();
+        ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
 
         //getting count from cart icon
         countOfGoodsFromCartIcon = foamPillowPage.header.getCountOfGoodsFromCartIcon();

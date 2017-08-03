@@ -2,12 +2,14 @@ package smoke;
 
 import annotations.TestName;
 import entities.ItemEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 /**
  * @author Taras
@@ -25,10 +27,10 @@ public class Smoke_DeleteItemFromCartTest extends BaseTest {
         //Page initializing
         HomePage home = HomePage.Instance;
         home.open();
-
+        ProductSync.check(ProductTypes.FOAM_PILLOW);
         //adding item to the cart
         home.clickOnShopFoamPillowButton().clickAddToCart();
-
+        ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
         //checking that added items were displayed
         Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was displayed in cart");
 

@@ -3,12 +3,14 @@ package viewcart;
 import annotations.TestName;
 import entities.ItemEntity;
 import entities.UserEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 public class ViewCart_UpdateDrapesTest extends BaseTest {
 
@@ -27,12 +29,13 @@ public class ViewCart_UpdateDrapesTest extends BaseTest {
 
         //open home page and add Drapes to cart
         home.open();
+        ProductSync.check(ProductTypes.DRAPES);
         home.header.clickShopMenuItem()
                 .clickOnShopOurDrapesButton()
                 .selectDrapesSize(item.getSize())
                 .selectDrapesColor(item.getType())
                 .clickAddToCart();
-
+        ProductSync.uncheck(ProductTypes.DRAPES);
         home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
 
         prodPage

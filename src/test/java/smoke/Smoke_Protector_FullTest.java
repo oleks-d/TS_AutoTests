@@ -3,6 +3,7 @@ package smoke;
 import annotations.TestName;
 import entities.ItemEntity;
 import entities.UserEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CheckoutPage;
@@ -11,6 +12,7 @@ import pages.HomePage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 public class Smoke_Protector_FullTest extends BaseTest {
 
@@ -29,11 +31,12 @@ public class Smoke_Protector_FullTest extends BaseTest {
 
         //open home page and add Protector to cart
         home.open();
+        ProductSync.check(ProductTypes.MATTRESS_PROTECTOR);
         home.header.clickShopMenuItem()
                 .clickOnShopOurCoverButton()
                 .selectProtectorSize(item.getSize())
                 .clickAddToCart();
-
+        ProductSync.uncheck(ProductTypes.MATTRESS_PROTECTOR);
         // check item in cart
         Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was not displayed in cart");
 

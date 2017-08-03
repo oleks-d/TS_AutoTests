@@ -3,6 +3,7 @@ package smoke;
 import annotations.TestName;
 import entities.ItemEntity;
 import entities.UserEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CheckoutPage;
@@ -12,6 +13,7 @@ import pages.HomePage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 public class Smoke_Drapes_FullTest extends BaseTest {
 
@@ -30,12 +32,13 @@ public class Smoke_Drapes_FullTest extends BaseTest {
 
         //open home page and add Drapes to cart
         home.open();
+        ProductSync.check(ProductTypes.DRAPES);
         home.header.clickShopMenuItem()
                 .clickOnShopOurDrapesButton();
                 DrapesPage.Instance.selectDrapesSize(item.getSize())
                 .selectDrapesColor(item.getType())
                 .clickAddToCart();
-
+        ProductSync.uncheck(ProductTypes.DRAPES);
 
         // check item in cart
         Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was not displayed in cart");

@@ -11,6 +11,7 @@ import pages.*;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 public class NavigationTest_withDataprovider extends BaseTest {
 
@@ -38,6 +39,7 @@ public class NavigationTest_withDataprovider extends BaseTest {
         BaseProductPage bp = (BaseProductPage) page.getConstructor().newInstance();
 
         home.open();
+        ProductSync.check(type);
         home.header.openMenuByItemName(itemName);
 
         Assert.assertTrue(bp.isPageLoaded(), "Page was not opened: " + bp.getURL());
@@ -46,6 +48,7 @@ public class NavigationTest_withDataprovider extends BaseTest {
             MonitorPage.Instance.selectMonitorType("One Person");
 
         bp.clickAddToCart();
+        ProductSync.uncheck(type);
 
         ViewCartPage cart = home.header.clickOnViewCartButton();
         cart.clickOnProduct(type.toString());

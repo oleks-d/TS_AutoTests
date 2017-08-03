@@ -2,6 +2,7 @@ package smoke;
 
 import annotations.TestName;
 import entities.ItemEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -10,6 +11,7 @@ import pages.ShopPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 /**
  * @author Taras
@@ -30,7 +32,8 @@ public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
 
         //open pages
         HomePage homePage = HomePage.Instance;
-        homePage.open();;
+        homePage.open();
+        ProductSync.check(ProductTypes.MATTRESS);
         ShopPage shopPage = homePage.header.clickShopMenuItem();
         MattressesPage mattressesPage = shopPage.clickOnShopOurMattressButton();
 
@@ -48,6 +51,7 @@ public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
         mattressesPage.selectMattressSize(smallerMattress.getSize()).selectMattressFeel(smallerMattress.getType()).clickAddToCart();
         mattressesPage.selectMattressSize(smallerMattress.getSize()).selectMattressFeel(smallerMattress.getType()).clickAddToCart();
         mattressesPage.selectMattressSize(smallerMattress.getSize()).selectMattressFeel(smallerMattress.getType()).clickAddToCart();
+        ProductSync.uncheck(ProductTypes.MATTRESS);
 
         countOfGoodsFromCartIcon = mattressesPage.header.getCountOfGoodsFromCartIcon();
         countOfGoodsInCart = mattressesPage.header.getCountOfGoodsInCart();

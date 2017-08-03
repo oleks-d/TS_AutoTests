@@ -3,6 +3,7 @@ package smoke;
 import annotations.TestName;
 import entities.ItemEntity;
 import entities.UserEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CheckoutPage;
@@ -11,6 +12,7 @@ import pages.HomePage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 public class Smoke_Monitor_FullTest extends BaseTest {
 
@@ -29,10 +31,11 @@ public class Smoke_Monitor_FullTest extends BaseTest {
 
         //open home page and add Monitor to cart
         home.open();
+        ProductSync.check(ProductTypes.MONITOR);
         home.clickOnShopOurMonitorButton()
                 .selectMonitorType(item.getType())
                 .clickAddToCart();
-
+        ProductSync.uncheck(ProductTypes.MONITOR);
         // check item in cart
         Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was not displayed in cart");
 

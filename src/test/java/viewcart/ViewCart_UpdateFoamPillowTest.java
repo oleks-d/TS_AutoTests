@@ -3,12 +3,14 @@ package viewcart;
 import annotations.TestName;
 import entities.ItemEntity;
 import entities.UserEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 public class ViewCart_UpdateFoamPillowTest extends BaseTest {
 
@@ -27,10 +29,11 @@ public class ViewCart_UpdateFoamPillowTest extends BaseTest {
 
         //open home page and add Foam Pillow to cart
         home.open();
+        ProductSync.check(ProductTypes.FOAM_PILLOW);
         home.header.clickShopMenuItem()
                 .clickOnShopOurFoamPillowButton()
                 .clickAddToCart();
-
+        ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
         home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
 
         prodPage

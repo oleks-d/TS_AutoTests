@@ -3,12 +3,14 @@ package viewcart;
 import annotations.TestName;
 import entities.ItemEntity;
 import entities.UserEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 public class ViewCart_UpdateComforterTest extends BaseTest {
 
@@ -27,12 +29,13 @@ public class ViewCart_UpdateComforterTest extends BaseTest {
 
         //open home page and add Comforter to cart
         home.open();
+        ProductSync.check(ProductTypes.COMFORTER);
         home.header.clickShopMenuItem()
                 .clickOnShopOurComforterButton()
                 .selectComforterSize(item.getSize())
                 .clickAddToCart();
 
-
+        ProductSync.uncheck(ProductTypes.COMFORTER);
         home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
 
         prodPage

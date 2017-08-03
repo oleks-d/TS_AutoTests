@@ -15,6 +15,17 @@
             <class name="smoke.Smoke_FoamPillow_FullTest" />
             <class name="smoke.Smoke_PlushPillow_FullTest" />
 
+
+            <class name="smoke.Smoke_DeleteItemFromCartTest" />
+            <class name="smoke.Smoke_CountOfComfortersInCart_Test" />
+            <class name="smoke.Smoke_CountOfDrapesInCart_Test" />
+            <class name="smoke.Smoke_CountOfFoamPillowsInCart_Test" />
+            <class name="smoke.Smoke_CountOfMattressesInCart_Test" />
+            <class name="smoke.Smoke_CountOfMattressProtectorsInCart_Test" />
+            <class name="smoke.Smoke_CountOfPlushPillowsInCart_Test" />
+            <class name="smoke.Smoke_CountOfSheetsInCart_Test" />
+            <class name="smoke.Smoke_CountOfSleepTrackersInCart_Test" />
+
             <class name="account.Smoke_SignInValidationTest" />
             <class name="account.MyAccount_ChangeFullNameTest" />
             <class name="account.CreateAccountTest" />
@@ -30,6 +41,9 @@
             <class name="viewcart.ViewCart_UpdateFoamPillowTest" />
             <class name="viewcart.ViewCart_UpdatePlushPillowTest" />
             <class name="viewcart.ViewCart_UpdateSheetsTest" />
+
+            <class name="smoke.Smoke_FAQ_FullTest" />
+            <class name="smoke.Smoke_MagazineCategoriesValidationTest" />
 
         </classes>
     </test> <!-- test -->

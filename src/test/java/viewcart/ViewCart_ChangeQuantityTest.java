@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.BaseTest;
+import utils.ProductSync;
 
 public class ViewCart_ChangeQuantityTest extends BaseTest {
 
@@ -21,6 +22,14 @@ public class ViewCart_ChangeQuantityTest extends BaseTest {
                 {ProductTypes.COMFORTER,  ComforterPage.class, "Comforter"},
                 {ProductTypes.DRAPES, DrapesPage.class, "Drapes"},
                 {ProductTypes.SHEETSET, SheetsetPage.class, "Sheets"}
+//                {ProductTypes.MONITOR, MonitorPage.class, "Monitor"},
+//                {ProductTypes.MATTRESS, MattressesPage.class, "Mattress" },
+//                {ProductTypes.MATTRESS_PROTECTOR, MattressProtectorPage.class, "Protector" },
+//                {ProductTypes.COMFORTER, ComforterPage.class, "Comforter"},
+//                {ProductTypes.PLUSH_PILLOW, PlushPillowPage.class, "Plush Pillow"},
+//                {ProductTypes.FOAM_PILLOW, FoamPillowPage.class, "Foam Pillow"},
+//                {ProductTypes.DRAPES, DrapesPage.class, "Drapes"},
+//                {ProductTypes.SHEETSET, SheetsetPage.class, "Sheets"},
         };
     }
 
@@ -38,6 +47,7 @@ public class ViewCart_ChangeQuantityTest extends BaseTest {
         BaseProductPage bp = (BaseProductPage) page.getConstructor().newInstance();
 
         home.open();
+        ProductSync.check(type);
         home.header.openMenuByItemName(itemMenuName);
 
         Assert.assertTrue(bp.isPageLoaded(), "Page was not opened: " + bp.getURL());
@@ -46,6 +56,7 @@ public class ViewCart_ChangeQuantityTest extends BaseTest {
             MonitorPage.Instance.selectMonitorType("One Person");
 
         bp.clickAddToCart();
+        ProductSync.uncheck(type);
 
         home.header.clickOnViewCartButton();
 

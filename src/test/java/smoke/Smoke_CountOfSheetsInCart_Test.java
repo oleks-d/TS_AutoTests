@@ -2,6 +2,7 @@ package smoke;
 
 import annotations.TestName;
 import entities.ItemEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -10,6 +11,7 @@ import pages.ShopPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 /**
  * @author Taras
@@ -31,6 +33,7 @@ public class Smoke_CountOfSheetsInCart_Test extends BaseTest {
         //Pages initializing
         HomePage homePage = HomePage.Instance;
         homePage.open();
+        ProductSync.check(ProductTypes.SHEETSET);
         ShopPage shopPage = homePage.header.clickShopMenuItem();
         SheetsetPage sheetsetPage = shopPage.clickOnShopSheetsButton();
 
@@ -47,7 +50,7 @@ public class Smoke_CountOfSheetsInCart_Test extends BaseTest {
         sheetsetPage.selectSheetsetSize(updatedSheet.getSize()).clickAddToCart();
         sheetsetPage.selectSheetsetSize(updatedSheet.getSize()).clickAddToCart();
         sheetsetPage.selectSheetsetSize(updatedSheet.getSize()).clickAddToCart();
-
+        ProductSync.uncheck(ProductTypes.SHEETSET);
         //getting count of selected goods from cart icon
         countOfGoodsFromCartIcon = sheetsetPage.header.getCountOfGoodsFromCartIcon();
         //getting count of selected goods from cart

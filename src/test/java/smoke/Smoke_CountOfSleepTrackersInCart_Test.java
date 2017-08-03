@@ -2,6 +2,7 @@ package smoke;
 
 import annotations.TestName;
 import entities.ItemEntity;
+import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -9,6 +10,7 @@ import pages.MonitorPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
+import utils.ProductSync;
 
 /**
  * @author Taras
@@ -30,6 +32,7 @@ public class Smoke_CountOfSleepTrackersInCart_Test extends BaseTest {
         //Pages initializing
         HomePage homePage = HomePage.Instance;
         homePage.open();
+        ProductSync.check(ProductTypes.MONITOR);
         MonitorPage monitorPage = homePage.header.clickShopMenuItem().clickOnShopOurMonitorButton();
 
         //filling the cart with different types and counts of sleep trackers
@@ -39,7 +42,7 @@ public class Smoke_CountOfSleepTrackersInCart_Test extends BaseTest {
 
         monitorPage.selectMonitorType(updatedMonitor.getType()).clickAddToCart();
         monitorPage.selectMonitorType(updatedMonitor.getType()).clickAddToCart();
-
+        ProductSync.uncheck(ProductTypes.MONITOR);
         //getting count of selected sleep trackers from cart icon
         countOfGoodsFromCartIcon = monitorPage.header.getCountOfGoodsFromCartIcon();
         //getting count of selected sleep trackers from cart
