@@ -28,7 +28,7 @@ public class Tools {
 
     public static String getRandomUserEmail() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss_");
-        return sdf.format(new Date(System.currentTimeMillis())) + String.valueOf(System.currentTimeMillis()).substring(10,13) + "@somedomain.com";
+        return sdf.format(new Date(System.currentTimeMillis())) + String.valueOf(System.currentTimeMillis()).substring(10,13) + "@gmail.com";
     }
 
     public static float convertStringPriceToFloat(String strPrice){

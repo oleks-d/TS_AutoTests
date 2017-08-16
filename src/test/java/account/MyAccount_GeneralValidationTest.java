@@ -38,25 +38,25 @@ public class MyAccount_GeneralValidationTest extends BaseTest {
 
 
         //Browse through My Account pages
-//        account.ClickOnMySocialAccounts();
-//        Assert.assertTrue(account.getSocialAccounts().contains("Linked accounts"), "Failed to open My Social Accounts");
-//
-//        account.ClickOnMyDashboard();
-//        Assert.assertTrue(account.verifyDashboardElements() , "Failed to open Dashboard");
-//
-//        account.ClickOnMyAccountInfo();
-//        Assert.assertTrue(account.verifyAccountInfoElements(), "Failed to open Account Info");
-//
-//        account.ClickOnMyAddressBook();
-//        Assert.assertTrue(account.verifyAddressBookElements(), "Failed to open Address Book" );
-//
-//        account.ClickOnMyOrders();
-//        Assert.assertTrue(account.verifyNoOrdersMessage(), "Failed to open My Orders");
+        account.ClickOnMySocialAccounts();
+        Assert.assertTrue(account.getSocialAccounts().contains("Linked accounts"), "Failed to open My Social Accounts");
+
+        account.ClickOnMyDashboard();
+        Assert.assertTrue(account.verifyDashboardElements() , "Failed to open Dashboard");
+
+        account.ClickOnMyAccountInfo();
+        Assert.assertTrue(account.verifyAccountInfoElements(), "Failed to open Account Info");
+
+        account.ClickOnMyAddressBook();
+        Assert.assertTrue(account.verifyAddressBookElements(), "Failed to open Address Book" );
+
+        account.ClickOnMyOrders();
+        Assert.assertTrue(account.verifyNoOrdersMessage(), "Failed to open My Orders");
 
         //account.ClickOnMyReviews();
 
         account.ClickOnMyNewsletter();
-        //account.();
+        account.changeSubscriptionStatus();
     }
 
 }

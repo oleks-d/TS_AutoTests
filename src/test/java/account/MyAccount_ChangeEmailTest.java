@@ -25,7 +25,7 @@ public class MyAccount_ChangeEmailTest extends BaseTest {
         SetupProcedures sp = new SetupProcedures();
         String nameOfNewUser = sp.setupNewAccount();
 
-        String newEmail = Tools.getRandomUserEmail();
+        String newEmail = "tomorrow.autotest+" + Tools.getRandomUserEmail();
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 

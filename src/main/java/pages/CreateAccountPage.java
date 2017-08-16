@@ -32,7 +32,7 @@ public class CreateAccountPage extends BasePage {
     By passwordInputFieldError = By.id("password-error");
     By confirmPasswordInputFieldError = By.id("password-confirmation-error");
 
-    String userInfo = Tools.getCurDateTime();
+
 
 
     //* Page Methods *//

@@ -17,7 +17,7 @@ public class CreateAccountTest extends BaseTest {
     @Test
     public void RegisterNewUser(){
 
-        String userName = Tools.getRandomUserEmail();
+        String userName = "tomorrow.autotest+" + Tools.getRandomUserEmail();
         String userPassword = "!QAZxsw2";
 
         HomePage home = HomePage.Instance;

@@ -3,6 +3,7 @@ package pages;
 import entities.UserEntity;
 import org.apache.xpath.operations.Variable;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 /**
  * Created by Kos on 7/12/17.
@@ -96,6 +97,9 @@ public class AccountPage extends LoginPage {
     //Newsletter elements todo
     By subscriptionCheckbox = By.id("subscription");
     By subscriptionSaveButton = By.xpath("//SPAN[text()='Save']");
+    By removeSubscriptionSuccessMessage = By.xpath("//DIV[@data-bind='html: message.text'][text()='We removed the subscription.']");
+    By enableSubscriptionSuccessMessage = By.xpath("//DIV[@data-bind='html: message.text'][text()='We saved the subscription.']");
+
 
 
 
@@ -349,6 +353,26 @@ public class AccountPage extends LoginPage {
         findElement(myNewsletter).click();
     }
 
+    public boolean getSubscriptionStatus(){
+        return findElement(subscriptionCheckbox).isSelected();
+    }
+
+    public void changeSubscriptionStatus(){
+        if (getSubscriptionStatus()){
+            reporter.info("Newsletter subscription is active");
+            findElement(subscriptionCheckbox).click();
+            findElement(subscriptionSaveButton).click();
+            reporter.info("Removing subscription");
+            Assert.assertTrue(findElement(removeSubscriptionSuccessMessage).isDisplayed(), "Failed to remove subscription");
+        }
+        else {
+            reporter.info("Newsletter subscription is NOT active");
+            findElement(subscriptionCheckbox).click();
+            findElement(subscriptionSaveButton).click();
+            reporter.info("Enabling subscription");
+            Assert.assertTrue(findElement(enableSubscriptionSuccessMessage).isDisplayed(), "Failed to enable subscription");
+        }
+    }
 
 
 }

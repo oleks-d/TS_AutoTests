@@ -20,7 +20,7 @@ public class MyAccount_ChangePasswordTest extends BaseTest {
 
         SetupProcedures sp = new SetupProcedures();
         String nameOfNewUser = sp.setupNewAccount();
-        String newPass = Tools.getRandomUserEmail();
+        String newPass = "tomorrow.autotest+" + Tools.getRandomUserEmail();
 
         HomePage home = HomePage.Instance; //login.doLogin(correctPassword);
 

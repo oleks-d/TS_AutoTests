@@ -17,7 +17,7 @@ public class SetupProcedures {
 
     public String setupNewAccount(){
 
-        String userName = Tools.getRandomUserEmail();
+        String userName = "tomorrow.autotest+" + Tools.getRandomUserEmail();
         String userPassword = userName;
 
         CreateAccountPage accountPage = CreateAccountPage.Instance;
@@ -31,7 +31,7 @@ public class SetupProcedures {
 
     public String setupNewAccount(UserEntity user){
 
-        String userName = Tools.getRandomUserEmail();
+        String userName = "tomorrow.autotest+" + Tools.getRandomUserEmail();
         String userPassword = userName;
         String userEmail = userName;
 
