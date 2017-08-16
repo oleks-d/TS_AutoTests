@@ -30,12 +30,13 @@ public class Smoke_DeleteItemFromCartTest extends BaseTest {
         ProductSync.check(ProductTypes.FOAM_PILLOW);
         //adding item to the cart
         home.clickOnShopFoamPillowButton().clickAddToCart();
-        ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
+
         //checking that added items were displayed
         Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was displayed in cart");
 
         //deleting item from cart
         home.header.clickOnDeleteCartButton(item);
+        ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
 
         //checking that item was deleted from the cart
         Assert.assertFalse(home.header.itemWasFoundInCart(item),  "Item was deleted from cart");

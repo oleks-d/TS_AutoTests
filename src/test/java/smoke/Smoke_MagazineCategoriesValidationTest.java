@@ -90,23 +90,5 @@ public class Smoke_MagazineCategoriesValidationTest extends BaseTest {
         //Assert.assertEquals(magazinePage.getArticlesQty(), inBedWithEntity.getArticles().size());
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

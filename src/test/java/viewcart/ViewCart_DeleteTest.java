@@ -55,7 +55,6 @@ public class ViewCart_DeleteTest extends BaseTest {
             MonitorPage.Instance.selectMonitorType("One Person");
 
         bp.clickAddToCart();
-        ProductSync.uncheck(type);
 
         home.header.clickOnViewCartButton();
 
@@ -63,6 +62,8 @@ public class ViewCart_DeleteTest extends BaseTest {
         Assert.assertTrue(viewcart.itemDisplayedOnViewCartPage(type.toString()),  "Item was not displayed in cart");
 
         viewcart.clickOnDeleteProduct(type.toString());
+
+        ProductSync.uncheck(type);
 
         Assert.assertTrue(!viewcart.itemDisplayedOnViewCartPage(type.toString()),  "Item was displayed in cart");
 
