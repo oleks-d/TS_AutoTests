@@ -7,6 +7,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.MonitorPage;
+import pages.ShopPage;
+import pages.ViewCartPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
@@ -31,17 +33,31 @@ public class Smoke_CountOfSleepTrackersInCart_Test extends BaseTest {
 
         //Pages initializing
         HomePage homePage = HomePage.Instance;
+        ViewCartPage cart = ViewCartPage.Instance;
         homePage.open();
         ProductSync.check(ProductTypes.MONITOR);
-        MonitorPage monitorPage = homePage.header.clickShopMenuItem().clickOnShopOurMonitorButton();
+        ShopPage shopPage = homePage.header.clickShopMenuItem();
+        MonitorPage monitorPage = shopPage.clickOnShopOurMonitorButton();
 
         //filling the cart with different types and counts of sleep trackers
         monitorPage.selectMonitorType(defaultMonitor.getType()).clickAddToCart();
-        monitorPage.selectMonitorType(defaultMonitor.getType()).clickAddToCart();
-        monitorPage.selectMonitorType(defaultMonitor.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
 
+        shopPage.clickOnShopOurMonitorButton();
+        monitorPage.selectMonitorType(defaultMonitor.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurMonitorButton();
+        monitorPage.selectMonitorType(defaultMonitor.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurMonitorButton();
         monitorPage.selectMonitorType(updatedMonitor.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurMonitorButton();
         monitorPage.selectMonitorType(updatedMonitor.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
         ProductSync.uncheck(ProductTypes.MONITOR);
         //getting count of selected sleep trackers from cart icon
         countOfGoodsFromCartIcon = monitorPage.header.getCountOfGoodsFromCartIcon();

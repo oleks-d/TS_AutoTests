@@ -6,6 +6,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.PlushPillowPage;
+import pages.ShopPage;
+import pages.ViewCartPage;
 import utils.BaseTest;
 import utils.ProductSync;
 
@@ -24,14 +26,23 @@ public class Smoke_CountOfPlushPillowsInCart_Test extends BaseTest {
 
         //open pages
         HomePage homePage = HomePage.Instance;
+        ViewCartPage cart = ViewCartPage.Instance;
         homePage.open();
         ProductSync.check(ProductTypes.PLUSH_PILLOW);
-        PlushPillowPage plushPillowPage = homePage.header.clickShopMenuItem().clickOnShopOurPlushPillowButton();
+        ShopPage shopPage = homePage.header.clickShopMenuItem();
+        PlushPillowPage plushPillowPage = shopPage.clickOnShopOurPlushPillowButton();
 
         //adding three the identical plush pillows to the cart
         plushPillowPage.clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurPlushPillowButton();
         plushPillowPage.clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurPlushPillowButton();
         plushPillowPage.clickAddToCart();
+        cart.clickOnBackToShop();
         ProductSync.uncheck(ProductTypes.PLUSH_PILLOW);
         //getting count from cart icon
         countOfGoodsFromCartIcon = plushPillowPage.header.getCountOfGoodsFromCartIcon();

@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pages.DrapesPage;
 import pages.HomePage;
 import pages.ShopPage;
+import pages.ViewCartPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
@@ -32,6 +33,7 @@ public class Smoke_CountOfDrapesInCart_Test extends BaseTest {
 
         //Pages initializing
         HomePage homePage = HomePage.Instance;
+        ViewCartPage cart = ViewCartPage.Instance;
         homePage.open();
         ProductSync.check(ProductTypes.DRAPES);
         ShopPage shopPage = homePage.header.clickShopMenuItem();
@@ -39,7 +41,11 @@ public class Smoke_CountOfDrapesInCart_Test extends BaseTest {
 
         //filling the cart with different types and count of drapes
         drapesPage.selectDrapesColor(defaultSheet.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurDrapesButton();
         drapesPage.selectDrapesColor(defaultSheet.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
 
         //checking if items were added and counted normally
         countOfGoodsFromCartIcon = drapesPage.header.getCountOfGoodsFromCartIcon();
@@ -47,9 +53,18 @@ public class Smoke_CountOfDrapesInCart_Test extends BaseTest {
         Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "Count of added to cart items equal to count from cart icon");
 
 
+        shopPage.clickOnShopOurDrapesButton();
         drapesPage.selectDrapesColor(updatedSheet.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurDrapesButton();
         drapesPage.selectDrapesColor(updatedSheet.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurDrapesButton();
         drapesPage.selectDrapesColor(updatedSheet.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
+
         ProductSync.uncheck(ProductTypes.DRAPES);
         //getting count of selected goods from cart icon
         countOfGoodsFromCartIcon = drapesPage.header.getCountOfGoodsFromCartIcon();

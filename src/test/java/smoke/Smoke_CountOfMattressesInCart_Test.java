@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.MattressesPage;
 import pages.ShopPage;
+import pages.ViewCartPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
@@ -32,6 +33,7 @@ public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
 
         //open pages
         HomePage homePage = HomePage.Instance;
+        ViewCartPage cart = ViewCartPage.Instance;
         homePage.open();
         ProductSync.check(ProductTypes.MATTRESS);
         ShopPage shopPage = homePage.header.clickShopMenuItem();
@@ -39,7 +41,11 @@ public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
 
         //adding two the identical "bigger" mattresses to the cart
         mattressesPage.selectMattressSize(biggerMattress.getSize()).selectMattressFeel(biggerMattress.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurMattressButton();
         mattressesPage.selectMattressSize(biggerMattress.getSize()).selectMattressFeel(biggerMattress.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
 
         //checking if "bigger" mattresses were counted
         countOfGoodsFromCartIcon = mattressesPage.header.getCountOfGoodsFromCartIcon();
@@ -49,8 +55,14 @@ public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
         //adding another item (model of smaller mattresses) to the cart
         mattressesPage.open();
         mattressesPage.selectMattressSize(smallerMattress.getSize()).selectMattressFeel(smallerMattress.getType()).clickAddToCart();
+
+        mattressesPage.open();
         mattressesPage.selectMattressSize(smallerMattress.getSize()).selectMattressFeel(smallerMattress.getType()).clickAddToCart();
+
+        mattressesPage.open();
         mattressesPage.selectMattressSize(smallerMattress.getSize()).selectMattressFeel(smallerMattress.getType()).clickAddToCart();
+        cart.clickOnBackToShop();
+
         ProductSync.uncheck(ProductTypes.MATTRESS);
 
         countOfGoodsFromCartIcon = mattressesPage.header.getCountOfGoodsFromCartIcon();

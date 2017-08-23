@@ -212,12 +212,12 @@ public class PageHeader extends BasePage {
     public int getCountOfGoodsFromCartIcon() {
         reporter.info("Getting count of goods from cart's item");
         String[] result = findElement(showCartButton).getText().split("\n");
+        reporter.info("Items on cart icon are equal to " + Integer.valueOf(result[0]));
         return Integer.valueOf(result[0]);
     }
 
     public int getCountOfGoodsInCart() {
         reporter.info("Counting sum of goods in the cart");
-        closeCart();
         openCart();
         int count = 0;
         List<WebElement> cartItemsList = findElementsIgnoreException(cartItems);
@@ -225,6 +225,8 @@ public class PageHeader extends BasePage {
             WebElement cartItem = cartItemsList.get(i);
             count = count + Integer.valueOf(cartItem.findElement(cartItemQty).getAttribute("data-item-qty"));
         }
+        reporter.info("Sum of goods in cart equals to " + count);
+        closeCart();
         return count;
     }
 

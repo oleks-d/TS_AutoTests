@@ -38,6 +38,7 @@ public class ViewCartPage extends BasePage {
     By orderItemDetails= By.cssSelector("dd");
     By orderItemEditButton = By.cssSelector("a.action.action-edit");
     By orderItemDeleteButton = By.cssSelector("a.action.action-delete");
+    By backToShopLink = By.xpath("//A[@class='back-to-shop'][text()='Back to Shop']");
 
     By orderIncreaseQuantityItemButton = By.xpath("//button[@name='update_cart_action' and @title='+']");
     By orderDecreaseQuantityItemButton = By.xpath("//button[@name='update_cart_action' and @title='-']");
@@ -166,4 +167,8 @@ public class ViewCartPage extends BasePage {
     }
 
 
+    public void clickOnBackToShop() {
+        reporter.info("Click on back to shop link");
+        findElement(backToShopLink).click();
+    }
 }

@@ -4,10 +4,11 @@ import annotations.TestName;
 import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.FoamPillowPage;
-import pages.HomePage;
+import pages.*;
 import utils.BaseTest;
 import utils.ProductSync;
+
+import javax.swing.text.View;
 
 /**
  * @author Taras
@@ -23,14 +24,24 @@ public class Smoke_CountOfFoamPillowsInCart_Test extends BaseTest {
         int countOfGoodsInCart;
 
         HomePage homePage = HomePage.Instance;
+        ViewCartPage cart = ViewCartPage.Instance;
         homePage.open();
         ProductSync.check(ProductTypes.FOAM_PILLOW);
-        FoamPillowPage foamPillowPage = homePage.clickOnShopFoamPillowButton();
+        ShopPage shopPage = homePage.header.clickShopMenuItem();
+        FoamPillowPage foamPillowPage = shopPage.clickOnShopOurFoamPillowButton();
 
         //adding three the identical foam pillows to the cart
         foamPillowPage.clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurFoamPillowButton();
         foamPillowPage.clickAddToCart();
+        cart.clickOnBackToShop();
+
+        shopPage.clickOnShopOurFoamPillowButton();
         foamPillowPage.clickAddToCart();
+        cart.clickOnBackToShop();
+
         ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
 
         //getting count from cart icon
