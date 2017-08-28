@@ -35,6 +35,7 @@ public class Smoke_CountOfComfortersInCart_Test extends BaseTest {
         HomePage homePage = HomePage.Instance;
         ViewCartPage cart = ViewCartPage.Instance;
         homePage.open();
+        homePage.closeWelcomeMessage();
         ProductSync.check(ProductTypes.COMFORTER);
         ShopPage shopPage = homePage.header.clickShopMenuItem();
         ComforterPage comforterPage = shopPage.clickOnShopComforterButton();

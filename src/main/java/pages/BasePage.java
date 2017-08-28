@@ -393,4 +393,11 @@ public class BasePage {
         driver().switchTo().defaultContent();
     }
 
+    public HomePage closeWelcomeMessage(){
+            reporter.info("Closing welcome popup");
+            waitForElement(By.xpath("//SPAN[@class='close-button']"));
+            findElement(By.xpath("//SPAN[@class='close-button']")).click();
+        return HomePage.Instance;
+    }
+
 }
