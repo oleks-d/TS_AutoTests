@@ -6,10 +6,7 @@ import entities.UserEntity;
 import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.CheckoutPage;
-import pages.CheckoutReviewPage;
-import pages.DrapesPage;
-import pages.HomePage;
+import pages.*;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
@@ -27,6 +24,7 @@ public class Smoke_Drapes_FullTest extends BaseTest {
 
         //init pages
         HomePage home = HomePage.Instance;
+        ViewCartPage cart = ViewCartPage.Instance;
         CheckoutPage checkout = CheckoutPage.Instance;
         CheckoutReviewPage review = CheckoutReviewPage.Instance;
 
@@ -38,6 +36,8 @@ public class Smoke_Drapes_FullTest extends BaseTest {
                 DrapesPage.Instance.selectDrapesSize(item.getSize())
                 .selectDrapesColor(item.getType())
                 .clickAddToCart();
+        cart.clickOnBackToShop();
+
         ProductSync.uncheck(ProductTypes.DRAPES);
 
         // check item in cart

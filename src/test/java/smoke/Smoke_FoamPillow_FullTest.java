@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import pages.CheckoutPage;
 import pages.CheckoutReviewPage;
 import pages.HomePage;
+import pages.ViewCartPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
@@ -26,6 +27,7 @@ public class Smoke_FoamPillow_FullTest extends BaseTest {
 
         //init pages
         HomePage home = HomePage.Instance;
+        ViewCartPage cart = ViewCartPage.Instance;
         CheckoutPage checkout = CheckoutPage.Instance;
         CheckoutReviewPage review = CheckoutReviewPage.Instance;
 
@@ -35,6 +37,8 @@ public class Smoke_FoamPillow_FullTest extends BaseTest {
         home.header.clickShopMenuItem()
                 .clickOnShopOurFoamPillowButton()
                 .clickAddToCart();
+        cart.clickOnBackToShop();
+
         ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
         // check item in cart
         Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was not displayed in cart");
