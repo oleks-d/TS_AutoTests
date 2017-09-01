@@ -45,6 +45,7 @@
 
             <class name="smoke.Smoke_FAQ_FullTest" />
             <class name="smoke.Smoke_MagazineCategoriesValidationTest" />
+            <class name="smoke.Smoke_ReviewsRating_Test" />
 
         </classes>
     </test> <!-- test -->
