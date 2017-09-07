@@ -15,9 +15,10 @@ public class MagazinePage extends BasePage {
         public String categoryURL = "";
 
     // URLs of magazine categories
-    public final String urlTemplate = "/category/%s/";
+    public final String urlTemplate = "/magazine/category/%s/";
     // magazine categories buttons
-    public final String buttonTemplate = "//ul[@id='menu-main-1']//a[text()='%s']";
+    //public final String buttonTemplate = "//ul[@id='menu-main-1']//a[text()='%s']";
+    public final String buttonTemplate = "//*[@class='site-widgetized-section section-top']//a[text()='%s']";
 
         /** UI Mappings */
     By articleLocator = By.cssSelector(".entry-title");

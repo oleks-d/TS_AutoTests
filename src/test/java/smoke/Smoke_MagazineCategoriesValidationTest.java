@@ -23,10 +23,10 @@ public class Smoke_MagazineCategoriesValidationTest extends BaseTest {
     String playCategory = "PLAY";
     String inBedWithCategory = "IN BED WITH";
 
-    String sleepURL = "/category/sleep/";
-    String healURL = "/category/heal/";
-    String playURL = "/category/play/";
-    String inBedWithURL = "/category/in-bed-with/";
+    String sleepURL = "/magazine/category/sleep/";
+    String healURL = "/magazine/category/heal/";
+    String playURL = "/magazine/category/play/";
+    String inBedWithURL = "/magazine/category/in-bed-with/";
 
 
     @Test
@@ -59,6 +59,9 @@ public class Smoke_MagazineCategoriesValidationTest extends BaseTest {
         // check if there are as many articles as expected (comparing to entity)
         //Assert.assertEquals(magazinePage.getArticlesQty(), sleepEntity.getArticles().size());
 
+        // navigate to MAGAZINE page
+        home.header.clickOnMagazineItemMagPage();
+
 
         // navigate to HEAL category
         magazinePage.clickOnCategory(healCategory);
@@ -70,6 +73,10 @@ public class Smoke_MagazineCategoriesValidationTest extends BaseTest {
         //Assert.assertEquals(magazinePage.getArticlesQty(), healEntity.getArticles().size());
 
 
+        // navigate to MAGAZINE page
+        home.header.clickOnMagazineItemMagPage();
+
+
         // navigate to PLAY category
         magazinePage.clickOnCategory(playCategory);
         // check if page is loaded
@@ -78,6 +85,9 @@ public class Smoke_MagazineCategoriesValidationTest extends BaseTest {
         Assert.assertEquals(magazinePage.getURL(), MagazinePage.BASE_URL + magazinePage.pageURL + playURL);
         // check if there are as many articles as expected, comparing to file
         //Assert.assertEquals(magazinePage.getArticlesQty(), playEntity.getArticles().size());
+
+        // navigate to MAGAZINE page
+        home.header.clickOnMagazineItemMagPage();
 
 
         // navigate to IN BED WITH category

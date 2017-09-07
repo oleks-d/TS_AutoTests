@@ -23,6 +23,7 @@ public class PageHeader extends BasePage {
     By topMenuItem_Shop = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Shop']");
     By topMenuItem_Sleep = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Sleep']");
     By topMenuItem_Magazine = By.xpath("//ul[@role='menu']//a[@role='menuitem']//span[text()='Magazine']");
+    By topMagazineMenuItem_Magazine = By.xpath(".//*[@id='menu-main-1']/li/a[text()='Magazine']");
     By topMenuItem_FAQ = By.xpath(".//*[@class='help-number-wrapper']//a[contains(text(),' HELP')]");
     By topMenuItem_SignIn = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign In')]");
     By topMenuItem_Reviews = By.xpath(".//*[@id='ui-id-6']/span");
@@ -73,6 +74,12 @@ public class PageHeader extends BasePage {
     public MagazinePage clickOnMagazineItem(){
         reporter.info("Click on MAGAZINE manu item");
         clickOnElement(topMenuItem_Magazine);
+        return MagazinePage.Instance;
+    }
+
+    public MagazinePage clickOnMagazineItemMagPage() {
+        reporter.info("Click on MAGAZINE menu item on the MAGAZINE page header");
+        clickOnElement(topMagazineMenuItem_Magazine);
         return MagazinePage.Instance;
     }
 
