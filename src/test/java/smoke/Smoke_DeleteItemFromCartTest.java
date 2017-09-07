@@ -6,6 +6,7 @@ import enums.ProductTypes;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.ViewCartPage;
 import utils.BaseTest;
 import utils.EntitiesFactory;
 import utils.FileIO;
@@ -27,9 +28,11 @@ public class Smoke_DeleteItemFromCartTest extends BaseTest {
         //Page initializing
         HomePage home = HomePage.Instance;
         home.open();
+        ViewCartPage cart = ViewCartPage.Instance;
         ProductSync.check(ProductTypes.FOAM_PILLOW);
         //adding item to the cart
         home.clickOnShopFoamPillowButton().clickAddToCart();
+        cart.clickOnBackToShop();
 
         //checking that added items were displayed
         Assert.assertTrue(home.header.itemWasFoundInCart(item),  "Item was displayed in cart");

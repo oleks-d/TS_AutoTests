@@ -58,7 +58,7 @@ public class ViewCart_ChangeQuantityTest extends BaseTest {
         bp.clickAddToCart();
         ProductSync.uncheck(type);
 
-        home.header.clickOnViewCartButton();
+        //home.header.clickOnViewCartButton();
 
         // check item in viewcart
         Assert.assertTrue(viewcart.itemDisplayedOnViewCartPage(type.toString(), qty),  "Item was not displayed in cart");

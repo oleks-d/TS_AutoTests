@@ -38,7 +38,7 @@ public class AccountPage extends LoginPage {
 
     //My Social Accounts
 
-    By linkedAccounts = By.xpath("//*[@id=\'maincontent\']/div[2]/div[1]/div[3]/div[1]/strong");
+    By linkedAccounts = By.xpath("//STRONG[text()='Linked accounts']");
 
 
 
