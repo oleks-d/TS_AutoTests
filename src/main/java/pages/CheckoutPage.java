@@ -44,6 +44,8 @@ public class CheckoutPage extends BasePage {
     By phoneField = By.name("telephone");
     By continueButton = By.cssSelector("button.action.continue.primary");
 
+    By freeShippingRadioButton = By.xpath(".//*[@id='s_method_freeshipping_freeshipping']");
+
     //order list
 
     By orderItems = By.cssSelector("div.block.items-in-cart ol.minicart-items li.product-item");
@@ -128,6 +130,11 @@ public class CheckoutPage extends BasePage {
         return CheckoutReviewPage.Instance;
     }
 
+    public CheckoutReviewPage selectFreeShipping(){
+        reporter.info("Selecting Free Shipping option");
+        clickOnElement(freeShippingRadioButton);
+        return CheckoutReviewPage.Instance;
+    }
 
     public CheckoutPage populateAllCheckoutFields(UserEntity user) {
         this.setFirstName(user.getFirstname())

@@ -50,6 +50,7 @@ public class Smoke_Monitor_FullTest extends BaseTest {
 
         //set all user related felds
         checkout.populateAllCheckoutFields(user);
+        checkout.selectFreeShipping();
         checkout.clickNextButton();
 
         //check Order Review page was opened
