@@ -16,7 +16,7 @@ public class ShopPage extends BasePage{
 
     /** UI Mappings */
 
-    By shopOurMattressButton = By.xpath("(//a[text()='Shop Our Mattress'])[1]");
+    By shopOurMattressButton = By.xpath("(//a[text()='Shop Our Hybrid Mattress'])[1]");
     By shopOurFoamPillowButton = By.xpath("(//a[text()='SHOP OUR PILLOW'])[1]");
     By shopOurPlushPillowButton = By.xpath("(//a[text()='SHOP OUR PILLOW'])[2]");
 
