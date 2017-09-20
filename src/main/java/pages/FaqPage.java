@@ -40,7 +40,7 @@ public class FaqPage extends BasePage{
     By faqSleepSystemTitle = By.xpath(".//*[text()='Sleep System']");
     By faqSleeptrackerTitle = By.xpath(".//*[text()='Sleeptracker ']");
     By faqPurchasingTitle = By.xpath(".//*[text()='Purchasing']");
-    By faqShippingTitle = By.xpath(".//*[text()='Shipping']");
+    By faqShippingTitle = By.xpath(".//*[text()='Shipping & Delivery']");
     By faqReturnsAndWarrantyTitle = By.xpath(".//*[text()='Returns & Warranty']");
     By faqSearchResults = By.xpath(".//*[@class='title_desktop']/h2");
 
