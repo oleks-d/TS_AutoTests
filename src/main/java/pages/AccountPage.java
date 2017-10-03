@@ -156,12 +156,14 @@ public class AccountPage extends LoginPage {
 
     public AccountPage clickOnChangeEmailButton(){
         reporter.info("Click on change Email Button");
+        scrollToElement(driver().findElement(accountInfoChangeEmailButton));
         findElement(accountInfoChangeEmailButton).click();
         return this;
     }
 
     public AccountPage clickOnChangePasswordButton(){
         reporter.info("Click on change Password Button");
+        scrollToElement(driver().findElement(accountInfoChangePasswordButton));
         findElement(accountInfoChangePasswordButton).click();
         return this;
     }
@@ -175,7 +177,7 @@ public class AccountPage extends LoginPage {
         findElement(currentPasswordField).clear();
         findElement(currentPasswordField).sendKeys(pass);
 
-        findElement(saveAccountInfoButton).click();
+        clickOnSaveAccountInfoButton();
         return this;
     }
 
@@ -191,7 +193,7 @@ public class AccountPage extends LoginPage {
         findElement(confirmNewPasswordField).clear();
         findElement(confirmNewPasswordField).sendKeys(newPass);
 
-        findElement(saveAccountInfoButton).click();
+        clickOnSaveAccountInfoButton();
         return this;
     }
 
@@ -210,6 +212,9 @@ public class AccountPage extends LoginPage {
     }
 
     public AccountPage clickOnSaveAccountInfoButton(){
+        reporter.info("Clicking on Save button");
+        waitForElement(saveAccountInfoButton);
+        scrollToElement(driver().findElement(saveAccountInfoButton));
         findElement(saveAccountInfoButton).click();
         return this;
     }
@@ -220,6 +225,7 @@ public class AccountPage extends LoginPage {
     //Address Book Methods
     public void ClickOnMyAddressBook(){
         reporter.info("Click on My Address Book");
+        scrollToElement(driver().findElement(myAddressBook));
         findElement(myAddressBook).click();
     }
 
@@ -233,11 +239,13 @@ public class AccountPage extends LoginPage {
 
     public void ClickOnChangeShippingAddressButton(){
         reporter.info("Click on Change Shipping Address");
+        scrollToElement(driver().findElement(changeShippingAddressButton));
         findElement(changeShippingAddressButton).click();
     }
 
     public void ClickOnChangeBillingAddressButton(){
         reporter.info("Click on Change Billing Address");
+        scrollToElement(driver().findElement(changeBillingAddressButton));
         findElement(changeBillingAddressButton).click();
     }
 
@@ -286,10 +294,14 @@ public class AccountPage extends LoginPage {
         reporter.info(user.getAddress().getCountry() +" is selected for Country");
         selectFromDropdown(countryField, user.getAddress().getCountry());
 
-        reporter.info("Click on Save Address");
-        findElement(saveAddressButton).click();
+        clickOnSaveAddress();
+    }
 
-        //return this;
+    public void clickOnSaveAddress(){
+        reporter.info("Click on Save Address");
+        waitForElement(saveAddressButton);
+        scrollToElement(driver().findElement(saveAddressButton));
+        findElement(saveAddressButton).click();
     }
 
     public boolean verifyAddressUpdateShipping(UserEntity user){
@@ -331,6 +343,7 @@ public class AccountPage extends LoginPage {
 
     public void ClickOnMyOrders(){
         reporter.info("Click on My Orders");
+        scrollToElement(driver().findElement(myOrders));
         findElement(myOrders).click();
     }
 
@@ -343,6 +356,7 @@ public class AccountPage extends LoginPage {
 
     public void ClickOnMyReviews(){
         reporter.info("Click on My Reviews");
+        scrollToElement(driver().findElement(myReviews));
         findElement(myReviews).click();
     }
 
@@ -350,6 +364,7 @@ public class AccountPage extends LoginPage {
 
     public void ClickOnMyNewsletter(){
         reporter.info("Click on My Newsletter");
+        scrollToElement(driver().findElement(myNewsletter));
         findElement(myNewsletter).click();
     }
 

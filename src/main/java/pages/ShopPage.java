@@ -35,69 +35,69 @@ public class ShopPage extends BasePage{
 
     public MattressesPage clickOnShopOurMattressButton() {
         reporter.info("Click on Shop Our Mattress");
-        scrollToElement(driver().findElement(shopOurMattressButton));
+        scrollToShopElement(driver().findElement(shopOurMattressButton));
         findElement(shopOurMattressButton).click();
         return MattressesPage.Instance;
     }
 
     public FoamPillowPage clickOnShopOurFoamPillowButton() {
         reporter.info("Click on Shop Our Pillow (Foam)");
-        scrollToElement(driver().findElement(shopOurFoamPillowButton));
+        scrollToShopElement(driver().findElement(shopOurFoamPillowButton));
         findElement(shopOurFoamPillowButton).click();
         return FoamPillowPage.Instance;
     }
 
     public PlushPillowPage clickOnShopOurPlushPillowButton() {
         reporter.info("Click on Shop Our Pillow (Plush)");
-        scrollToElement(driver().findElement(shopOurPlushPillowButton));
+        scrollToShopElement(driver().findElement(shopOurPlushPillowButton));
         findElement(shopOurPlushPillowButton).click();
         return PlushPillowPage.Instance;
     }
 
     public MonitorPage clickOnShopOurMonitorButton() {
         reporter.info("Click on Shop Our Monitor");
-        scrollToElement(driver().findElement(shopOurTrackerButton));
+        scrollToShopElement(driver().findElement(shopOurTrackerButton));
         findElement(shopOurTrackerButton).click();
         return MonitorPage.Instance;
     }
 
     public SheetsetPage clickOnShopOurSheetsButton() {
         reporter.info("Click on Shop Our Sheets");
-        scrollToElement(driver().findElement(shopOurSheetsButton));
+        scrollToShopElement(driver().findElement(shopOurSheetsButton));
         findElement(shopOurSheetsButton).click();
         return SheetsetPage.Instance;
     }
 
     public ComforterPage clickOnShopOurComforterButton() {
         reporter.info("Click on Shop Our Comforter");
-        scrollToElement(driver().findElement(shopOurComforterButton));
+        scrollToShopElement(driver().findElement(shopOurComforterButton));
         findElement(shopOurComforterButton).click();
         return ComforterPage.Instance;
     }
 
     public MattressProtectorPage clickOnShopOurCoverButton() {
         reporter.info("Click on Shop Our Cover");
-        scrollToElement(driver().findElement(shopOurCoverButton));
+        scrollToShopElement(driver().findElement(shopOurCoverButton));
         findElement(shopOurCoverButton).click();
         return MattressProtectorPage.Instance;
     }
 
     public DrapesPage clickOnShopOurDrapesButton() {
         reporter.info("Click on Shop Our Drapes");
-        scrollToElement(driver().findElement(shopOurDrapesButton));
+        scrollToShopElement(driver().findElement(shopOurDrapesButton));
         findElement(shopOurDrapesButton).click();
         return DrapesPage.Instance;
     }
 
     public SheetsetPage clickOnShopSheetsButton() {
-        scrollToElement(driver().findElement(shopSheetsButton));
+        scrollToShopElement(driver().findElement(shopSheetsButton));
         reporter.info("Click on Shop Our Sheets");
         findElement(shopSheetsButton).click();
         return SheetsetPage.Instance;
     }
 
     public ComforterPage clickOnShopComforterButton() {
-        scrollToElement(driver().findElement(shopComforterButton));
+        scrollToShopElement(driver().findElement(shopComforterButton));
         reporter.info("Click on Shop Our Comforter");
         findElement(shopComforterButton).click();
         return ComforterPage.Instance;

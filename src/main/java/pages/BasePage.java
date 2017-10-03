@@ -293,8 +293,12 @@ public class BasePage {
 
     public static void scrollToElement(WebElement element) {
         waitForPageToLoad();
-        ((JavascriptExecutor) driver()).executeScript("arguments[0].focus(); window.scroll(0, window.scrollY+=200)",element);
+        ((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView();", element);
+    }
 
+    public static void scrollToShopElement(WebElement element){
+        waitForPageToLoad();
+        ((JavascriptExecutor) driver()).executeScript("arguments[0].focus(); window.scroll(0, window.scrollY+=200)",element);
     }
 
     public static void waitForPageToLoad(){

@@ -1,7 +1,28 @@
-<suite name="Suite" parallel="none" thread-count="1">
+<suite name="Suite" parallel="methods" thread-count="5">
     <test name="Test">
         <classes>
-            <class name="smoke.Smoke_Mattress_FullTest"/>
+            <class name="smoke.NavigationTest_withDataprovider" />
+
+            <class name="smoke.Smoke_Protector_FullTest" />
+            <class name="smoke.Smoke_Comforter_FullTest" />
+            <class name="smoke.Smoke_Sheets_FullTest" />
+            <class name="smoke.Smoke_Drapes_FullTest" />
+            <class name="smoke.Smoke_Monitor_FullTest" />
+            <class name="smoke.Smoke_Mattress_FullTest" />
+            <!-- <class name="smoke.Smoke_FoamPillow_FullTest" />
+            <class name="smoke.Smoke_PlushPillow_FullTest" />
+            <class name="smoke.Smoke_MagazineCategoriesValidationTest" /> -->
+
+
+            <class name="smoke.Smoke_DeleteItemFromCartTest" />
+            <class name="smoke.Smoke_CountOfComfortersInCart_Test" />
+            <class name="smoke.Smoke_CountOfDrapesInCart_Test" />
+            <!-- <class name="smoke.Smoke_CountOfFoamPillowsInCart_Test" /> -->
+            <class name="smoke.Smoke_CountOfMattressesInCart_Test" />
+            <class name="smoke.Smoke_CountOfMattressProtectorsInCart_Test" />
+            <!-- <class name="smoke.Smoke_CountOfPlushPillowsInCart_Test" /> -->
+            <class name="smoke.Smoke_CountOfSheetsInCart_Test" />
+            <class name="smoke.Smoke_CountOfSleepTrackersInCart_Test" />
         </classes>
     </test> <!-- test -->
 </suite> <!-- suite -->

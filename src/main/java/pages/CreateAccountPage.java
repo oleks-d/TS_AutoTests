@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.Tools;
 
 /**
@@ -38,6 +39,7 @@ public class CreateAccountPage extends BasePage {
     //* Page Methods *//
     public CreateAccountPage clickOnCreateAnAccount(){
         reporter.info("Click on Create An Account Button");
+        scrollToElement(driver().findElement(createAnAccountButton));
         findElement(createAnAccountButton).click();
         return this;
     }

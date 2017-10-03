@@ -26,20 +26,21 @@ public class HomePage extends BasePage{
 
     public MattressesPage clickOnShopOurMattressButton() {
         reporter.info("Click on Shop Our Mattress");
+        scrollToShopElement(driver().findElement(shopOurMattressButton));
         findElement(shopOurMattressButton).click();
         return MattressesPage.Instance;
     }
 
     public MonitorPage clickOnShopOurMonitorButton() {
-        scrollToElement(driver().findElement(shopOurMonitorButton));
         reporter.info("Click on Shop Our Monitor");
+        scrollToShopElement(driver().findElement(shopOurMonitorButton));
         findElement(shopOurMonitorButton).click();
         return MonitorPage.Instance;
     }
 
     public FoamPillowPage clickOnShopFoamPillowButton() {
-        scrollToElement(driver().findElement(shopFoamPillowButton));
         reporter.info("Click on Shop Our Pillow");
+        scrollToShopElement(driver().findElement(shopFoamPillowButton));
         findElement(shopFoamPillowButton).click();
         return FoamPillowPage.Instance;
     }

@@ -126,27 +126,31 @@ public class CheckoutPage extends BasePage {
 
     public CheckoutReviewPage clickNextButton(){
         reporter.info("Click on Next button");
+        scrollToElement(driver().findElement(continueButton));
+        waitForElement(continueButton);
         clickOnElement(continueButton);
         return CheckoutReviewPage.Instance;
     }
 
     public CheckoutReviewPage selectFreeShipping(){
         reporter.info("Selecting Free Shipping option");
-        clickOnElement(freeShippingRadioButton);
+        scrollToElement(driver().findElement(freeShippingRadioButton));
+        waitForElement(freeShippingRadioButton);
+        findElement(freeShippingRadioButton).click();
         return CheckoutReviewPage.Instance;
     }
 
     public CheckoutPage populateAllCheckoutFields(UserEntity user) {
-        this.setFirstName(user.getFirstname())
+        this.setEmail(user.getContacts().getEmail())
+                .setFirstName(user.getFirstname())
                 .setLastName(user.getLastname())
-                .setCity(user.getAddress().getCity())
                 .setCompany(user.getContacts().getCompany())
-                .setEmail(user.getContacts().getEmail())
-                .setPhone(user.getContacts().getPhone())
-                .setPostcode(user.getAddress().getZip())
                 .setStreet(user.getAddress().getStreet())
                 .setStreet2(user.getAddress().getStreet_2())
-                .selectRegion(user.getAddress().getRegion());
+                .setCity(user.getAddress().getCity())
+                .selectRegion(user.getAddress().getRegion())
+                .setPostcode(user.getAddress().getZip())
+                .setPhone(user.getContacts().getPhone());
         return this;
     }
 
