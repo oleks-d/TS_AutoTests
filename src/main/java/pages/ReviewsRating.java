@@ -1,6 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import sun.jvm.hotspot.utilities.Assert;
+
+import java.util.List;
 
 
 public class ReviewsRating extends BasePage {
@@ -43,14 +47,6 @@ public class ReviewsRating extends BasePage {
     By filterBar2 = By.xpath(".//*[@class='pr-review-snapshot-histogram']/ul/li[4]");
     By filterBar1 = By.xpath(".//*[@class='pr-review-snapshot-histogram']/ul/li[5]");
 
-    /*  Old Xpath version
-    By filterBarFiveStars = By.xpath(".//*[@class='pr-review-snapshot-histogram']//li[1]");  // Other ver By.xpath(".//p[contains(.,'5 Stars')]");
-    By filterBarFourStars = By.xpath(".//*[@class='pr-review-snapshot-histogram']//li[2]");
-    By filterBarThreeStars = By.xpath(".//*[@class='pr-review-snapshot-histogram']//li[3]");
-    By filterBarTwoStars = By.xpath(".//*[@id='pr-review-snapshot']/section/section[*]/div/ul/li[4]/div");
-    By filterBarOneStar = By.xpath(".//*[@id='pr-review-snapshot']/section/section[*]/div/ul/li[5]/div");
-    */
-
 
     // Applied filter buttons
 
@@ -88,7 +84,12 @@ public class ReviewsRating extends BasePage {
     By rated1outOf5stars = By.xpath(".//span[contains(.,'Rated 1 out of 5 stars')]");
 
 
-    /**
+    By productReview = By.cssSelector(".pr-review");
+    By nextButton = By.xpath("//BUTTON[text()='Next »']");
+    By previousButton = By.xpath("//BUTTON[text()='« Previous']");
+
+
+    /*
      * Page Methods
      */
 
@@ -96,64 +97,76 @@ public class ReviewsRating extends BasePage {
 
     public ReviewsRating clickOnMattressReviewButton() {
         reporter.info("Click on Mattress review button");
+        scrollToElement(driver().findElement(topBarMattress));
         findElement(topBarMattress).click();
         return this;
     }
 
     public ReviewsRating clickOnMonitorReviewButton() {
         reporter.info("Click on Monitor review button");
+        scrollToElement(driver().findElement(topBarMonitor));
         findElement(topBarMonitor).click();
         return this;
     }
 
     public ReviewsRating clickOnComforterReviewButton() {
         reporter.info("Click on Comforter review button");
+        scrollToElement(driver().findElement(topBarComforter));
         findElement(topBarComforter).click();
         return this;
     }
 
     public ReviewsRating clickOnFoamPillowReviewButton() {
         reporter.info("Click on Foam Pillow review button");
+        scrollToElement(driver().findElement(topBarFoamPillow));
         findElement(topBarFoamPillow).click();
         return this;
     }
 
     public ReviewsRating clickOnPlushPillowReviewButton() {
         reporter.info("Click on Plush Pillow review button");
+        scrollToElement(driver().findElement(topBarPlushPillow));
         findElement(topBarPlushPillow).click();
         return this;
     }
 
     public ReviewsRating clickOnSheetsReviewButton() {
         reporter.info("Click on Sheets review button");
+        scrollToElement(driver().findElement(topBarSheets));
         findElement(topBarSheets).click();
         return this;
     }
 
     public ReviewsRating clickOnProtectorReviewButton() {
         reporter.info("Click on Protector review button");
+        scrollToElement(driver().findElement(topBarProtector));
         findElement(topBarProtector).click();
         return this;
     }
 
     public ReviewsRating clickOnDrapesReviewButton() {
         reporter.info("Click on Drapes review button");
+        scrollToElement(driver().findElement(topBarDrapes));
         findElement(topBarDrapes).click();
         return this;
     }
 
+    public boolean productReviewsAreDisplayed(){
+        return isElementPresentAndDisplay(productReview);
+    }
 
-    // Filter bar methods (Unnecessary)
-
-//    public boolean filterBarsAvailabilityVerification(){
-//        reporter.info("Checking filter bars for availability");
-//        return isElementPresentAndDisplay(filterBar5)
-//                && isElementPresent(filterBar4)
-//                && isElementPresent(filterBar3)
-//                && isElementPresent(filterBar2)
-//                && isElementPresent(filterBar1);
-//    }
-
+    public void browseThroughReviewPages() {
+        List <WebElement> element = findElements(productReview);
+        int count = element.size();
+        reporter.info("Number of elements found is " + count);
+        if (count == 10 && isElementPresentAndDisplay(nextButton)){
+            scrollToElement(driver().findElement(nextButton));
+            clickOnElement(nextButton);
+            Assert.that(isElementPresentAndDisplay(previousButton), "Previous button cant be found");
+            clickOnElement(previousButton);
+            Assert.that(isElementPresentAndDisplay(nextButton), "Next button cant be found");
+        }
+    }
 
 
     // Filter Bar methods
@@ -317,24 +330,6 @@ public class ReviewsRating extends BasePage {
         return true;
     }
 
-
-//    public boolean twoStarsFilterVerification(){ // OLD
-//        isElementPresentAndDisplay(twoStarsFilterHistogram);
-//        reporter.info("2 Stars Bar is found and active. Filter removed successfully");
-//        return true;
-//    }
-
-//    public boolean clickOnFilterFiveStarsButton(){ //Ver 1 OLD
-//
-//        if (isElementPresentAndDisplay(filterFiveStarsButton)) {
-//            reporter.info("Five Stars Button is found");
-//            findElement(filterFiveStarsButton).click();
-//            reporter.info("Click on 5 stars filter button");
-//        }else{
-//            reporter.info("Five Stars Filter Button is not found");
-//        }
-//        return false;
-//    }
 
 
     // Reviews verification
