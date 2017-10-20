@@ -35,7 +35,7 @@ public class ViewCart_UpdateProtectorTest extends BaseTest {
                 .selectProtectorSize(item.getSize())
                 .clickAddToCart();
         ProductSync.uncheck(ProductTypes.MATTRESS_PROTECTOR);
-        home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
+        cartPage.clickOnEditProduct(item.getTitle());
 
         prodPage
                 .selectProtectorSize(updateditem.getSize())

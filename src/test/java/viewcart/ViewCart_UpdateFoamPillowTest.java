@@ -34,7 +34,7 @@ public class ViewCart_UpdateFoamPillowTest extends BaseTest {
                 .clickOnShopOurFoamPillowButton()
                 .clickAddToCart();
         ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
-        home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
+        cartPage.clickOnEditProduct(item.getTitle());
 
         prodPage
                 .clickUpdateCart();

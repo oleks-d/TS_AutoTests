@@ -34,7 +34,7 @@ public class ViewCart_UpdatePlushPillowTest extends BaseTest {
                 .clickOnShopOurPlushPillowButton()
                 .clickAddToCart();
         ProductSync.uncheck(ProductTypes.PLUSH_PILLOW);
-        home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
+        cartPage.clickOnEditProduct(item.getTitle());
 
         prodPage
                 .clickUpdateCart();

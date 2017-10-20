@@ -36,7 +36,7 @@ public class ViewCart_UpdateComforterTest extends BaseTest {
                 .clickAddToCart();
 
         ProductSync.uncheck(ProductTypes.COMFORTER);
-        home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
+        cartPage.clickOnEditProduct(item.getTitle());
 
         prodPage
                 .selectComforterSize(updateditem.getSize())

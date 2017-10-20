@@ -36,7 +36,7 @@ public class ViewCart_UpdateDrapesTest extends BaseTest {
                 .selectDrapesColor(item.getType())
                 .clickAddToCart();
         ProductSync.uncheck(ProductTypes.DRAPES);
-        home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
+        cartPage.clickOnEditProduct(item.getTitle());
 
         prodPage
                 .selectDrapesSize(updateditem.getSize())

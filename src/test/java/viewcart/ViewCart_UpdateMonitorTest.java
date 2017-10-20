@@ -34,7 +34,7 @@ public class ViewCart_UpdateMonitorTest extends BaseTest {
                 .selectMonitorType(item.getType())
                 .clickAddToCart();
         ProductSync.uncheck(ProductTypes.MONITOR);
-        home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
+        cartPage.clickOnEditProduct(item.getTitle());
 
         prodPage
                 .selectMonitorType(updateditem.getType())

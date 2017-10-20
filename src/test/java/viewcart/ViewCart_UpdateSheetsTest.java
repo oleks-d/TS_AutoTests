@@ -35,7 +35,7 @@ public class ViewCart_UpdateSheetsTest extends BaseTest {
                 .selectSheetsetSize(item.getSize())
                 .clickAddToCart();
         ProductSync.uncheck(ProductTypes.SHEETSET);
-        home.header.clickOnViewCartButton().clickOnEditProduct(item.getTitle());
+        cartPage.clickOnEditProduct(item.getTitle());
 
         prodPage
                 .selectSheetsetSize(updateditem.getSize())

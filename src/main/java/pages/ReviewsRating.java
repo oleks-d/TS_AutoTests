@@ -19,9 +19,7 @@ public class ReviewsRating extends BasePage {
     /**
      * Common elements
      **/
-
     public PageHeader header = PageHeader.Instance;
-
 
     /**
      * UI Mappings
@@ -152,17 +150,22 @@ public class ReviewsRating extends BasePage {
     }
 
     public boolean productReviewsAreDisplayed(){
+        reporter.info("Searching for product reviews");
         return isElementPresentAndDisplay(productReview);
     }
 
     public void browseThroughReviewPages() {
         List <WebElement> element = findElements(productReview);
         int count = element.size();
-        reporter.info("Number of elements found is " + count);
+        reporter.info("Number of reviews found is " + count);
         if (count == 10 && isElementPresentAndDisplay(nextButton)){
+
+            reporter.info("Clicking on Next button");
             scrollToElement(driver().findElement(nextButton));
             clickOnElement(nextButton);
             Assert.that(isElementPresentAndDisplay(previousButton), "Previous button cant be found");
+
+            reporter.info("Clicking on Previous button");
             clickOnElement(previousButton);
             Assert.that(isElementPresentAndDisplay(nextButton), "Next button cant be found");
         }
