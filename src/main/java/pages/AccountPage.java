@@ -1,7 +1,6 @@
 package pages;
 
 import entities.UserEntity;
-import org.apache.xpath.operations.Variable;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
