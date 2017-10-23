@@ -34,15 +34,13 @@ public class Smoke_CountOfPlushPillowsInCart_Test extends BaseTest {
 
         //adding three the identical plush pillows to the cart
         plushPillowPage.clickAddToCart();
-        cart.clickOnBackToShop();
+        plushPillowPage.open();
 
-        shopPage.clickOnShopOurPlushPillowButton();
         plushPillowPage.clickAddToCart();
-        cart.clickOnBackToShop();
+        plushPillowPage.open();
 
-        shopPage.clickOnShopOurPlushPillowButton();
         plushPillowPage.clickAddToCart();
-        cart.clickOnBackToShop();
+        plushPillowPage.open();
         ProductSync.uncheck(ProductTypes.PLUSH_PILLOW);
         //getting count from cart icon
         countOfGoodsFromCartIcon = plushPillowPage.header.getCountOfGoodsFromCartIcon();

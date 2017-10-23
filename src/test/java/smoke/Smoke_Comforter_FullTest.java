@@ -38,7 +38,7 @@ public class Smoke_Comforter_FullTest extends BaseTest {
                 .clickOnShopOurComforterButton()
                 .selectComforterSize(item.getSize())
                 .clickAddToCart();
-        cart.clickOnBackToShop();
+        home.header.clickShopMenuItem();
         
         ProductSync.uncheck(ProductTypes.COMFORTER);
 

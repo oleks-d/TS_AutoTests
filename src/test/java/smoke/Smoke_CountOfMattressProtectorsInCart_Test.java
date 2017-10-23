@@ -41,30 +41,26 @@ public class Smoke_CountOfMattressProtectorsInCart_Test extends BaseTest {
 
         //adding two the identical "default" protectors to the cart
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(defaultProtector.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        protectorPage.open();
 
-        shopPage.clickOnShopOurCoverButton();
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(defaultProtector.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        protectorPage.open();
 
         //checking if "default" protectors were counted
         countOfGoodsFromCartIcon = protectorPage.header.getCountOfGoodsFromCartIcon();
         countOfGoodsInCart = protectorPage.header.getCountOfGoodsInCart();
         Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "First time. Count of added to cart items equal to count from cart icon");
 
-        protectorPage.open();
 
         //adding another "updated" configuration variants of protectors to the cart
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(updatedProtector.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        protectorPage.open();
 
-        shopPage.clickOnShopOurCoverButton();
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(updatedProtector.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        protectorPage.open();
 
-        shopPage.clickOnShopOurCoverButton();
         protectorPage.selectProtectorSize(defaultProtector.getSize()).selectProtectorSize(updatedProtector.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        protectorPage.open();
         ProductSync.uncheck(ProductTypes.MATTRESS_PROTECTOR);
 
         countOfGoodsFromCartIcon = protectorPage.header.getCountOfGoodsFromCartIcon();

@@ -38,7 +38,7 @@ public class Smoke_Sheets_FullTest extends BaseTest {
                 .clickOnShopOurSheetsButton()
                 .selectSheetsetSize(item.getSize())
                 .clickAddToCart();
-        cart.clickOnBackToShop();
+        home.header.clickShopMenuItem();
 
         ProductSync.uncheck(ProductTypes.SHEETSET);
         // check item in cart

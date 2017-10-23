@@ -32,15 +32,13 @@ public class Smoke_CountOfFoamPillowsInCart_Test extends BaseTest {
 
         //adding three the identical foam pillows to the cart
         foamPillowPage.clickAddToCart();
-        cart.clickOnBackToShop();
+        foamPillowPage.open();
 
-        shopPage.clickOnShopOurFoamPillowButton();
         foamPillowPage.clickAddToCart();
-        cart.clickOnBackToShop();
+        foamPillowPage.open();
 
-        shopPage.clickOnShopOurFoamPillowButton();
         foamPillowPage.clickAddToCart();
-        cart.clickOnBackToShop();
+        foamPillowPage.open();
 
         ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
 
