@@ -38,7 +38,7 @@ public class Smoke_Protector_FullTest extends BaseTest {
                 .clickOnShopOurCoverButton()
                 .selectProtectorSize(item.getSize())
                 .clickAddToCart();
-        cart.clickOnBackToShop();
+        home.header.clickShopMenuItem();
 
         ProductSync.uncheck(ProductTypes.MATTRESS_PROTECTOR);
         // check item in cart

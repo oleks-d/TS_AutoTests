@@ -55,7 +55,7 @@ public class Smoke_CountOfMattressesInCart_Test extends BaseTest {
         Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "First time. Count of added to cart items equal to count from cart icon");
 
         //adding another item (model of smaller mattresses) to the cart
-        mattressesPage.open();
+        //mattressesPage.open();
         mattressesPage.selectMattressSize(smallerMattress.getSize()).selectMattressFeel(smallerMattress.getType()).clickAddToCart();
 
         mattressesPage.open();

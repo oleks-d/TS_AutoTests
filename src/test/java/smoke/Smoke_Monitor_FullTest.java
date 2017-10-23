@@ -37,7 +37,7 @@ public class Smoke_Monitor_FullTest extends BaseTest {
         home.clickOnShopOurMonitorButton()
                 .selectMonitorType(item.getType())
                 .clickAddToCart();
-        cart.clickOnBackToShop();
+        home.header.clickShopMenuItem();
 
         ProductSync.uncheck(ProductTypes.MONITOR);
         // check item in cart

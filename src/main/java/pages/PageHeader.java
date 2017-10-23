@@ -26,7 +26,7 @@ public class PageHeader extends BasePage {
     By topMagazineMenuItem_Magazine = By.xpath(".//*[@id='menu-main-1']/li/a[text()='Magazine']");
     By topMenuItem_FAQ = By.xpath("(//A[@href='https://www.tomorrowsleep.com/FAQ'][text()=' HELP'][text()=' HELP'])[1]");
     By topMenuItem_SignIn = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign In')]");
-    By topMenuItem_Reviews = By.xpath(".//*[@id='ui-id-6']/span");
+    By topMenuItem_Reviews = By.xpath("(//SPAN[text()='REVIEWS'][text()='REVIEWS'])[1]");
     By topMenuItem_Account = By.xpath("//ul[@class='header links']//span[text()='Account']");
     By topMenuItem_SignOut = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign Out')]");
     //cart

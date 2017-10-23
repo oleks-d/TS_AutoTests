@@ -37,7 +37,7 @@ public class Smoke_FoamPillow_FullTest extends BaseTest {
         home.header.clickShopMenuItem()
                 .clickOnShopOurFoamPillowButton()
                 .clickAddToCart();
-        cart.clickOnBackToShop();
+        home.header.clickShopMenuItem();
 
         ProductSync.uncheck(ProductTypes.FOAM_PILLOW);
         // check item in cart

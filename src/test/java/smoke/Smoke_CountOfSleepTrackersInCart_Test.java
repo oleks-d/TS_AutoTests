@@ -41,23 +41,20 @@ public class Smoke_CountOfSleepTrackersInCart_Test extends BaseTest {
 
         //filling the cart with different types and counts of sleep trackers
         monitorPage.selectMonitorType(defaultMonitor.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        monitorPage.open();
 
-        shopPage.clickOnShopOurMonitorButton();
         monitorPage.selectMonitorType(defaultMonitor.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        monitorPage.open();
 
-        shopPage.clickOnShopOurMonitorButton();
         monitorPage.selectMonitorType(defaultMonitor.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        monitorPage.open();
 
-        shopPage.clickOnShopOurMonitorButton();
         monitorPage.selectMonitorType(updatedMonitor.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        monitorPage.open();
 
-        shopPage.clickOnShopOurMonitorButton();
         monitorPage.selectMonitorType(updatedMonitor.getType()).clickAddToCart();
-        cart.clickOnBackToShop();
+        monitorPage.open();
+
         ProductSync.uncheck(ProductTypes.MONITOR);
         //getting count of selected sleep trackers from cart icon
         countOfGoodsFromCartIcon = monitorPage.header.getCountOfGoodsFromCartIcon();

@@ -41,28 +41,25 @@ public class Smoke_CountOfSheetsInCart_Test extends BaseTest {
 
         //filling the cart with different types and count of sheets
         sheetsetPage.selectSheetsetSize(defaultSheet.getSize()).clickAddToCart();
-        cart.clickOnBackToShop();
+        sheetsetPage.open();
 
-        shopPage.clickOnShopOurSheetsButton();
         sheetsetPage.selectSheetsetSize(defaultSheet.getSize()).clickAddToCart();
-        cart.clickOnBackToShop();
+        sheetsetPage.open();
 
         //checking if items were added and counted normally
         countOfGoodsFromCartIcon = sheetsetPage.header.getCountOfGoodsFromCartIcon();
         countOfGoodsInCart = sheetsetPage.header.getCountOfGoodsInCart();
         Assert.assertTrue(countOfGoodsInCart == countOfGoodsFromCartIcon, "Count of added to cart items equal to count from cart icon");
 
-        shopPage.clickOnShopOurSheetsButton();
         sheetsetPage.selectSheetsetSize(updatedSheet.getSize()).clickAddToCart();
-        cart.clickOnBackToShop();
+        sheetsetPage.open();
 
-        shopPage.clickOnShopOurSheetsButton();
         sheetsetPage.selectSheetsetSize(updatedSheet.getSize()).clickAddToCart();
-        cart.clickOnBackToShop();
+        sheetsetPage.open();
 
-        shopPage.clickOnShopOurSheetsButton();
         sheetsetPage.selectSheetsetSize(updatedSheet.getSize()).clickAddToCart();
-        cart.clickOnBackToShop();
+        sheetsetPage.open();
+
         ProductSync.uncheck(ProductTypes.SHEETSET);
         //getting count of selected goods from cart icon
         countOfGoodsFromCartIcon = sheetsetPage.header.getCountOfGoodsFromCartIcon();

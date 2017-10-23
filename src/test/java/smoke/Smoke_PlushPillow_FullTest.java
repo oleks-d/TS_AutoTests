@@ -37,7 +37,7 @@ public class Smoke_PlushPillow_FullTest extends BaseTest {
         home.header.clickShopMenuItem()
                 .clickOnShopOurPlushPillowButton()
                 .clickAddToCart();
-        cart.clickOnBackToShop();
+        home.header.clickShopMenuItem();
 
         ProductSync.uncheck(ProductTypes.PLUSH_PILLOW);
         // check item in cart

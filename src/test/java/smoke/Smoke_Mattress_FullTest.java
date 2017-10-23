@@ -38,7 +38,7 @@ public class Smoke_Mattress_FullTest extends BaseTest {
                 .selectMattressSize(item.getSize())
                 .selectMattressFeel(item.getType())
                 .clickAddToCart();
-        cart.clickOnBackToShop();
+        home.header.clickShopMenuItem();
 
         ProductSync.uncheck(ProductTypes.MATTRESS);
         // check item in cart
