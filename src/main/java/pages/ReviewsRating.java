@@ -1,8 +1,8 @@
 package pages;
 
+import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import sun.jvm.hotspot.utilities.Assert;
 
 import java.util.List;
 
@@ -163,11 +163,11 @@ public class ReviewsRating extends BasePage {
             reporter.info("Clicking on Next button");
             scrollToElement(driver().findElement(nextButton));
             clickOnElement(nextButton);
-            Assert.that(isElementPresentAndDisplay(previousButton), "Previous button cant be found");
+            Assert.assertTrue(isElementPresentAndDisplay(previousButton), "Previous button cant be found");
 
             reporter.info("Clicking on Previous button");
             clickOnElement(previousButton);
-            Assert.that(isElementPresentAndDisplay(nextButton), "Next button cant be found");
+            Assert.assertTrue(isElementPresentAndDisplay(nextButton), "Next button cant be found");
         }
     }
 

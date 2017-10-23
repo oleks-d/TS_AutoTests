@@ -17,7 +17,9 @@ import java.util.logging.Level;
  */
 public class DriverProvider {
 
-    static String OS_EXTENTION = (System.getProperty("os.name").toLowerCase().contains("win")) ? ".exe" : "_mac";
+    static String OS_EXTENTION = (System.getProperty("os.name").toLowerCase().contains("win")) ? ".exe" :
+            (System.getProperty("os.name").toLowerCase().contains("mac")) ? "_mac" :
+                    "_linux";
     static String FIREFOX_PATH = "drivers/geckodriver" + OS_EXTENTION;
     static String CHROME_PATH = "drivers/chromedriver" + OS_EXTENTION;
 
