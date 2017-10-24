@@ -52,7 +52,7 @@ public class DriverProvider {
 
         ChromeOptions chromeOptions = new ChromeOptions();
         //chromeOptions.addArguments("--kiosk");
-        //chromeOptions.addArguments("--start-maximized");
+        chromeOptions.addArguments("--start-fullscreen");
 
         caps.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 

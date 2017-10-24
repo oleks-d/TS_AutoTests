@@ -97,7 +97,7 @@ public class BasePage {
         }else {
             driver().get(BASE_URL + pageURL);
         }
-        driver().manage().window().maximize();
+        //driver().manage().window().maximize();
 
     }
 

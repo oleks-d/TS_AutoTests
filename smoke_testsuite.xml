@@ -1,4 +1,4 @@
-<suite name="Suite" parallel="methods" thread-count="5">
+<suite name="Suite" parallel="methods" thread-count="3">
     <test name="Test">
         <classes>
 
