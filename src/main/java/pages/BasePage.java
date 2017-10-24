@@ -1,7 +1,5 @@
 package pages;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,11 +89,11 @@ public class BasePage {
         driver().navigate().refresh();
     }
 
-    public void open() throws UnsupportedEncodingException {
+    public void open() {
 
         reporter.info("Opening the page: " + "\"" + BASE_URL + pageURL + "\"");
         if (FileIO.getConfigProperty("EnvType").equals("Staging")){
-            driver().get(URLDecoder.decode("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com", "UTF-8"));
+            driver().get("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com");
         }else {
             driver().get(BASE_URL + pageURL);
         }
