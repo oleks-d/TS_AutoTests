@@ -2,8 +2,11 @@ package pages;
 
 import entities.ItemEntity;
 import entities.UserEntity;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.SkipException;
 import utils.Tools;
 
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ public class ViewCartPage extends BasePage {
     By orderItemEditButton = By.cssSelector("a.action.action-edit");
     By orderItemDeleteButton = By.cssSelector("a.action.action-delete");
     By backToShopLink = By.xpath("//A[@class='back-to-shop'][text()='Back to Shop']");
+    By errorMessage = By.xpath("//DIV[@class='message-error error message']");
 
     By orderIncreaseQuantityItemButton = By.xpath("//button[@name='update_cart_action' and @title='+']");
     By orderDecreaseQuantityItemButton = By.xpath("//button[@name='update_cart_action' and @title='-']");
@@ -64,6 +68,10 @@ public class ViewCartPage extends BasePage {
 
     public boolean itemDisplayedOnViewCartPage(String itemName, int qty) {
         ArrayList<ItemEntity> items = getAllViewCartPageItems();
+        if (isElementPresent(errorMessage)){
+            reporter.info("Not enough items in stock");
+            throw new SkipException("Not enough items in stock");
+        }
         return items.stream()
                 .filter(cur -> itemName.equals(cur.getTitle()))
                 .filter(cur -> qty == cur.getQty())
