@@ -47,6 +47,7 @@ public class PageHeader extends BasePage {
     By closeCartButton = By.id("btn-minicart-close");
     By cartQtyIndex = By.cssSelector("span.counter-number");
     By LOADING_SPINNER = By.cssSelector("div.fotorama__spinner");
+    By improveWindow = By.xpath("//DIV[@class='close mteo-close']");
 
     PageHeader() {
         waitForPageToLoad();
@@ -188,6 +189,9 @@ public class PageHeader extends BasePage {
         reporter.info("Click on Checkout button");
         openCart();
         clickOnElement(cartCheckoutButton);
+        if (isElementPresent(improveWindow)){
+            clickOnElement(improveWindow);
+        }
         return CheckoutPage.Instance;
     }
 
