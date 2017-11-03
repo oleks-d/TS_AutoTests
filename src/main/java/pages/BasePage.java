@@ -93,7 +93,7 @@ public class BasePage {
 
         reporter.info("Opening the page: " + "\"" + BASE_URL + pageURL + "\"");
         if (FileIO.getConfigProperty("EnvType").equals("Staging")){
-            driver().get("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com");
+            driver().get("https://bettersleep:stg-tsleep-@45@staging.tomorrowsleep.com" + pageURL);
         }else {
             driver().get(BASE_URL + pageURL);
         }

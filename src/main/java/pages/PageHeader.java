@@ -3,8 +3,10 @@ package pages;
 import entities.ItemEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.FileIO;
 import utils.Tools;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class PageHeader extends BasePage {
     By topMagazineMenuItem_Magazine = By.xpath(".//*[@id='menu-main-1']/li/a[text()='Magazine']");
     By topMenuItem_FAQ = By.xpath("(//A[@href='https://www.tomorrowsleep.com/FAQ'][text()=' HELP'][text()=' HELP'])[1]");
     By topMenuItem_SignIn = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign In')]");
+    By topMenuItem_SignInStage = By.xpath("//ul[@class='header links']//a[contains(text(),'Account')]");
     By topMenuItem_Reviews = By.xpath("(//SPAN[text()='REVIEWS'][text()='REVIEWS'])[1]");
     By topMenuItem_Account = By.xpath("//ul[@class='header links']//span[text()='Account']");
     By topMenuItem_SignOut = By.xpath("//ul[@class='header links']//a[contains(text(),'Sign Out')]");
@@ -47,7 +50,7 @@ public class PageHeader extends BasePage {
     By closeCartButton = By.id("btn-minicart-close");
     By cartQtyIndex = By.cssSelector("span.counter-number");
     By LOADING_SPINNER = By.cssSelector("div.fotorama__spinner");
-    By improveWindow = By.xpath("//DIV[@class='close mteo-close']");
+    By closeImproveWindow = By.xpath("//DIV[@class='close mteo-close']");
 
     PageHeader() {
         waitForPageToLoad();
@@ -68,7 +71,12 @@ public class PageHeader extends BasePage {
 
     public LoginPage clickSignInMenuItem() {
         reporter.info("Click on SIGN IN menu item");
-        clickOnElement(topMenuItem_SignIn);
+        if (FileIO.getConfigProperty("EnvType").equals("PROD")){
+            clickOnElement(topMenuItem_SignIn);
+        }
+        if (FileIO.getConfigProperty("EnvType").equals("Staging")){
+            clickOnElement(topMenuItem_SignInStage);
+        }
         return LoginPage.Instance;
     }
 
@@ -189,8 +197,8 @@ public class PageHeader extends BasePage {
         reporter.info("Click on Checkout button");
         openCart();
         clickOnElement(cartCheckoutButton);
-        if (isElementPresent(improveWindow)){
-            clickOnElement(improveWindow);
+        if (isElementPresent(closeImproveWindow)){
+            clickOnElement(closeImproveWindow);
         }
         return CheckoutPage.Instance;
     }

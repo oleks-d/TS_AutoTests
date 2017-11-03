@@ -18,13 +18,13 @@ public class NavigationTest_withDataprovider extends BaseTest {
     @DataProvider(name = "default_item_provider")
     public Object[][] provider (){
         return new Object[][]{
-                {ProductTypes.MONITOR, MonitorPage.class, "Monitor"},
-                {ProductTypes.MATTRESS, MattressesPage.class, "Mattress" },
-                {ProductTypes.MATTRESS_PROTECTOR, MattressProtectorPage.class, "Protector" },
-                {ProductTypes.COMFORTER, ComforterPage.class, "Comforter"},
-                {ProductTypes.PLUSH_PILLOW, PlushPillowPage.class, "Plush Pillow"},
-                {ProductTypes.FOAM_PILLOW, FoamPillowPage.class, "Foam Pillow"},
-                {ProductTypes.DRAPES, DrapesPage.class, "Drapes"},
+//                {ProductTypes.MONITOR, MonitorPage.class, "Monitor"},
+//                {ProductTypes.MATTRESS, MattressesPage.class, "Mattress" },
+//                {ProductTypes.MATTRESS_PROTECTOR, MattressProtectorPage.class, "Protector" },
+//                {ProductTypes.COMFORTER, ComforterPage.class, "Comforter"},
+//                {ProductTypes.PLUSH_PILLOW, PlushPillowPage.class, "Plush Pillow"},
+//                {ProductTypes.FOAM_PILLOW, FoamPillowPage.class, "Foam Pillow"},
+//                {ProductTypes.DRAPES, DrapesPage.class, "Drapes"},
                 {ProductTypes.SHEETSET, SheetsetPage.class, "Sheets"},
         };
     }
@@ -36,6 +36,7 @@ public class NavigationTest_withDataprovider extends BaseTest {
         HomePage home = HomePage.Instance;
         CheckoutPage checkout = CheckoutPage.Instance;
         CheckoutReviewPage review = CheckoutReviewPage.Instance;
+        ViewCartPage cart = ViewCartPage.Instance;
         BaseProductPage bp = (BaseProductPage) page.getConstructor().newInstance();
 
         home.open();
@@ -50,7 +51,7 @@ public class NavigationTest_withDataprovider extends BaseTest {
         bp.clickAddToCart();
         ProductSync.uncheck(type);
 
-        ViewCartPage cart = home.header.clickOnViewCartButton();
+        //ViewCartPage cart = home.header.clickOnViewCartButton();
         cart.clickOnProduct(type.toString());
 
         Assert.assertTrue(bp.isPageLoaded(), "Page was not opened: " + bp.getURL());
