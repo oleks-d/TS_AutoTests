@@ -14,14 +14,14 @@ public class ViewCart_DeleteTest extends BaseTest {
     @DataProvider(name = "default_item_provider")
     public Object[][] provider () throws Exception {
         return new Object[][]{
-//                {ProductTypes.MATTRESS, MattressesPage.class, "Mattress" },
-//                {ProductTypes.MATTRESS_PROTECTOR, MattressProtectorPage.class, "Protector" },
+                {ProductTypes.MATTRESS, MattressesPage.class, "Mattress" },
+                {ProductTypes.MATTRESS_PROTECTOR, MattressProtectorPage.class, "Protector" },
                 {ProductTypes.COMFORTER,  ComforterPage.class, "Comforter"},
                 {ProductTypes.PLUSH_PILLOW, PlushPillowPage.class, "Plush Pillow"},
-//                {ProductTypes.FOAM_PILLOW,  FoamPillowPage.class, "Foam Pillow"},
+                {ProductTypes.FOAM_PILLOW,  FoamPillowPage.class, "Foam Pillow"},
                 {ProductTypes.DRAPES, DrapesPage.class, "Drapes"},
                 {ProductTypes.SHEETSET, SheetsetPage.class, "Sheets"},
-//                {ProductTypes.MONITOR, MonitorPage.class, "Monitor"}
+                {ProductTypes.MONITOR, MonitorPage.class, "Monitor"}
 
 //                {ProductTypes.MONITOR, MonitorPage.class, "Monitor"},
 //                {ProductTypes.MATTRESS, MattressesPage.class, "Mattress" },
@@ -53,6 +53,9 @@ public class ViewCart_DeleteTest extends BaseTest {
 
         if (type == ProductTypes.MONITOR) // no default value for monitor - user have to select type before Adding to cart
             MonitorPage.Instance.selectMonitorType("One Person");
+
+        if (type == ProductTypes.DRAPES) // user must select color before adding to cart
+            DrapesPage.Instance.selectDrapesColor("Teak");
 
         bp.clickAddToCart();
 

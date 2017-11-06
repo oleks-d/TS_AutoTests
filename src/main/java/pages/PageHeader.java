@@ -71,12 +71,7 @@ public class PageHeader extends BasePage {
 
     public LoginPage clickSignInMenuItem() {
         reporter.info("Click on SIGN IN menu item");
-        if (FileIO.getConfigProperty("EnvType").equals("PROD")){
-            clickOnElement(topMenuItem_SignIn);
-        }
-        if (FileIO.getConfigProperty("EnvType").equals("Staging")){
-            clickOnElement(topMenuItem_SignInStage);
-        }
+        clickOnElement(topMenuItem_SignIn);
         return LoginPage.Instance;
     }
 

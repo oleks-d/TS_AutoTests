@@ -55,6 +55,9 @@ public class ViewCart_ChangeQuantityTest extends BaseTest {
         if (type == ProductTypes.MONITOR) // no default value for monitor - user have to select type before Adding to cart
             MonitorPage.Instance.selectMonitorType("One Person");
 
+        if (type == ProductTypes.DRAPES) // user must select color before adding to cart
+            DrapesPage.Instance.selectDrapesColor("Teak");
+
         bp.clickAddToCart();
         ProductSync.uncheck(type);
 
